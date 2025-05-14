@@ -1,0 +1,30 @@
+CREATE TABLE Amenity (
+  amenityID INT PRIMARY KEY AUTO_INCREMENT,
+  amenityName NVARCHAR(50) NOT NULL UNIQUE
+)ENGINE=InnoDB;
+
+INSERT INTO Amenity (amenityName) 
+VALUES 
+    ('Wi-Fi'),
+    ('Ghế Ergonomic'),
+    ('Bàn Điều Chỉnh'),
+	('Bàn Đứng'),
+    ('Đèn Bàn'),
+    ('Máy Chiếu'),
+    ('TV/Màn Hình'),
+    ('Bảng Trắng'),
+    ('Máy In/Máy Scan'),
+    ('Máy Photocopy'),
+    ('Máy Pha Cà Phê'),
+    ('Máy Lọc Nước'),
+    ('Điều Hòa'),
+    ('Hệ Thống Sưởi'),
+    ('Tủ Lưu Trữ'),
+    ('Tủ Khóa'),
+    ('Cây Xanh Trong Nhà'),
+    ('Camera Giám Sát'),
+    ('Máy Phát Điện Dự Phòng'),
+    ('Cách Âm'),
+    ('Rèm/Màn Cửa'),
+    ('Ánh Sáng Tự Nhiên'),
+    ('Sân Thượng');

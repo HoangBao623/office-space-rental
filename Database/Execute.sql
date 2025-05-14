@@ -1,0 +1,22 @@
+use OfficeSpaceRental;
+
+select * from role;
+select * from user;
+select * from detailrole;
+select * from building;
+select * from typeoffice;
+select * from officespace;
+select * from image;
+select * from tag;
+select * from detailtag;
+select * from amenity;
+select * from detailamenity;
+select * from renttype;
+select * from detailrenttype;
+select * from status;
+select * from detailstatus;
+select * from reservation;
+select * from contract;
+select * from payment;
+select * from favorite;
+select * from lessorpayment;

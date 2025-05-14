@@ -1,0 +1,100 @@
+CREATE TABLE OfficeSpace (
+  officeSpaceID INT PRIMARY KEY AUTO_INCREMENT,
+  title NVARCHAR(100) NOT NULL,
+  size DECIMAL(10,2) NOT NULL,
+  capacity INT NOT NULL,
+  buildingID INT NOT NULL,
+  lessorID INT NOT NULL,
+  typeOfficeID INT NOT NULL,
+  FOREIGN KEY (lessorID) REFERENCES User(userID) ON DELETE RESTRICT,
+  FOREIGN KEY (buildingID) REFERENCES Building(buildingID) ON DELETE RESTRICT,
+  FOREIGN KEY (typeOfficeID) REFERENCES TypeOffice(typeOfficeID) ON DELETE RESTRICT
+)ENGINE=InnoDB;
+
+INSERT INTO OfficeSpace (title, typeOfficeID, size, capacity, buildingID, lessorID)
+VALUES
+    ('Elite Executive Suite', 1, 75.00, 10, 1, 7),
+    ('Azure Coworking Hub', 2, 40.00, 15, 2, 5),
+    ('Haven Business Center', 3, 250.00, 50, 3, 8),
+    ('Grandiose Corporate Office', 1, 120.00, 25, 4, 6),
+    ('Pinnacle Smart Workspace', 5, 30.00, 8, 5, 9),
+    ('Willow Creek Professional Space', 1, 60.00, 12, 6, 4),
+    ('Ocean Breeze Creative Studio', 2, 45.00, 18, 7, 10),
+    ('Forest Retreat Eco Office', 4, 180.00, 35, 8, 8),
+    ('Mountain View Business Suite', 3, 100.00, 20, 9, 7),
+    ('Sunnyside Tech Hub', 5, 25.00, 6, 10, 5),
+    ('Wanderlust Collaborative Space', 2, 80.00, 30, 11, 9),
+    ('Nomad Flexible Office', 3, 35.00, 7, 12, 4),
+    ('Eccentric Innovation Center', 5, 200.00, 40, 13, 6),
+    ('Bohemian Creative Loft', 4, 150.00, 30, 14, 10),
+    ('Enigma Smart Office', 5, 20.00, 5, 15, 8),
+    ('Sunrise Professional Center', 1, 150.00, 30, 16, 7),
+    ('Urban Coworking Community', 2, 60.00, 24, 17, 5),
+    ('Luxe Executive Offices', 1, 300.00, 60, 18, 9),
+    ('Skyline Shared Workspace', 3, 50.00, 10, 19, 4),
+    ('Sapphire Biophilic Office', 4, 35.00, 7, 20, 6),
+    ('Crescent Corporate Headquarters', 1, 80.00, 16, 21, 8),
+    ('Emerald Collaborative Space', 2, 45.00, 18, 22, 10),
+    ('Lotus Shared Office Solutions', 3, 120.00, 24, 23, 5),
+    ('Serene Green Office', 4, 250.00, 50, 24, 7),
+    ('Radiant Tech Office', 5, 30.00, 6, 25, 9),
+    ('Wave Business Center', 1, 90.00, 18, 26, 6),
+    ('Ocean Pearl Innovation Hub', 5, 55.00, 12, 27, 4),
+    ('Golden Sands Corporate Suites', 1, 230.00, 46, 28, 8),
+    ('Horizon Coworking Space', 2, 140.00, 56, 29, 10),
+    ('Velvet Shared Office Center', 3, 25.00, 5, 30, 7);
+    
+-- Additional OfficeSpace entries for existing buildings
+INSERT INTO OfficeSpace (title, typeOfficeID, size, capacity, buildingID, lessorID)
+VALUES
+    -- Additional spaces for Building 1 (The Elysian)
+    ('Elysian Executive Corner', 1, 85.00, 12, 1, 5),
+    ('Elysian Coworking Zone', 2, 120.00, 40, 1, 8),
+    ('Elysian Smart Conference Center', 5, 60.00, 20, 1, 4),
+    
+    -- Additional spaces for Building 2 (Azure Skies)
+    ('Azure Private Offices', 3, 50.00, 10, 2, 6),
+    ('Azure Biophilic Workspace', 4, 90.00, 18, 2, 9),
+    
+    -- Additional spaces for Building 3 (The Haven)
+    ('Haven Green Office Suites', 4, 150.00, 30, 3, 7),
+    ('Haven Tech Innovation Lab', 5, 100.00, 25, 3, 10),
+    ('Haven Traditional Corner Offices', 1, 120.00, 15, 3, 4),
+    
+    -- Additional spaces for Building 4 (The Grandiose)
+    ('Grandiose Coworking Lounge', 2, 150.00, 45, 4, 8),
+    ('Grandiose Shared Meeting Rooms', 3, 80.00, 16, 4, 5),
+    
+    -- Additional spaces for Building 5 (The Pinnacle)
+    ('Pinnacle Eco-Friendly Offices', 4, 110.00, 22, 5, 6),
+    ('Pinnacle Executive Boardroom', 1, 60.00, 14, 5, 10),
+    
+    -- Additional spaces for Building 6 (The Willow Creek)
+    ('Willow Creek Innovation Hub', 5, 90.00, 18, 6, 7),
+    ('Willow Creek Shared Studio', 3, 70.00, 14, 6, 9),
+    
+    -- Additional spaces for Building 7 (Ocean Breeze)
+    ('Ocean Breeze Executive Suite', 1, 85.00, 12, 7, 4),
+    ('Ocean Breeze Green Office', 4, 100.00, 20, 7, 8),
+    
+    -- Additional spaces for Buildings 8-10
+    ('Forest Tech Incubator', 5, 120.00, 25, 8, 5),
+    ('Mountain Collaborative Commons', 2, 130.00, 50, 9, 6),
+    ('Sunnyside Private Offices', 3, 75.00, 15, 10, 10),
+    
+    -- Additional spaces for Buildings 11-15
+    ('Wanderlust Green Meeting Center', 4, 65.00, 16, 11, 8),
+    ('Nomad Executive Boardroom', 1, 70.00, 14, 12, 7),
+    ('Eccentric Coworking Community', 2, 160.00, 60, 13, 9),
+    ('Bohemian Shared Office Suites', 3, 95.00, 20, 14, 5),
+    ('Enigma Green Workspace', 4, 45.00, 9, 15, 6),
+    
+    -- Additional spaces for Buildings 16-20
+    ('Sunrise Tech Laboratory', 5, 80.00, 16, 16, 4),
+    ('Urban Traditional Offices', 1, 110.00, 22, 17, 10),
+    ('Luxe Collaborative Space', 2, 150.00, 45, 18, 8),
+    ('Skyline Eco-Friendly Suite', 4, 85.00, 17, 19, 7),
+    ('Sapphire Smart Conference Center', 5, 65.00, 25, 20, 9),
+    
+    -- Additional spaces for Buildings 21-25
+    ('Crescent Shared Workstations', 3, 100.00, 30, 21, 4);
