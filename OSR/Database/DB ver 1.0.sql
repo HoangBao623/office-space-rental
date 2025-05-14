@@ -37,13 +37,13 @@ CREATE TABLE Role (
 CREATE TABLE User (
   userID INT PRIMARY KEY AUTO_INCREMENT,
   username VARCHAR(50) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL, -- Hashed passwords (e.g., bcrypt)
+  password VARCHAR(250) NOT NULL, -- Hashed passwords (e.g., bcrypt)
   email VARCHAR(100) NOT NULL UNIQUE,
-  lastName NVARCHAR(50),
-  firstName NVARCHAR(50),
+  lastName NVARCHAR(50) NOT NULL,
+  firstName NVARCHAR(50) NOT NULL,
   gender ENUM('Male', 'Female') NOT NULL,
   dOB DATE,
-  address TEXT,
+  address TEXT NOT NULL,
   phoneNumber VARCHAR(20) NOT NULL,
   isActive BOOLEAN DEFAULT TRUE
 )ENGINE=InnoDB;
@@ -124,7 +124,7 @@ CREATE TABLE DetailAmenity (
   detailAmenityID INT PRIMARY KEY AUTO_INCREMENT,
   officeSpaceID INT NOT NULL,
   amenityID INT NOT NULL,
-  quantity INT NOT NULL DEFAULT 1,
+  quantity INT NOT NULL DEFAULT 0,
   CHECK (quantity >= 0),
   FOREIGN KEY (officeSpaceID) REFERENCES OfficeSpace(officeSpaceID) ON DELETE RESTRICT,
   FOREIGN KEY (amenityID) REFERENCES Amenity(amenityID) ON DELETE RESTRICT,
@@ -155,7 +155,7 @@ CREATE TABLE DetailRentType (
 -- Table: Status
 CREATE TABLE Status (
   statusID INT PRIMARY KEY AUTO_INCREMENT,
-  statusName ENUM('Available', 'Unavailable', 'Occupied', 'Pending_Approval') NOT NULL DEFAULT 'Available'
+  statusName ENUM('Available', 'Unavailable', 'Occupied', 'Pending_Approval') NOT NULL
 )ENGINE=InnoDB;
 
 -- Table: DetailStatus
@@ -163,9 +163,9 @@ CREATE TABLE DetailStatus (
   detailStatusID INT PRIMARY KEY AUTO_INCREMENT,
   officeSpaceID INT NOT NULL,
   statusID INT NOT NULL,
-  startDate DATE NOT NULL,
-  endDate DATE,
-  reason TEXT,
+  startDate DATETIME NOT NULL,
+  endDate DATETIME NOT NULL,
+  reason TEXT NOT NULL,
   FOREIGN KEY (officeSpaceID) REFERENCES OfficeSpace(officeSpaceID) ON DELETE RESTRICT,
   FOREIGN KEY (statusID) REFERENCES Status(statusID) ON DELETE RESTRICT
 )ENGINE=InnoDB;
@@ -186,7 +186,7 @@ CREATE TABLE Reservation (
 -- Table: Contract
 CREATE TABLE Contract (
   contractID INT PRIMARY KEY AUTO_INCREMENT,
-  contractDate DATETIME NOT NULL,
+  contractDate DATE NOT NULL,
   startDate DATETIME NOT NULL,
   endDate DATETIME NOT NULL,
   numberPeople INT NOT NULL,
@@ -238,7 +238,7 @@ CREATE TABLE Favorite (
   favoriteID INT PRIMARY KEY AUTO_INCREMENT,
   lesseeID INT NOT NULL,
   officeSpaceID INT NOT NULL,
-  dateMarked DATETIME NOT NULL,
+  dateMarked DATE NOT NULL,
   FOREIGN KEY (lesseeID) REFERENCES User(userID) ON DELETE RESTRICT,
   FOREIGN KEY (officeSpaceID) REFERENCES OfficeSpace(officeSpaceID) ON DELETE RESTRICT,
   UNIQUE (lesseeID, officeSpaceID)
