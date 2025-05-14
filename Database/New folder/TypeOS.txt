@@ -1,0 +1,7 @@
+INSERT INTO TypeOffice (type, description) 
+VALUES 
+	('Traditional Office', 'Văn phòng có thiết kế cố định, sử dụng lâu dài, thường được thuê hoặc sở hữu riêng với các phòng làm việc và tiện nghi cơ bản.'),
+	('Co-working Space', 'Không gian làm việc chung nơi các doanh nghiệp chia sẻ tiện nghi và dịch vụ cần thiết, tạo môi trường làm việc cộng đồng.'),
+	('Shared Office', 'Mô hình văn phòng có không gian làm việc riêng biệt cho từng đơn vị nhưng chia sẻ tiện nghi chung như phòng họp, khu tiếp khách và thiết bị văn phòng.'),
+	('Biophilic Office', 'Văn phòng thiết kế thân thiện với môi trường, sử dụng vật liệu tự nhiên, tận dụng ánh sáng tự nhiên và cây xanh để tạo không gian làm việc lành mạnh.'),
+	('Smart Office', 'Văn phòng tích hợp công nghệ tiên tiến và hệ thống tự động hóa, kết nối IoT nhằm tối ưu quy trình làm việc và nâng cao hiệu quả hoạt động.');

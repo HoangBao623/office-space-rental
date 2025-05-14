@@ -1,0 +1,8 @@
+INSERT INTO RentType (rentTypeName, description)
+VALUES
+	('Yearly', 'Thuê theo năm'),
+    ('Seasonal', 'Thuê theo quý'),
+    ('Monthly', 'Thuê theo tháng'),
+    ('Weekly', 'Thuê theo tuần'),
+    ('Daily', 'Thuê theo ngày'),
+    ('Hourly', 'Thuê theo giờ');
