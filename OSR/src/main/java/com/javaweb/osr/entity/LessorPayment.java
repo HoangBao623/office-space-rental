@@ -37,7 +37,7 @@ public class LessorPayment {
 
     @ManyToOne
     @JoinColumn(name = "lessorID", nullable = false)
-    private User lessor;
+    private User lessorID;
 
     public Integer getLessorPaymentID() { return lessorPaymentID; }
     public void setLessorPaymentID(Integer lessorPaymentID) { this.lessorPaymentID = lessorPaymentID; }
@@ -53,6 +53,6 @@ public class LessorPayment {
     public void setPaymentAmount(Double paymentAmount) { this.paymentAmount = paymentAmount; }
     public PaymentStatus getStatus() { return status; }
     public void setStatus(PaymentStatus status) { this.status = status; }
-    public User getLessor() { return lessor; }
-    public void setLessor(User lessor) { this.lessor = lessor; }
+    public User getLessor() { return lessorID; }
+    public void setLessor(User lessor) { this.lessorID = lessor; }
 }

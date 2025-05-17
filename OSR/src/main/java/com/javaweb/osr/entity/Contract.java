@@ -42,15 +42,15 @@ public class Contract {
 
     @ManyToOne
     @JoinColumn(name = "lesseeID", nullable = false)
-    private User lessee;
+    private User lesseeID;
 
     @ManyToOne
     @JoinColumn(name = "officeSpaceID", nullable = false)
-    private OfficeSpace officeSpace;
+    private OfficeSpace officeSpaceID;
 
     @ManyToOne
     @JoinColumn(name = "rentTypeID", nullable = false)
-    private RentType rentType;
+    private RentType rentTypeID;
 
     @Column(name = "note")
     private String note;
@@ -76,12 +76,12 @@ public class Contract {
     public void setDeposit(Double deposit) { this.deposit = deposit; }
     public Double getPaidAmount() { return paidAmount; }
     public void setPaidAmount(Double paidAmount) { this.paidAmount = paidAmount; }
-    public User getLessee() { return lessee; }
-    public void setLessee(User lessee) { this.lessee = lessee; }
-    public OfficeSpace getOfficeSpace() { return officeSpace; }
-    public void setOfficeSpace(OfficeSpace officeSpace) { this.officeSpace = officeSpace; }
-    public RentType getRentType() { return rentType; }
-    public void setRentType(RentType rentType) { this.rentType = rentType; }
+    public User getLessee() { return lesseeID; }
+    public void setLessee(User lessee) { this.lesseeID = lessee; }
+    public OfficeSpace getOfficeSpace() { return officeSpaceID; }
+    public void setOfficeSpace(OfficeSpace officeSpace) { this.officeSpaceID = officeSpace; }
+    public RentType getRentType() { return rentTypeID; }
+    public void setRentType(RentType rentType) { this.rentTypeID = rentType; }
     public String getNote() { return note; }
     public void setNote(String note) { this.note = note; }
     public List<Payment> getPayments() { return payments; }

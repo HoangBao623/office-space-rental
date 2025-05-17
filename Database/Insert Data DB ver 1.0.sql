@@ -1,46 +1,52 @@
 use OfficeSpaceRental;
 
+-- INSERT INTO Role (roleName)
+-- VALUES 
+-- 	('Manager'),
+-- 	('Sales'),
+-- 	('Lessor'),
+-- 	('Lessee');
+
 INSERT INTO Role (roleName)
 VALUES 
 	('Manager'),
 	('Sales'),
-	('Lessor'),
-	('Lessee');
+	('Customer');
 
-INSERT INTO User (username, password, email, lastName, firstName, gender, dOB, address, phoneNumber)
+INSERT INTO User (username, password, email, lastName, firstName, gender, dOB, address, phoneNumber, roleID)
 VALUES
-	('nguyenvananh', '123', 'nguyenvananh@example.com', 'Nguyễn Văn', 'Anh', 'Male', '1990-01-21', '123 Đường Mã Lò, Quận Bình Tân, TP.HCM', '0912345678'),
-    ('tranthimai', '123', 'tranthimai@example.com', 'Trần Thị', 'Mai', 'Female', '1991-02-14', '456 Đường Lê Lợi, Quận 2, TP.HCM', '0912345679'),
-    ('lengochung', '123', 'lengochung@example.com', 'Lê Ngọc', 'Hùng', 'Male', '1992-03-23', '789 Đường Trần Quốc Toản, Quận 3, TP.HCM', '0912345680'),
-    ('hoangngoclinh', '123', 'hoangngoclinh@example.com', 'Hoàng Ngọc', 'Linh', 'Female', NULL, '1011 Đường Điện Biên Phủ, Quận 4, TP.HCM', '0912345681'),
-    ('phamminhduc', '123', 'phamminhduc@example.com', 'Phạm Minh', 'Đức', 'Male', NULL, '1213 Đường Pasteur, Quận 5, TP.HCM', '0912345682'),
-    ('buithithu', '123', 'buithithu@example.com', 'Bùi Thị', 'Thu', 'Female', NULL, '1415 Đường Trần Hưng Đạo, Quận 6, TP.HCM', '0912345683'),
-    ('tieuanhtuan', '123', 'tieuanhtuan@example.com', 'Tiêu Anh', 'Tuấn', 'Male', NULL, '1617 Đường Nguyễn Thiện Thuật, Quận 7, TP.HCM', '0912345684'),
-    ('duongngocchau', '123', 'duongngocchau@example.com', 'Dương Ngọc', 'Châu', 'Female', NULL, '1819 Đường Hoàng Diệu, Quận 8, TP.HCM', '0912345685'),
-    ('dovankien', '123', 'dovankien@example.com', 'Đỗ Văn', 'Kiên', 'Male', NULL, '2021 Đường Nguyễn Văn Cừ, Quận 9, TP.HCM', '0912345686'),
-    ('vuhyphuong', '123', 'vuhyphuong@example.com', 'Vũ Hỷ', 'Phương', 'Female', NULL, '2223 Đường Nguyễn Hữu Tháp, Quận 10, TP.HCM', '0912345687');
+	('nguyenvananh', '123', 'nguyenvananh@example.com', 'Nguyễn Văn', 'Anh', 'Male', '1990-01-21', '123 Đường Mã Lò, Quận Bình Tân, TP.HCM', '0912345678', 1),
+    ('tranthimai', '123', 'tranthimai@example.com', 'Trần Thị', 'Mai', 'Female', '1991-02-14', '456 Đường Lê Lợi, Quận 2, TP.HCM', '0912345679', 2),
+    ('lengochung', '123', 'lengochung@example.com', 'Lê Ngọc', 'Hùng', 'Male', '1992-03-23', '789 Đường Trần Quốc Toản, Quận 3, TP.HCM', '0912345680', 2),
+    ('hoangngoclinh', '123', 'hoangngoclinh@example.com', 'Hoàng Ngọc', 'Linh', 'Female', NULL, '1011 Đường Điện Biên Phủ, Quận 4, TP.HCM', '0912345681', 3),
+    ('phamminhduc', '123', 'phamminhduc@example.com', 'Phạm Minh', 'Đức', 'Male', NULL, '1213 Đường Pasteur, Quận 5, TP.HCM', '0912345682', 3),
+    ('buithithu', '123', 'buithithu@example.com', 'Bùi Thị', 'Thu', 'Female', NULL, '1415 Đường Trần Hưng Đạo, Quận 6, TP.HCM', '0912345683', 3),
+    ('tieuanhtuan', '123', 'tieuanhtuan@example.com', 'Tiêu Anh', 'Tuấn', 'Male', NULL, '1617 Đường Nguyễn Thiện Thuật, Quận 7, TP.HCM', '0912345684', 3),
+    ('duongngocchau', '123', 'duongngocchau@example.com', 'Dương Ngọc', 'Châu', 'Female', NULL, '1819 Đường Hoàng Diệu, Quận 8, TP.HCM', '0912345685', 3),
+    ('dovankien', '123', 'dovankien@example.com', 'Đỗ Văn', 'Kiên', 'Male', NULL, '2021 Đường Nguyễn Văn Cừ, Quận 9, TP.HCM', '0912345686', 3),
+    ('vuhyphuong', '123', 'vuhyphuong@example.com', 'Vũ Hỷ', 'Phương', 'Female', NULL, '2223 Đường Nguyễn Hữu Tháp, Quận 10, TP.HCM', '0912345687', 3);
     
 -- Role Admin
-INSERT INTO DetailRole (userID, roleID) 
-VALUES 
-	(1, 1);
+-- INSERT INTO OS_Role (userID, roleID) 
+-- VALUES 
+-- 	(1, 1);
 
 -- Role Sales
-INSERT INTO DetailRole (userID, roleID) 
-VALUES 
-	(2, 2),
-	(3, 2);
+-- INSERT INTO OS_Role (userID, roleID) 
+-- VALUES 
+-- 	(2, 2),
+-- 	(3, 2);
 
 -- Role Lessor và Lessee
-INSERT INTO DetailRole (userID, roleID) 
-VALUES 
-	(4, 3), (4, 4),
-	(5, 3), (5, 4),
-	(6, 3), (6, 4),
-	(7, 3), (7, 4),
-	(8, 3), (8, 4),
-	(9, 3), (9, 4),
-	(10, 3), (10, 4);
+-- INSERT INTO OS_Role (userID, roleID) 
+-- VALUES 
+-- 	(4, 3), (4, 4),
+-- 	(5, 3), (5, 4),
+-- 	(6, 3), (6, 4),
+-- 	(7, 3), (7, 4),
+-- 	(8, 3), (8, 4),
+-- 	(9, 3), (9, 4),
+-- 	(10, 3), (10, 4);
 
 INSERT INTO Building (buildingName, street, ward_commune, district, city_province)
 VALUES
@@ -175,6 +181,13 @@ VALUES
     ('Featured'),
     ('New'),
     ('Popular');
+
+INSERT INTO Status (statusName) 
+VALUES 
+    ('Available'),
+	('Unavailable'),
+    ('Occupied'),
+    ('Pending_Approval');
     
 INSERT INTO Amenity (amenityName) 
 VALUES 
@@ -202,7 +215,7 @@ VALUES
     ('Ánh Sáng Tự Nhiên'),
     ('Sân Thượng');
 
-INSERT INTO DetailAmenity (officeSpaceID, amenityID, quantity)
+INSERT INTO OS_Amenity (officeSpaceID, amenityID, quantity)
 VALUES
 	-- Elite Executive Suite (ID: 1) - Văn phòng cao cấp loại 1
 	(1, 1, 1), -- Wi-Fi

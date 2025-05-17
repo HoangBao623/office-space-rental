@@ -15,12 +15,12 @@ public class Role {
     private String roleName;
 
     @OneToMany(mappedBy = "roleID")
-    private List<DetailRole> detailRoles;
+    private List<User> users;
 
     public Integer getRoleID() { return roleID; }
     public void setRoleID(Integer roleID) { this.roleID = roleID; }
     public String getRoleName() { return roleName; }
     public void setRoleName(String roleName) { this.roleName = roleName; }
-    public List<DetailRole> getDetailRoles() { return detailRoles; }
-    public void setDetailRoles(List<DetailRole> detailRoles) { this.detailRoles = detailRoles; }
+    public List<User> getDetailRoles() { return users; }
+    public void setDetailRoles(List<User> users) { this.users = users; }
 }

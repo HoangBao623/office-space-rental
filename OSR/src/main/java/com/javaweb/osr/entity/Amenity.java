@@ -15,12 +15,12 @@ public class Amenity {
     private String amenityName;
 
     @OneToMany(mappedBy = "amenityID")
-    private List<DetailAmenity> detailAmenities;
+    private List<OS_Amenity> detailAmenities;
 
     public Integer getAmenityID() { return amenityID; }
     public void setAmenityID(Integer amenityID) { this.amenityID = amenityID; }
     public String getAmenityName() { return amenityName; }
     public void setAmenityName(String amenityName) { this.amenityName = amenityName; }
-    public List<DetailAmenity> getDetailAmenities() { return detailAmenities; }
-    public void setDetailAmenities(List<DetailAmenity> detailAmenities) { this.detailAmenities = detailAmenities; }
+    public List<OS_Amenity> getDetailAmenities() { return detailAmenities; }
+    public void setDetailAmenities(List<OS_Amenity> detailAmenities) { this.detailAmenities = detailAmenities; }
 }

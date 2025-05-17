@@ -1,0 +1,61 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: OSR
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/OfficeSpaceRental
+    username: root
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+#      ddl-auto: update
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        enable_lazy_load_no_trans: true
+        format_sql: true
+    show-sql: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: yoonhoang6226@gmail.com
+    password: aluy nldd wdtm shte
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 77665217132-u0487112micsel5gbitam4mukpfggtpo.apps.googleusercontent.com
+            client-secret: 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
+#            scope:
+#              - openid
+#              - profile
+#              - email
+#              - https://www.googleapis.com/auth/user.birthday.read
+#              - https://www.googleapis.com/auth/user.phonenumbers.read
+#              - https://www.googleapis.com/auth/user.addresses.read
+#              - https://www.googleapis.com/auth/user.gender.read
+            #redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+        #provider:
+        #  google:
+        #    authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
+        #    token-uri: https://oauth2.googleapis.com/token
+        #    user-info-uri: https://openidconnect.googleapis.com/v1/userinfo
+        #    user-name-attribute: sub

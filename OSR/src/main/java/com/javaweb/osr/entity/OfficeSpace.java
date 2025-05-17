@@ -22,30 +22,30 @@ public class OfficeSpace {
 
     @ManyToOne
     @JoinColumn(name = "buildingID", nullable = false)
-    private Building building;
+    private Building buildingID;
 
     @ManyToOne
     @JoinColumn(name = "lessorID", nullable = false)
-    private User lessor;
+    private User lessorID;
 
     @ManyToOne
     @JoinColumn(name = "typeOfficeID", nullable = false)
-    private TypeOffice typeOffice;
+    private TypeOffice typeOfficeID;
 
     @OneToMany(mappedBy = "officeSpaceID")
     private List<Image> images;
 
     @OneToMany(mappedBy = "officeSpaceID")
-    private List<DetailTag> detailTags;
+    private List<OS_Tag> detailTags;
 
     @OneToMany(mappedBy = "officeSpaceID")
-    private List<DetailAmenity> detailAmenities;
+    private List<OS_Amenity> detailAmenities;
 
     @OneToMany(mappedBy = "officeSpaceID")
-    private List<DetailRentType> detailRentTypes;
+    private List<OS_RentType> detailRentTypes;
 
     @OneToMany(mappedBy = "officeSpaceID")
-    private List<DetailStatus> detailStatuses;
+    private List<OS_Status> detailStatuses;
 
     @OneToMany(mappedBy = "officeSpaceID")
     private List<Reservation> reservations;
@@ -64,22 +64,22 @@ public class OfficeSpace {
     public void setSize(Double size) { this.size = size; }
     public Integer getCapacity() { return capacity; }
     public void setCapacity(Integer capacity) { this.capacity = capacity; }
-    public Building getBuilding() { return building; }
-    public void setBuilding(Building building) { this.building = building; }
-    public User getLessor() { return lessor; }
-    public void setLessor(User lessor) { this.lessor = lessor; }
-    public TypeOffice getTypeOffice() { return typeOffice; }
-    public void setTypeOffice(TypeOffice typeOffice) { this.typeOffice = typeOffice; }
+    public Building getBuilding() { return buildingID; }
+    public void setBuilding(Building building) { this.buildingID = building; }
+    public User getLessor() { return lessorID; }
+    public void setLessor(User lessor) { this.lessorID = lessor; }
+    public TypeOffice getTypeOffice() { return typeOfficeID; }
+    public void setTypeOffice(TypeOffice typeOffice) { this.typeOfficeID = typeOffice; }
     public List<Image> getImages() { return images; }
     public void setImages(List<Image> images) { this.images = images; }
-    public List<DetailTag> getDetailTags() { return detailTags; }
-    public void setDetailTags(List<DetailTag> detailTags) { this.detailTags = detailTags; }
-    public List<DetailAmenity> getDetailAmenities() { return detailAmenities; }
-    public void setDetailAmenities(List<DetailAmenity> detailAmenities) { this.detailAmenities = detailAmenities; }
-    public List<DetailRentType> getDetailRentTypes() { return detailRentTypes; }
-    public void setDetailRentTypes(List<DetailRentType> detailRentTypes) { this.detailRentTypes = detailRentTypes; }
-    public List<DetailStatus> getDetailStatuses() { return detailStatuses; }
-    public void setDetailStatuses(List<DetailStatus> detailStatuses) { this.detailStatuses = detailStatuses; }
+    public List<OS_Tag> getDetailTags() { return detailTags; }
+    public void setDetailTags(List<OS_Tag> detailTags) { this.detailTags = detailTags; }
+    public List<OS_Amenity> getDetailAmenities() { return detailAmenities; }
+    public void setDetailAmenities(List<OS_Amenity> detailAmenities) { this.detailAmenities = detailAmenities; }
+    public List<OS_RentType> getDetailRentTypes() { return detailRentTypes; }
+    public void setDetailRentTypes(List<OS_RentType> detailRentTypes) { this.detailRentTypes = detailRentTypes; }
+    public List<OS_Status> getDetailStatuses() { return detailStatuses; }
+    public void setDetailStatuses(List<OS_Status> detailStatuses) { this.detailStatuses = detailStatuses; }
     public List<Reservation> getReservations() { return reservations; }
     public void setReservations(List<Reservation> reservations) { this.reservations = reservations; }
     public List<Contract> getContracts() { return contracts; }
