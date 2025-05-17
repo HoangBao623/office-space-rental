@@ -1,6 +1,8 @@
 package com.javaweb.osr.entity;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +15,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userID")
     private Integer userID;
+
+    @Column(name = "googleId", unique = true)
+    private String googleId;
 
     @Column(name = "username", nullable = false, unique = true, length = 50)
     private String username;
@@ -29,24 +34,34 @@ public class User {
     @Column(name = "firstName", nullable = false, length = 50)
     private String firstName;
 
+//    @Enumerated(EnumType.STRING)
+//    @Column(name = "gender", nullable = false)
+//    private Gender gender;
+
     @Enumerated(EnumType.STRING)
-    @Column(name = "gender", nullable = false)
+    @Column(name = "gender")
     private Gender gender;
 
     @Column(name = "dOB")
-    private Date dOB;
+    private LocalDate dOB;
 
-    @Column(name = "address", nullable = false)
+//    @Column(name = "address", nullable = false)
+//    private String address;
+
+    @Column(name = "address")
     private String address;
 
-    @Column(name = "phoneNumber", nullable = false, length = 20)
+//    @Column(name = "phoneNumber", nullable = false, length = 20)
+//    private String phoneNumber;
+
+    @Column(name = "phoneNumber", length = 20)
     private String phoneNumber;
 
     @Column(name = "isActive")
     private Boolean isActive = true;
 
-    @OneToMany(mappedBy = "userID")
-    private List<DetailRole> detailRoles;
+//    @OneToMany(mappedBy = "userID")
+//    private List<DetailRole> detailRoles;
 
     @OneToMany(mappedBy = "lessorID")
     private List<OfficeSpace> officeSpaces;
@@ -63,8 +78,14 @@ public class User {
     @OneToMany(mappedBy = "lesseeID")
     private List<Favorite> favorites;
 
+    @ManyToOne
+    @JoinColumn(name = "roleID", nullable = false)
+    private Role roleID;
+
     public Integer getUserID() { return userID; }
     public void setUserID(Integer userID) { this.userID = userID; }
+    public String getGoogleId() { return googleId; }
+    public void setGoogleId(String googleId) { this.googleId = googleId; }
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
     public String getPassword() { return password; }
@@ -77,16 +98,16 @@ public class User {
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public Gender getGender() { return gender; }
     public void setGender(Gender gender) { this.gender = gender; }
-    public Date getdOB() { return dOB; }
-    public void setdOB(Date dOB) { this.dOB = dOB; }
+    public LocalDate getdOB() { return dOB; }
+    public void setdOB(LocalDate dOB) { this.dOB = dOB; }
     public String getAddress() { return address; }
     public void setAddress(String address) { this.address = address; }
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
     public Boolean getIsActive() { return isActive; }
     public void setIsActive(Boolean isActive) { this.isActive = isActive; }
-    public List<DetailRole> getDetailRoles() { return detailRoles; }
-    public void setDetailRoles(List<DetailRole> detailRoles) { this.detailRoles = detailRoles; }
+//    public List<DetailRole> getDetailRoles() { return detailRoles; }
+//    public void setDetailRoles(List<DetailRole> detailRoles) { this.detailRoles = detailRoles; }
     public List<OfficeSpace> getOfficeSpaces() { return officeSpaces; }
     public void setOfficeSpaces(List<OfficeSpace> officeSpaces) { this.officeSpaces = officeSpaces; }
     public List<Reservation> getReservations() { return reservations; }
@@ -97,4 +118,6 @@ public class User {
     public void setLessorPayments(List<LessorPayment> lessorPayments) { this.lessorPayments = lessorPayments; }
     public List<Favorite> getFavorites() { return favorites; }
     public void setFavorites(List<Favorite> favorites) { this.favorites = favorites; }
+    public Role getRole() { return roleID; }
+    public void setRole(Role role) { this.roleID = role; }
 }

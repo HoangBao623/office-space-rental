@@ -29,11 +29,11 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "lesseeID", nullable = false)
-    private User lessee;
+    private User lesseeID;
 
     @ManyToOne
     @JoinColumn(name = "officeSpaceID", nullable = false)
-    private OfficeSpace officeSpace;
+    private OfficeSpace officeSpaceID;
 
     public Integer getReservationID() { return reservationID; }
     public void setReservationID(Integer reservationID) { this.reservationID = reservationID; }
@@ -45,8 +45,8 @@ public class Reservation {
     public void setStatus(ReservationStatus status) { this.status = status; }
     public Integer getSalesID() { return salesID; }
     public void setSalesID(Integer salesID) { this.salesID = salesID; }
-    public User getLessee() { return lessee; }
-    public void setLessee(User lessee) { this.lessee = lessee; }
-    public OfficeSpace getOfficeSpace() { return officeSpace; }
-    public void setOfficeSpace(OfficeSpace officeSpace) { this.officeSpace = officeSpace; }
+    public User getLessee() { return lesseeID; }
+    public void setLessee(User lessee) { this.lesseeID = lessee; }
+    public OfficeSpace getOfficeSpace() { return officeSpaceID; }
+    public void setOfficeSpace(OfficeSpace officeSpace) { this.officeSpaceID = officeSpace; }
 }

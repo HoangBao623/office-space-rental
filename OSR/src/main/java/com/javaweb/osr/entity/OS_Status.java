@@ -4,20 +4,20 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "DetailStatus")
-public class DetailStatus {
+@Table(name = "OS_Status")
+public class OS_Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "detailStatusID")
-    private Integer detailStatusID;
+    @Column(name = "oS_StatusID")
+    private Integer oS_StatusID;
 
     @ManyToOne
     @JoinColumn(name = "officeSpaceID", nullable = false)
-    private OfficeSpace officeSpace;
+    private OfficeSpace officeSpaceID;
 
     @ManyToOne
     @JoinColumn(name = "statusID", nullable = false)
-    private Status status;
+    private Status statusID;
 
     @Column(name = "startDate", nullable = false)
     private Date startDate;
@@ -28,12 +28,12 @@ public class DetailStatus {
     @Column(name = "reason", nullable = false)
     private String reason;
 
-    public Integer getDetailStatusID() { return detailStatusID; }
-    public void setDetailStatusID(Integer detailStatusID) { this.detailStatusID = detailStatusID; }
-    public OfficeSpace getOfficeSpace() { return officeSpace; }
-    public void setOfficeSpace(OfficeSpace officeSpace) { this.officeSpace = officeSpace; }
-    public Status getStatus() { return status; }
-    public void setStatus(Status status) { this.status = status; }
+    public Integer getDetailStatusID() { return oS_StatusID; }
+    public void setDetailStatusID(Integer oS_StatusID) { this.oS_StatusID = oS_StatusID; }
+    public OfficeSpace getOfficeSpace() { return officeSpaceID; }
+    public void setOfficeSpace(OfficeSpace officeSpace) { this.officeSpaceID = officeSpace; }
+    public Status getStatus() { return statusID; }
+    public void setStatus(Status status) { this.statusID = status; }
     public Date getStartDate() { return startDate; }
     public void setStartDate(Date startDate) { this.startDate = startDate; }
     public Date getEndDate() { return endDate; }

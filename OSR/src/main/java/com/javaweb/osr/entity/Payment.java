@@ -37,7 +37,7 @@ public class Payment {
 
     @ManyToOne
     @JoinColumn(name = "contractID", nullable = false)
-    private Contract contract;
+    private Contract contractID;
 
     public Integer getPaymentID() { return paymentID; }
     public void setPaymentID(Integer paymentID) { this.paymentID = paymentID; }
@@ -53,6 +53,6 @@ public class Payment {
     public void setPaymentAmount(Double paymentAmount) { this.paymentAmount = paymentAmount; }
     public PaymentStatus getStatus() { return status; }
     public void setStatus(PaymentStatus status) { this.status = status; }
-    public Contract getContract() { return contract; }
-    public void setContract(Contract contract) { this.contract = contract; }
+    public Contract getContract() { return contractID; }
+    public void setContract(Contract contract) { this.contractID = contract; }
 }

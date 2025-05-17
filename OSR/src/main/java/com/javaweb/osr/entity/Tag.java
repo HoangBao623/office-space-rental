@@ -15,12 +15,12 @@ public class Tag {
     private String tagName;
 
     @OneToMany(mappedBy = "tagID")
-    private List<DetailTag> detailTags;
+    private List<OS_Tag> detailTags;
 
     public Integer getTagID() { return tagID; }
     public void setTagID(Integer tagID) { this.tagID = tagID; }
     public String getTagName() { return tagName; }
     public void setTagName(String tagName) { this.tagName = tagName; }
-    public List<DetailTag> getDetailTags() { return detailTags; }
-    public void setDetailTags(List<DetailTag> detailTags) { this.detailTags = detailTags; }
+    public List<OS_Tag> getDetailTags() { return detailTags; }
+    public void setDetailTags(List<OS_Tag> detailTags) { this.detailTags = detailTags; }
 }

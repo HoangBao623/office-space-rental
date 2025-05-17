@@ -10,18 +10,18 @@ DROP TABLE IF EXISTS TypeOffice;
 DROP TABLE IF EXISTS Payment;
 DROP TABLE IF EXISTS Contract;
 DROP TABLE IF EXISTS Reservation;
-DROP TABLE IF EXISTS DetailStatus;
+DROP TABLE IF EXISTS OS_Status;
 DROP TABLE IF EXISTS Status;
-DROP TABLE IF EXISTS DetailRentType;
+DROP TABLE IF EXISTS OS_RentType;
 DROP TABLE IF EXISTS RentType;
-DROP TABLE IF EXISTS DetailAmenity;
+DROP TABLE IF EXISTS OS_Amenity;
 DROP TABLE IF EXISTS Amenity;
-DROP TABLE IF EXISTS DetailTag;
+DROP TABLE IF EXISTS OS_Tag;
 DROP TABLE IF EXISTS Tag;
 DROP TABLE IF EXISTS Image;
 DROP TABLE IF EXISTS OfficeSpace;
 DROP TABLE IF EXISTS Building;
-DROP TABLE IF EXISTS DetailRole;
+DROP TABLE IF EXISTS OS_Role;
 DROP TABLE IF EXISTS Role;
 DROP TABLE IF EXISTS User;
 
@@ -36,27 +36,30 @@ CREATE TABLE Role (
 -- Table: User
 CREATE TABLE User (
   userID INT PRIMARY KEY AUTO_INCREMENT,
+  googleId TEXT,
   username VARCHAR(50) NOT NULL UNIQUE,
   password VARCHAR(250) NOT NULL, -- Hashed passwords (e.g., bcrypt)
   email VARCHAR(100) NOT NULL UNIQUE,
   lastName NVARCHAR(50) NOT NULL,
   firstName NVARCHAR(50) NOT NULL,
-  gender ENUM('Male', 'Female') NOT NULL,
+  gender ENUM('Male', 'Female'),
   dOB DATE,
-  address TEXT NOT NULL,
-  phoneNumber VARCHAR(20) NOT NULL,
-  isActive BOOLEAN DEFAULT TRUE
+  address TEXT,
+  phoneNumber VARCHAR(20),
+  isActive BOOLEAN DEFAULT TRUE,
+  roleID INT NOT NULL,
+  FOREIGN KEY (roleID) REFERENCES Role(roleID) ON DELETE RESTRICT
 )ENGINE=InnoDB;
 
--- Table: DetailRole
-CREATE TABLE DetailRole (
-  detailRoleID INT PRIMARY KEY AUTO_INCREMENT,
-  userID INT NOT NULL,
-  roleID INT NOT NULL,
-  FOREIGN KEY (userID) REFERENCES User(userID) ON DELETE RESTRICT, -- ON DELETE CASCADE Khi bản ghi ở bảng cha bị xóa, thì tự động xóa luôn các bản ghi liên quan ở bảng con.
-  FOREIGN KEY (roleID) REFERENCES Role(roleID) ON DELETE RESTRICT, -- ON DELETE RESTRICT Không cho phép xóa bản ghi ở bảng cha nếu đang được tham chiếu bởi bảng con.
-  UNIQUE (userID, roleID)
-)ENGINE=InnoDB;
+-- Table: OS_Role
+-- CREATE TABLE OS_Role (
+--   OS_RoleID INT PRIMARY KEY AUTO_INCREMENT,
+--   userID INT NOT NULL,
+--   roleID INT NOT NULL,
+--   FOREIGN KEY (userID) REFERENCES User(userID) ON DELETE RESTRICT, -- ON DELETE CASCADE Khi bản ghi ở bảng cha bị xóa, thì tự động xóa luôn các bản ghi liên quan ở bảng con.
+--   FOREIGN KEY (roleID) REFERENCES Role(roleID) ON DELETE RESTRICT, -- ON DELETE RESTRICT Không cho phép xóa bản ghi ở bảng cha nếu đang được tham chiếu bởi bảng con.
+--   UNIQUE (userID, roleID)
+-- )ENGINE=InnoDB;
 
 -- Table: Building
 CREATE TABLE Building (
@@ -103,9 +106,9 @@ CREATE TABLE Tag (
   tagName NVARCHAR(50) NOT NULL UNIQUE
 )ENGINE=InnoDB;
 
--- Table: DetailTag
-CREATE TABLE DetailTag (
-  detailTagID INT PRIMARY KEY AUTO_INCREMENT,
+-- Table: OS_Tag
+CREATE TABLE OS_Tag (
+  oS_TagID INT PRIMARY KEY AUTO_INCREMENT,
   officeSpaceID INT NOT NULL,
   tagID INT NOT NULL,
   FOREIGN KEY (officeSpaceID) REFERENCES OfficeSpace(officeSpaceID) ON DELETE RESTRICT,
@@ -119,9 +122,9 @@ CREATE TABLE Amenity (
   amenityName NVARCHAR(50) NOT NULL UNIQUE
 )ENGINE=InnoDB;
 
--- Table: DetailAmenity
-CREATE TABLE DetailAmenity (
-  detailAmenityID INT PRIMARY KEY AUTO_INCREMENT,
+-- Table: OS_Amenity
+CREATE TABLE OS_Amenity (
+  oS_AmenityID INT PRIMARY KEY AUTO_INCREMENT,
   officeSpaceID INT NOT NULL,
   amenityID INT NOT NULL,
   quantity INT NOT NULL DEFAULT 0,
@@ -138,9 +141,9 @@ CREATE TABLE RentType (
   description TEXT
 )ENGINE=InnoDB;
 
--- Table: DetailRentType
-CREATE TABLE DetailRentType (
-  detailRentTypeID INT PRIMARY KEY AUTO_INCREMENT,
+-- Table: OS_RentType
+CREATE TABLE OS_RentType (
+  oS_RentTypeID INT PRIMARY KEY AUTO_INCREMENT,
   officeSpaceID INT NOT NULL,
   rentTypeID INT NOT NULL,
   price DECIMAL(15,2) NOT NULL,
@@ -158,9 +161,9 @@ CREATE TABLE Status (
   statusName ENUM('Available', 'Unavailable', 'Occupied', 'Pending_Approval') NOT NULL
 )ENGINE=InnoDB;
 
--- Table: DetailStatus
-CREATE TABLE DetailStatus (
-  detailStatusID INT PRIMARY KEY AUTO_INCREMENT,
+-- Table: OS_Status
+CREATE TABLE OS_Status (
+  oS_StatusID INT PRIMARY KEY AUTO_INCREMENT,
   officeSpaceID INT NOT NULL,
   statusID INT NOT NULL,
   startDate DATETIME NOT NULL,

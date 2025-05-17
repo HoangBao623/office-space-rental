@@ -13,21 +13,21 @@ public class Favorite {
 
     @ManyToOne
     @JoinColumn(name = "lesseeID", nullable = false)
-    private User lessee;
+    private User lesseeID;
 
     @ManyToOne
     @JoinColumn(name = "officeSpaceID", nullable = false)
-    private OfficeSpace officeSpace;
+    private OfficeSpace officeSpaceID;
 
     @Column(name = "dateMarked", nullable = false)
     private Date dateMarked;
 
     public Integer getFavoriteID() { return favoriteID; }
     public void setFavoriteID(Integer favoriteID) { this.favoriteID = favoriteID; }
-    public User getLessee() { return lessee; }
-    public void setLessee(User lessee) { this.lessee = lessee; }
-    public OfficeSpace getOfficeSpace() { return officeSpace; }
-    public void setOfficeSpace(OfficeSpace officeSpace) { this.officeSpace = officeSpace; }
+    public User getLessee() { return lesseeID; }
+    public void setLessee(User lessee) { this.lesseeID = lessee; }
+    public OfficeSpace getOfficeSpace() { return officeSpaceID; }
+    public void setOfficeSpace(OfficeSpace officeSpace) { this.officeSpaceID = officeSpace; }
     public Date getDateMarked() { return dateMarked; }
     public void setDateMarked(Date dateMarked) { this.dateMarked = dateMarked; }
 }

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng điều khiển</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        .sidebar {
+            min-height: 100vh;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .user-info {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 col-lg-2 sidebar">
+            <h3 class="mb-4">Menu</h3>
+            <div class="list-group">
+                <a href="/dashboard" class="list-group-item list-group-item-action active">Bảng điều khiển</a>
+                <a href="/profile" class="list-group-item list-group-item-action">Thông tin cá nhân</a>
+                <a href="#" class="list-group-item list-group-item-action">Các chức năng khác</a>
+                <a href="/logout" class="list-group-item list-group-item-action text-danger">Đăng xuất</a>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="col-md-9 col-lg-10 content">
+            <h1>Bảng điều khiển</h1>
+            <hr>
+
+            <div class="user-info">
+                <h4>Thông tin đăng nhập</h4>
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Tên đăng nhập:
+                        <span th:text="${username}">username</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Họ và tên:
+                        <span th:text="${name}">User's full name</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Email:
+                        <span th:text="${email}">user@example.com</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Phương thức đăng nhập:
+                        <span class="badge bg-info" th:text="${loginType}">Google</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Thông báo
+                        </div>
+                        <div class="card-body">
+                            <p>Chào mừng bạn đến với hệ thống. Đăng nhập thành công!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            Hoạt động gần đây
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Đăng nhập vào hệ thống</li>
+                                <li class="list-group-item">Đã cập nhật thông tin</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

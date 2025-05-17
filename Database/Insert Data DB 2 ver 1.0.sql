@@ -9,7 +9,7 @@ VALUES
     ('Daily', 'Thuê theo ngày'),
     ('Hourly', 'Thuê theo giờ');
     
-INSERT INTO DetailRentType (officeSpaceID, rentTypeID, price, deposit)
+INSERT INTO OS_RentType (officeSpaceID, rentTypeID, price, deposit)
 VALUES
 	-- Traditional Office (TypeOfficeID: 1) - Thường thuê dài hạn
 	-- Elite Executive Suite (75m2)

@@ -15,12 +15,12 @@ public class Image {
 
     @ManyToOne
     @JoinColumn(name = "officeSpaceID", nullable = false)
-    private OfficeSpace officeSpace;
+    private OfficeSpace officeSpaceID;
 
     public Integer getImageID() { return imageID; }
     public void setImageID(Integer imageID) { this.imageID = imageID; }
     public String getImageName() { return imageName; }
     public void setImageName(String imageName) { this.imageName = imageName; }
-    public OfficeSpace getOfficeSpace() { return officeSpace; }
-    public void setOfficeSpace(OfficeSpace officeSpace) { this.officeSpace = officeSpace; }
+    public OfficeSpace getOfficeSpace() { return officeSpaceID; }
+    public void setOfficeSpace(OfficeSpace officeSpace) { this.officeSpaceID = officeSpace; }
 }
