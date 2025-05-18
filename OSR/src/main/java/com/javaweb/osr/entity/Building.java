@@ -11,7 +11,7 @@ public class Building {
     @Column(name = "buildingID")
     private Integer buildingID;
 
-    @Column(name = "buildingName", nullable = false, length = 100)
+    @Column(name = "buildingName", unique = true, nullable = false, length = 100)
     private String buildingName;
 
     @Column(name = "street", length = 100)

@@ -33,10 +33,6 @@ public class LogInController {
         return "login";
     }
 
-    @GetMapping("/signup")
-    public String signup() { return "signup";
-    }
-
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

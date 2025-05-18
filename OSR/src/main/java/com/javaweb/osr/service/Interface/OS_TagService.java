@@ -1,4 +1,4 @@
 package com.javaweb.osr.service.Interface;
 
-public interface DetailStatusService {
+public interface OS_TagService {
 }

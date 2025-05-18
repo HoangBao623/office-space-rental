@@ -42,6 +42,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/searchOS_Lessee**").permitAll()
                         .requestMatchers("/customize/**", "/images/**", "/library/**").permitAll()
                         .requestMatchers("/","/login**", "/signup").permitAll()
                         .requestMatchers("/cus").hasRole("CUSTOMER")

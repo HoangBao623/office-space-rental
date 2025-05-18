@@ -19,3 +19,19 @@ select * from status;
 -- select * from payment;
 -- select * from favorite;
 -- select * from lessorpayment;
+
+select
+        officespace.officeSpaceID,
+        title,
+        size,
+        capacity 
+    from
+        officespace  
+    join
+        image 
+            on officespace.officeSpaceID = image.officeSpaceID 
+    where
+        1 = 1  
+        AND title LIKE '%Elite Executive Suite%' 
+    group by
+        officespace.officeSpaceID;

@@ -64,7 +64,7 @@ CREATE TABLE User (
 -- Table: Building
 CREATE TABLE Building (
   buildingID INT PRIMARY KEY AUTO_INCREMENT,
-  buildingName NVARCHAR(100) NOT NULL,
+  buildingName NVARCHAR(100) NOT NULL UNIQUE,
   street NVARCHAR(100),
   ward_commune NVARCHAR(50),
   district NVARCHAR(50),
