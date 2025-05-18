@@ -13,14 +13,14 @@
 <header>
     <div class="logo">
         <img src="/images/logo.png" alt="logo" />
-        <a th:href="@{/}">RER</a>
+        <a th:href="@{/}">OSR</a>
     </div>
 </header>
 
 <section class="container">
     <div class="wrapper">
         <div class="formbox signup">
-            <h2>Signuptration</h2>
+            <h2>SIGN UP</h2>
             <form id="signup" action="/signup" method="post">
                 <!-- Username -->
                 <div class="input">
@@ -76,11 +76,12 @@
                     <label for="firstName">First Name</label>
                 </div>
 
-                <!-- Gender -->
-                <div class="form-group">
-                    <i class="fas fa-venus-mars"></i>
-                    <select id="gender" name="gender" required>
-                        <option value="">Select Gender</option>
+                <div class="input">
+                        <span class="icon">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </span>
+                    <label for="role">Select Gender</label>
+                    <select name="role" id="role" required class="custom-select">
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="other">Other</option>
@@ -90,8 +91,8 @@
                 <!-- Date of Birth -->
                 <div class="form-group">
                     <i class="fas fa-calendar"></i>
-                    <input type="date" id="dOB" name="dOB" required>
                     <label for="dOB">Date of Birth</label>
+                    <input type="date" id="dOB" name="dOB" required>
                 </div>
 
                 <!-- Address -->
@@ -114,27 +115,9 @@
                     <label for="phone">Phone Number</label>
                 </div>
 
-                <!-- Role Selection -->
-                <div class="input">
-                        <span class="icon">
-                            <ion-icon name="person-outline"></ion-icon>
-                        </span>
-                    <label for="role">Who are you?</label>
-                    <select name="role" id="role" required class="custom-select">
-                        <option id="lessee" value="lessee">Lessee</option>
-                        <option id="lessor" value="lessor">Lessor</option>
-                    </select>
-                </div>
-
-                <!-- Terms and Conditions -->
-                <div class="remember-forgot">
-                    <label for="terms">
-                        <input type="checkbox" id="terms" required /> I agree to the terms & conditions
-                    </label>
-                </div>
 
                 <!-- Submit Button -->
-                <button type="submit" class="btn" name="save_user">Signup</button>
+                <button type="submit" class="btn" name="save_user">Sign up</button>
 
                 <!-- Login Link -->
                 <div class="login-register">

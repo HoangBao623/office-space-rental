@@ -46,3 +46,18 @@ function showPassword2(e) {
     state = false;
   }
 }
+// Hàm hiển thị/ẩn mật khẩu
+function showPassword(event) {
+  const input = event.target.closest('.input').querySelector('input');
+  if (input.type === 'password') {
+    input.type = 'text';
+    event.target.setAttribute('name', 'eye-off-outline');
+  } else {
+    input.type = 'password';
+    event.target.setAttribute('name', 'eye-outline');
+  }
+}
+
+function showPassword2(event) {
+  showPassword(event);
+}
