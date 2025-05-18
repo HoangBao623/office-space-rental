@@ -42,10 +42,11 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login**", "/signup").permitAll()
-                        .requestMatchers("//////").hasRole("CUSTOMER")
-                        .requestMatchers("//////").hasRole("MANAGER")
-                        .requestMatchers("//////").hasRole("SALES")
+                        .requestMatchers("/customize/**", "/images/**", "/library/**").permitAll()
+                        .requestMatchers("/","/login**", "/signup").permitAll()
+                        .requestMatchers("/cus").hasRole("CUSTOMER")
+                        .requestMatchers("/mana").hasRole("MANAGER")
+                        .requestMatchers("/sa").hasRole("SALES")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

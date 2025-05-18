@@ -1,0 +1,345 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+header {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 6rem;
+    z-index: 100;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    width: 75px;
+    height: 75px;
+}
+
+header .logo a {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+}
+
+.container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("../images/bg.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.container .wrapper {
+    position: relative;
+    width: 400px;
+    height: 940px;
+    padding: 40px;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    overflow-y: auto;
+}
+
+.wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.formbox.signup h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.input {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #fff;
+    margin: 30px 0;
+}
+
+.input label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    transform: translateY(-50%);
+    transition: 0.3s;
+    color: #fff;
+}
+
+.input input:focus ~ label,
+.input input:valid ~ label {
+    top: 0;
+}
+
+.input input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 0 35px 0 5px;
+    color: #fff;
+}
+
+.input .icon {
+    position: absolute;
+    right: 4px;
+    top: 30%;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.input .icon .eyes {
+    cursor: pointer;
+}
+
+.form-group {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid #fff;
+    margin: 30px 0;
+}
+.form-group select {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #fff;
+    font-size: 1rem;
+    padding: 0 35px 0 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.form-group select option {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 12px;
+    font-size: 1rem;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: #fff;
+}
+
+.form-group select:hover {
+    border-color: #fff;
+}
+
+.form-group .fas {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    pointer-events: none;
+}
+
+/* For Firefox */
+.form-group select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #fff;
+}
+
+/* For IE/Edge */
+.form-group select::-ms-expand {
+    display: none;
+}
+.remember-forgot {
+    margin: 20px 0;
+}
+
+.remember-forgot label {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    background: transparent;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin: 1rem 0;
+}
+
+button[type="submit"]:hover {
+    background: #fff;
+    color: #000;
+}
+
+.login-register {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-register p,
+.login-register a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.login-register a {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        padding: 1rem 2rem;
+    }
+
+    .container .wrapper {
+        width: 90%;
+        margin: 20px;
+    }
+}
+
+/* Role selection styling */
+.input:has(.custom-select) {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: none;
+    margin: 25px 0;
+}
+
+.input:has(.custom-select) .icon {
+    position: static;
+    display: flex;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.input:has(.custom-select) label {
+    position: static;
+    transform: none;
+    min-width: fit-content;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.custom-select {
+    flex: 1;
+    height: 40px;
+    padding: 0 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+}
+
+.custom-select:hover,
+.custom-select:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    outline: none;
+}
+
+.custom-select option {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 10px;
+    font-size: 0.95rem;
+}
+.form-group {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    margin: 30px 0;
+}
+
+.form-group select {
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+    background: rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    transition: all 0.3s ease;
+}
+
+.form-group select:hover,
+.form-group select:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.6);
+    outline: none;
+}
+
+.form-group select option {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 12px;
+}
+
+.form-group i.fas {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.8);
+    pointer-events: none;
+    font-size: 1rem;
+}
+
+/* Custom dropdown arrow */
+.form-group::after {
+    content: '';
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+}

@@ -1,219 +1,266 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="/customize/login.css" />
-  <title>Login Register Form</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <title>Real Estate Rental</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/customize/bootstrap.min.css" rel="stylesheet">
+
+
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="/customize/fontawesome.css">
+  <link rel="stylesheet" href="/customize/templatemo-villa-agency.css">
+  <link rel="stylesheet" href="/customize/owl.css">
+  <link rel="stylesheet" href="/customize/animate.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+
 </head>
+
 <body>
 
-<header>
-  <div class="logo">
-    <img src="/images/logo.png" alt="logo" />
-    <a th:href="@{/}">RER</a>
+<!-- ***** Preloader Start ***** -->
+<div id="js-preloader" class="js-preloader">
+  <div class="preloader-inner">
+    <span class="dot"></span>
+    <div class="dots">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</div>
+<!-- ***** Preloader End ***** -->
+
+<!-- ***** Header Area Start ***** -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <!-- ***** Logo Start ***** -->
+          <a th:href="@{/}" class="logo">
+            <h1>RER</h1>
+          </a>
+          <!-- ***** Logo End ***** -->
+          <!-- ***** Menu Start ***** -->
+          <ul class="nav">
+            <li><a th:href="@{/}" class="active">Home</a></li>
+            <li><a th:href="@{/propertiesSearch}">Properties</a></li>
+            <!--                      -->
+            <li>
+              <!-- Kiểm tra nếu chưa đăng nhập -->
+              <div th:if="${user == null}">
+                <a th:href="@{/login}">
+                  <i class="fa fa-user"></i> Log in
+                </a>
+              </div>
+              <!-- Kiểm tra nếu đã đăng nhập -->
+              <div th:if="${user != null}" class="dropdown">
+                <a class="dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa fa-user"></i> <span th:text="${user}">Username</span>
+                </a>
+                <div class="dropdown-menu" >
+                  <a  th:href="@{/profile}">Profile</a>
+                  <a  th:href="@{/logout}">Log out</a>
+                </div>
+              </div>
+            </li>
+            <!--                      -->
+          </ul>
+          <a class='menu-trigger'>
+            <span>Menu</span>
+          </a>
+          <!-- ***** Menu End ***** -->
+        </nav>
+      </div>
+    </div>
   </div>
 </header>
+<!-- ***** Header Area End ***** -->
 
-<section class="container">
-  <div class="wrapper">
-    <div class="formbox login">
-      <h1>Login</h1>
-      <form id="login" th:action="@{/login}" method="post">
-        <div class="input">
-              <span class="icon">
-                <ion-icon name="person-outline"></ion-icon>
-              </span>
-          <input type="text" name="username" id="username" required />
-          <label for="username">Username</label>
-        </div>
-        <div class="input">
-              <span class="icon">
-                <ion-icon title="show password?" class="eyes" name="eye-outline" id="eye" onclick="{showPassword(event)}" aria-hidden="true"></ion-icon>
-              </span>
-          <input type="password" name="password" id="password" required/>
-          <label for="password">Password</label>
-        </div>
-
-        <div class="remember-forgot">
-          <label for="remember"
-          ><input type="checkbox" id="remember" />Remember Me</label
-          >
-          <a href="#">Forgot Password?</a>
-        </div>
-        <button type="submit" class="btn" name="login">Login</button>
-        <div class="login-register">
-          <p>
-            Dont Have Account? &nbsp<a href="#" class="register-link" onclick="{change(event)}">Register</a>
-          </p>
-        </div>
-      </form>
+<!--  Banner -->
+<div class="main-banner">
+  <div class="owl-carousel owl-banner">
+    <div class="item item-1">
+      <div class="header-text">
+        <span class="category">Hồ Chí Minh <em>City</em></span>
+        <h2>Hurry!<br>Get the Best Apartment for you</h2>
+      </div>
     </div>
-
-    <div class="formbox register">
-      <h2>Registration</h2>
-      <form id="signup" action="/signup" method="post">
-        <!-- Full Name -->
-        <div class="input">
-      <span class="icon">
-        <ion-icon name="person-outline"></ion-icon>
-      </span>
-          <input type="text" name="name" id="name" required />
-          <label for="name">Full Name</label>
-        </div>
-
-        <!-- Address -->
-        <div class="input">
-      <span class="icon">
-        <ion-icon name="home-outline"></ion-icon>
-      </span>
-          <input type="text" name="address" id="address" required />
-          <label for="address">Address</label>
-        </div>
-
-        <!-- Email -->
-        <div class="input">
-      <span class="icon">
-        <ion-icon name="mail-outline"></ion-icon>
-      </span>
-          <input type="email" name="email" id="email" required />
-          <label for="email">Email</label>
-        </div>
-
-        <!-- Phone Number -->
-        <div class="input">
-      <span class="icon">
-        <ion-icon name="call-outline"></ion-icon>
-      </span>
-          <input type="text" name="phone" id="phone" required />
-          <label for="phone">Phone Number</label>
-        </div>
-
-        <!-- Username -->
-        <div class="input">
-      <span class="icon">
-        <ion-icon name="person-outline"></ion-icon>
-      </span>
-          <input type="text" name="username" id="username_signup" required />
-          <label for="username_signup">Username</label>
-        </div>
-
-        <!-- Password -->
-        <div class="input">
-      <span class="icon">
-        <ion-icon
-                title="show password?"
-                class="eyes"
-                name="eye-outline"
-                id="eye"
-                onclick="showPassword(event)"
-                aria-hidden="true"
-        ></ion-icon>
-      </span>
-          <input type="password" name="password" id="password_signup" required />
-          <label for="password_signup">Password</label>
-        </div>
-
-        <!-- Password2 -->
-        <div class="input">
-      <span class="icon">
-        <ion-icon
-                title="show password?"
-                class="eyes"
-                name="eye-outline"
-                id="eye2"
-                onclick="showPassword2(event)"
-                aria-hidden="true"
-        ></ion-icon>
-      </span>
-          <input type="password" name="password2" id="password_signup2" required />
-          <label for="password_signup2">Confirm Password</label>
-        </div>
-
-        <!-- Who (Lessee or Lessor) -->
-        <div >
-      <span class="icon">
-        <ion-icon name="person-outline"></ion-icon>
-      </span>
-          <label for="role">Who are you?</label>
-          <select name="role" id="role" required class="custom-select">
-            <option id="lessee" value="lessee">Lessee</option>
-            <option id="lessor" value="lessor">Lessor</option>
-          </select>
-        </div>
-
-        <div style="clear: both;"></div>
-
-        <!-- Terms and Conditions -->
-        <div class="remember-forgot">
-          <label >
-            <input type="checkbox" required /> I agree to the terms & conditions
-          </label>
-        </div>
-
-        <!-- Submit Button -->
-        <button type="submit" class="btn" name="save_user">Register</button>
-
-        <!-- Link to Login -->
-        <div class="login-register">
-          <p>
-            Already have an account?
-            <a href="#" class="login-link" onclick="change(event)">Login</a>
-          </p>
-        </div>
-      </form>
+    <div class="item item-2">
+      <div class="header-text">
+        <span class="category">Đà Nẵng <em>City</em></span>
+        <h2>Be Quick!<br>Get the best villa in town</h2>
+      </div>
+    </div>
+    <div class="item item-3">
+      <div class="header-text">
+        <span class="category">Hà Nội <em>Capital</em></span>
+        <h2>Act Now!<br>Get the highest level penthouse</h2>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
-<script src="/library/script_login.js"></script>
-<!-- Scripts -->
-<script>
-  document.getElementById("signup").addEventListener("submit", async function(e) {
-    e.preventDefault();
+<!--  Điểm lợi cảu từng loại BĐS -->
+<div class="section best-deal">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="section-heading">
+          <h6>| Best Type</h6>
+          <h2>Find Your Best Type Right Now!</h2>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="tabs-content">
+          <div class="row">
+            <div class="nav-wrapper ">
+              <!--                Danh sách Accommodation Type-->
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation" th:each="item : ${accomType}" >
+                  <button
+                          class="nav-link"
+                          th:class="${item.getType() == 'Apartment'} ? 'nav-link active' : 'nav-link'"
+                          id="${item.getType()}-tab"
+                          th:id="${item.getType()} + '-tab'"
+                          data-bs-toggle="tab"
+                          th:data-bs-target="'#' + ${item.getType()}"
+                          type="button"
+                          role="tab"
+                          th:aria-controls="${item.getType()}"
+                          th:text="${item.getType()}">
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <!--              -->
+            <div class="tab-content" id="myTabContent" th:each="item : ${accomType}">
+              <div class="tab-pane fade" th:class="${item.getType() == 'Apartment'} ? 'tab-pane fade show active' : 'tab-pane fade'" th:id="${item.getType()}" role="tabpanel" th:aria-labelledby="${item.getType()} + '-tab'">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="info-table">
+                      <ul>
+                        <li th:each="code : ${item.getAdCode()}"><p th:text="${code}"></p></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <h4>Extra Info About <p th:text="${item.getType()}" style="font-size: 20px"></p></h4>
+                    <ul>
+                      <li th:each="des : ${item.getAdDes()}"><p th:text="${des}" style="text-align: justify"></p><hr></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData);
+<!--  DS BĐS nổi bật -->
+<div class="properties section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-4">
+        <div class="section-heading text-center">
+          <h6>| Properties</h6>
+          <h2>We Provide The Best Property You Like</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <!--        DANH SÁCH BĐS NỔI BẬT-->
+      <div class="col-lg-4 col-md-6" th:each="ac : ${accommodation}">
+        <div class="item">
+          <!--            <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}"><img th:src="'/lessee/assets/images/' + ${ac.getImage()}" alt=""></a>-->
+          <!--            <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}"><img th:src="'https://yoon-realestate.s3.ap-southeast-2.amazonaws.com/' + ${ac.getImage()}" alt=""></a>-->
+          <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}">
+            <!--              <img th:src="@{/s3/image/{key}(key=${ac.getImage()})}" alt="">-->
+          </a>
+          <span class="category"><p th:text="${ac.getAccomType()}"></p></span>
+          <h6></h6>
+          <h4><a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}"><h3 th:text="${ac.getAccommodationName()}"></h3></a></h4>
+          <ul>
+            <li>Rooms: <span th:text="${ac.getNumberOfRooms()}"></span></li>
+            <li>Area: <span th:text="${ac.getSize()}"></span></li>
+            <li>Address: <span th:text="${ac.getAddress()}"></span></li>
+          </ul>
+          <div class="main-button">
+            <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}">View a detail</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    try {
-      const response = await fetch(`/signup`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+<!--  Contact -->
+<div class="contact section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 offset-lg-4">
+        <div class="section-heading text-center">
+          <h6>| Contact Us</h6>
+          <h2>Get In Touch With Our Agents</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-      // Kiểm tra trạng thái HTTP và kiểu phản hồi
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Server error:", errorText);
-        alert(`Error: ${response.status} - ${response.statusText}`);
-        return;
-      }
+<!--  Contact - Map -->
+<div class="contact-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div id="map">
+          <iframe th:src="@{https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7839.904952739309!2d106.67464379575955!3d10.73814625599458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f62a90e5dbd%3A0x674d5126513db295!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2jhu4cgU8OgaSBHw7Ju!5e0!3m2!1svi!2s!4v1732886957259!5m2!1svi!2s}" width="1110" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="item phone">
+          <img src="/images/phone-icon.png" alt="" style="max-width: 52px;">
+          <h6>010-020-0340<br><span>Phone Number</span></h6>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="item email">
+          <img src="/images/email-icon.png" alt="" style="max-width: 52px;">
+          <h6>info@RER.co<br><span>Business Email</span></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-      // Đảm bảo phản hồi là JSON
-      if (response.headers.get("Content-Type").includes("application/json")) {
-        const result = await response.json();
-        alert(`Notification: ${result.notification}`);
-      } else {
-        const text = await response.text();
-        console.error("Unexpected response:", text);
-        alert("Error: Server did not return JSON.");
-      }
-    } catch (err) {
-      console.error("Unexpected error:", err);
-      alert("An unexpected error occurred!");
-    }
-  });
+<footer>
+  <div class="container">
+    <div class="col-lg-12">
+      <p>Copyright © 2048 RER Agency Co., Ltd. All rights reserved.
 
-</script>
-<!-- Ion Icon -->
-<script
-        type="module"
-        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-></script>
-<script
-        nomodule
-        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-></script>
+        Design: <a rel="nofollow" href="#" target="_blank">Nguyen Hoang Bao - Ha Thi My Chau </a></p>
+    </div>
+  </div>
+</footer>
+<script src="/library/jquery/jquery.min.js"></script>
+<script src="/library/bootstrap.min.js"></script>
+<script src="/library/isotope.min.js"></script>
+<script src="/library/owl-carousel.js"></script>
+<script src="/library/counter.js"></script>
+<script src="/library/custom.js"></script>
+
 </body>
 </html>

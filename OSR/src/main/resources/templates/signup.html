@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/customize/style_signup.css" />
+    <script th:src="@{/library/signup.js}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <title>Signup Form</title>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="/images/logo.png" alt="logo" />
+        <a th:href="@{/}">RER</a>
+    </div>
+</header>
+
+<section class="container">
+    <div class="wrapper">
+        <div class="formbox signup">
+            <h2>Signuptration</h2>
+            <form id="signup" action="/signup" method="post">
+                <!-- Username -->
+                <div class="input">
+                        <span class="icon">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </span>
+                    <input type="text" name="username" id="username" required />
+                    <label for="username">Username</label>
+                </div>
+
+                <!-- Password -->
+                <div class="input">
+                        <span class="icon">
+                            <ion-icon title="show password?" class="eyes" name="eye-outline" id="eye1" onclick="showPassword(event)" aria-hidden="true"></ion-icon>
+                        </span>
+                    <input type="password" name="password" id="password" required />
+                    <label for="password">Password</label>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="input">
+                        <span class="icon">
+                            <ion-icon title="show password?" class="eyes" name="eye-outline" id="eye2" onclick="showPassword2(event)" aria-hidden="true"></ion-icon>
+                        </span>
+                    <input type="password" name="password2" id="password2" required />
+                    <label for="password2">Confirm Password</label>
+                </div>
+
+                <!-- Email -->
+                <div class="input">
+                        <span class="icon">
+                            <ion-icon name="mail-outline"></ion-icon>
+                        </span>
+                    <input type="email" name="email" id="email" required />
+                    <label for="email">Email</label>
+                </div>
+
+                <!-- Last name -->
+                <div class="input">
+                        <span class="icon">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </span>
+                    <input type="text" name="lastName" id="lastName" required />
+                    <label for="lastName">Last Name</label>
+                </div>
+
+                <!-- First name-->
+                <div class="input">
+                        <span class="icon">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </span>
+                    <input type="text" name="firstName" id="firstName" required />
+                    <label for="firstName">First Name</label>
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group">
+                    <i class="fas fa-venus-mars"></i>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="form-group">
+                    <i class="fas fa-calendar"></i>
+                    <input type="date" id="dOB" name="dOB" required>
+                    <label for="dOB">Date of Birth</label>
+                </div>
+
+                <!-- Address -->
+                <div class="input">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                    <input type="text" name="address" id="address" required />
+                    <label for="address">Address</label>
+                </div>
+
+
+
+                <!-- Phone Number -->
+                <div class="input">
+                        <span class="icon">
+                            <ion-icon name="call-outline"></ion-icon>
+                        </span>
+                    <input type="text" name="phone" id="phone" required />
+                    <label for="phone">Phone Number</label>
+                </div>
+
+                <!-- Role Selection -->
+                <div class="input">
+                        <span class="icon">
+                            <ion-icon name="person-outline"></ion-icon>
+                        </span>
+                    <label for="role">Who are you?</label>
+                    <select name="role" id="role" required class="custom-select">
+                        <option id="lessee" value="lessee">Lessee</option>
+                        <option id="lessor" value="lessor">Lessor</option>
+                    </select>
+                </div>
+
+                <!-- Terms and Conditions -->
+                <div class="remember-forgot">
+                    <label for="terms">
+                        <input type="checkbox" id="terms" required /> I agree to the terms & conditions
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn" name="save_user">Signup</button>
+
+                <!-- Login Link -->
+                <div class="login-register">
+                    <p>Already have an account? <a th:href="@{/login}">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>
