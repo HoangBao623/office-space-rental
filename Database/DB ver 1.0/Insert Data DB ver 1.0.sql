@@ -82,7 +82,7 @@ VALUES
     ('The Velvet', '60 Trần Phú', 'Thạch Thang', 'Hải Châu', 'Đà Nẵng');
 
 -- Insert Traditional Office
-INSERT INTO TypeOffice (type, description) 
+INSERT INTO TypeOffice (typeName, description) 
 VALUES 
 	('Traditional Office', 'Văn phòng có thiết kế cố định, sử dụng lâu dài, thường được thuê hoặc sở hữu riêng với các phòng làm việc và tiện nghi cơ bản.'),
 	('Co-working Space', 'Không gian làm việc chung nơi các doanh nghiệp chia sẻ tiện nghi và dịch vụ cần thiết, tạo môi trường làm việc cộng đồng.'),
@@ -181,13 +181,6 @@ VALUES
     ('Featured'),
     ('New'),
     ('Popular');
-
-INSERT INTO Status (statusName) 
-VALUES 
-    ('Available'),
-	('Unavailable'),
-    ('Occupied'),
-    ('Pending_Approval');
     
 INSERT INTO Amenity (amenityName) 
 VALUES 

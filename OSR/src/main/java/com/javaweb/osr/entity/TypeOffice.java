@@ -11,8 +11,8 @@ public class TypeOffice {
     @Column(name = "typeOfficeID")
     private Integer typeOfficeID;
 
-    @Column(name = "type", length = 50)
-    private String type;
+    @Column(name = "typeName", length = 50)
+    private String typeName;
 
     @Column(name = "description")
     private String description;
@@ -22,8 +22,8 @@ public class TypeOffice {
 
     public Integer getTypeOfficeID() { return typeOfficeID; }
     public void setTypeOfficeID(Integer typeOfficeID) { this.typeOfficeID = typeOfficeID; }
-    public String getType() { return type; }
-    public void setType(String type) { this.type = type; }
+    public String getType() { return typeName; }
+    public void setType(String typeName) { this.typeName = typeName; }
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
     public List<OfficeSpace> getOfficeSpaces() { return officeSpaces; }

@@ -7,6 +7,7 @@ import java.util.Date;
 @Entity
 @Table(name = "Payment")
 public class Payment {
+
     public enum PaymentMethod { Cash, Bank_transfer }
     public enum PaymentStatus { Success, Failed, Refunded }
 
@@ -29,15 +30,15 @@ public class Payment {
     private String note;
 
     @Column(name = "paymentAmount", nullable = false)
-    private Double paymentAmount;
+    private float paymentAmount;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
     private PaymentStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "contractID", nullable = false)
-    private Contract contractID;
+    @JoinColumn(name = "orderID", nullable = false)
+    private Order orderID;
 
     public Integer getPaymentID() { return paymentID; }
     public void setPaymentID(Integer paymentID) { this.paymentID = paymentID; }
@@ -49,10 +50,10 @@ public class Payment {
     public void setPaymentMethod(PaymentMethod paymentMethod) { this.paymentMethod = paymentMethod; }
     public String getNote() { return note; }
     public void setNote(String note) { this.note = note; }
-    public Double getPaymentAmount() { return paymentAmount; }
-    public void setPaymentAmount(Double paymentAmount) { this.paymentAmount = paymentAmount; }
+    public float getPaymentAmount() { return paymentAmount; }
+    public void setPaymentAmount(float paymentAmount) { this.paymentAmount = paymentAmount; }
     public PaymentStatus getStatus() { return status; }
     public void setStatus(PaymentStatus status) { this.status = status; }
-    public Contract getContract() { return contractID; }
-    public void setContract(Contract contract) { this.contractID = contract; }
+    public Order getOrder() { return orderID; }
+    public void setOrder(Order contract) { this.orderID = contract; }
 }

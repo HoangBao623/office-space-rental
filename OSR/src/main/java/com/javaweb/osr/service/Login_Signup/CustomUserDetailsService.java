@@ -19,7 +19,7 @@ public class CustomUserDetailsService implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String rolePrefix = "ROLE_";
-        String roleName = String.valueOf(user.getRole().getRoleID());
+        String roleName = String.valueOf(user.getRoleID().getRoleID());
 
         switch (roleName) {
             case "1":

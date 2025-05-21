@@ -1,12 +1,12 @@
 package com.javaweb.osr.entity;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
 @Table(name = "LessorPayment")
 public class LessorPayment {
+    
     public enum PaymentMethod { Cash, Bank_transfer }
     public enum PaymentStatus { Success, Failed, Refunded }
 
@@ -29,7 +29,7 @@ public class LessorPayment {
     private String note;
 
     @Column(name = "paymentAmount", nullable = false)
-    private Double paymentAmount;
+    private float paymentAmount;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
@@ -49,8 +49,8 @@ public class LessorPayment {
     public void setPaymentMethod(PaymentMethod paymentMethod) { this.paymentMethod = paymentMethod; }
     public String getNote() { return note; }
     public void setNote(String note) { this.note = note; }
-    public Double getPaymentAmount() { return paymentAmount; }
-    public void setPaymentAmount(Double paymentAmount) { this.paymentAmount = paymentAmount; }
+    public float getPaymentAmount() { return paymentAmount; }
+    public void setPaymentAmount(float paymentAmount) { this.paymentAmount = paymentAmount; }
     public PaymentStatus getStatus() { return status; }
     public void setStatus(PaymentStatus status) { this.status = status; }
     public User getLessor() { return lessorID; }

@@ -1,4 +1,4 @@
 package com.javaweb.osr.service.Interface;
 
-public interface ContractService {
+public interface OrderService {
 }

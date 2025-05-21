@@ -23,8 +23,6 @@ public class OfficeSpaceRepoCustomImplement implements OfficeSpaceRepoCustom {
 								   List<String> type, List<String> tagName, List<String> amenityName, List<String> rentTypeName,
 								   StringBuilder sql) {
 
-		sql.append(" join image on officespace.officeSpaceID = image.officeSpaceID");
-
 		if (ListUtil.checkList(type))
 			sql.append(" join typeoffice on officespace.typeOfficeID = type.typeOfficeID");
 
@@ -164,20 +162,35 @@ public class OfficeSpaceRepoCustomImplement implements OfficeSpaceRepoCustom {
 		}
 	}
 
+	private void getLatestStatus(StringBuilder sql) {
+
+		sql.append(
+				" join ( " +
+						"   select os1.officeSpaceID, s.statusName " +
+						"   from OS_Status os1 " +
+						"   join Status s on os1.statusID = s.statusID " +
+						"   where os1.startDate = ( " +
+						"       select max(os2.startDate) " +
+						"       from OS_Status os2 " +
+						"       where os2.officeSpaceID = os1.officeSpaceID " +
+						"   ) " +
+						") latest_status on officespace.officeSpaceID = latest_status.officeSpaceID "
+		);
+	}
+
+
 	@Override
 	public List<OfficeSpace> searchOS_Lessee(Map<String, Object> params,
 											 List<String> type, List<String> tagName, List<String> amenityName, List<String> rentTypeName) {
 
-//		StringBuilder sql = new StringBuilder("select officespace.officeSpaceID, title, " +
-//				"buildingName, street, ward_commune, district, city_province " +
-//				"type, tagName, size, capacity, imageName, amenityName, " +
-//				"quantity, rentTypeName, price, deposit from officespace ");
 		StringBuilder sql = new StringBuilder("select officespace.officeSpaceID, title, " +
 				"size, capacity, buildingID, lessorID, typeOfficeID from officespace ");
 		joinTableOS(params, type, tagName, amenityName, rentTypeName, sql);
+		getLatestStatus(sql);
 		StringBuilder where = new StringBuilder(" where 1 = 1 ");
 		queryNormal(params, where);
 		querySpecial(params, type, tagName, amenityName, rentTypeName, sql);
+		where.append(" and latest_status.statusName = 'Available' ");
 		sql.append(where);
 		sql.append(" group by officespace.officeSpaceID");
 		System.out.println(sql);
@@ -186,7 +199,6 @@ public class OfficeSpaceRepoCustomImplement implements OfficeSpaceRepoCustom {
 
 		return query.getResultList();
 	}
-
 
 //	@Override
 //	public List<OfficeSpace> findAllOSAvailable() {

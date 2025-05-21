@@ -74,7 +74,7 @@ CREATE TABLE Building (
 -- Table: TypeOffice
 CREATE TABLE TypeOffice (
     typeOfficeID INT AUTO_INCREMENT PRIMARY KEY,
-    type VARCHAR(50),
+    typeName VARCHAR(50),
     description TEXT
 ) ENGINE=InnoDB;
 

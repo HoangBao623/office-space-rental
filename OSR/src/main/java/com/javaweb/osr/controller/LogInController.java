@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.Optional;
 
 @Controller
-public class LogInController {
+public class LogInController { //UserController
 
     @Autowired
     private UserRepository userRepository;

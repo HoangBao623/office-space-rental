@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/customize/style_signup.css" />
-    <script th:src="@{/library/signup.js}"></script>
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <title>Signup Form</title>
@@ -21,7 +21,7 @@
     <div class="wrapper">
         <div class="formbox signup">
             <h2>SIGN UP</h2>
-            <form id="signup" th:action="@{/signup}" method="post">
+            <form id="signup" action="/signup" method="post">
                 <!-- Username -->
                 <div class="input">
                         <span class="icon">
@@ -77,14 +77,13 @@
                 </div>
 
                 <div class="input">
-                        <span class="icon">
-                            <ion-icon name="person-outline"></ion-icon>
-                        </span>
-                    <label for="role">Select Gender</label>
-                    <select name="role" id="role" required class="custom-select">
+                    <span class="icon">
+                        <ion-icon name="person-outline"></ion-icon>
+                    </span>
+                    <label for="gender">Select Gender</label>
+                    <select name="gender" id="gender" required class="custom-select">
                         <option value="male">Male</option>
                         <option value="female">Female</option>
-                        <option value="other">Other</option>
                     </select>
                 </div>
 
@@ -104,13 +103,11 @@
                     <label for="address">Address</label>
                 </div>
 
-
-
                 <!-- Phone Number -->
                 <div class="input">
-                        <span class="icon">
-                            <ion-icon name="call-outline"></ion-icon>
-                        </span>
+                    <span class="icon">
+                        <ion-icon name="call-outline"></ion-icon>
+                    </span>
                     <input type="text" name="phone" id="phone" required />
                     <label for="phone">Phone Number</label>
                 </div>
@@ -127,5 +124,6 @@
         </div>
     </div>
 </section>
+<script src="/library/signup.js"></script>
 </body>
 </html>

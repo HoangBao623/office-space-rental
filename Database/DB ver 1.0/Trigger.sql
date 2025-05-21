@@ -1,5 +1,28 @@
 -- Triggers
 
+DELIMITER //
+
+CREATE TRIGGER trg_check_overlap_before_insert
+BEFORE INSERT ON OS_Status
+FOR EACH ROW
+BEGIN
+    IF EXISTS (
+        SELECT 1 FROM OS_Status
+        WHERE officeSpaceID = NEW.officeSpaceID
+          AND (
+              (NEW.startDate BETWEEN startDate AND endDate) OR
+              (NEW.endDate BETWEEN startDate AND endDate) OR
+              (startDate BETWEEN NEW.startDate AND NEW.endDate)
+          )
+    ) THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'OfficeSpace has overlapping status intervals!';
+    END IF;
+END;
+//
+
+DELIMITER ;
+
 -- Trigger: Update DetailStatus when a Contract is inserted
 DELIMITER //
 CREATE TRIGGER after_contract_insert

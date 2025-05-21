@@ -21,7 +21,7 @@ public class RentType {
     private List<OS_RentType> detailRentTypes;
 
     @OneToMany(mappedBy = "rentTypeID")
-    private List<Contract> contracts;
+    private List<Service_RentType> serviceRentTypes;
 
     public Integer getRentTypeID() { return rentTypeID; }
     public void setRentTypeID(Integer rentTypeID) { this.rentTypeID = rentTypeID; }
@@ -31,6 +31,12 @@ public class RentType {
     public void setDescription(String description) { this.description = description; }
     public List<OS_RentType> getDetailRentTypes() { return detailRentTypes; }
     public void setDetailRentTypes(List<OS_RentType> detailRentTypes) { this.detailRentTypes = detailRentTypes; }
-    public List<Contract> getContracts() { return contracts; }
-    public void setContracts(List<Contract> contracts) { this.contracts = contracts; }
+
+    public List<Service_RentType> getServiceRentTypes() {
+        return serviceRentTypes;
+    }
+
+    public void setServiceRentTypes(List<Service_RentType> serviceRentTypes) {
+        this.serviceRentTypes = serviceRentTypes;
+    }
 }

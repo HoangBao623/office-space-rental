@@ -46,7 +46,7 @@ public class RegistrationSerImplement implements RegistrationService {
         user.setdOB(form.getdOB());
         user.setAddress(form.getAddress());
         user.setPhoneNumber(form.getPhone());
-        user.setRole(roleRepository.findById(3).get());
+        user.setRoleID(roleRepository.findById(3).get());
         userRepository.save(user);
 
         return "Registration successful!";

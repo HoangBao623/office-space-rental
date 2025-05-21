@@ -58,7 +58,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 newUser.setPassword(oAuth2User.getAttribute("sub"));
                 newUser.setFirstName(oAuth2User.getAttribute("given_name"));
                 newUser.setLastName(oAuth2User.getAttribute("family_name"));
-                newUser.setRole(roleRepository.findById(3).get());
+                newUser.setRoleID(roleRepository.findById(3).get());
                 userRepository.save(newUser);
             }
         }

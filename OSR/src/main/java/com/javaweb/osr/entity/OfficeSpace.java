@@ -6,6 +6,7 @@ import java.util.List;
 @Entity
 @Table(name = "OfficeSpace")
 public class OfficeSpace {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "officeSpaceID")
@@ -51,9 +52,6 @@ public class OfficeSpace {
     private List<Reservation> reservations;
 
     @OneToMany(mappedBy = "officeSpaceID")
-    private List<Contract> contracts;
-
-    @OneToMany(mappedBy = "officeSpaceID")
     private List<Favorite> favorites;
 
     public Integer getOfficeSpaceID() { return officeSpaceID; }
@@ -82,8 +80,6 @@ public class OfficeSpace {
     public void setDetailStatuses(List<OS_Status> detailStatuses) { this.detailStatuses = detailStatuses; }
     public List<Reservation> getReservations() { return reservations; }
     public void setReservations(List<Reservation> reservations) { this.reservations = reservations; }
-    public List<Contract> getContracts() { return contracts; }
-    public void setContracts(List<Contract> contracts) { this.contracts = contracts; }
     public List<Favorite> getFavorites() { return favorites; }
     public void setFavorites(List<Favorite> favorites) { this.favorites = favorites; }
 }

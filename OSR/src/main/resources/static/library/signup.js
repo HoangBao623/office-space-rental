@@ -1,15 +1,19 @@
 // Xử lý gửi form đăng ký
+// Xử lý gửi form đăng ký
 document.getElementById("signup").addEventListener("submit", async function(e) {
     e.preventDefault();
     const formData = new FormData(this);
     const data = Object.fromEntries(formData);
 
-    try {
-        const submitBtn = document.querySelector('button[type="submit"]');
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = 'Đang xử lý...';
+    // Xóa trường password2 (không cần gửi lên backend)
+    // delete data.password2;
 
-        const response = await fetch("/signup", {
+    try {
+        // const submitBtn = document.querySelector('button[type="submit"]');
+        // submitBtn.disabled = true;
+        // submitBtn.innerHTML = 'Đang xử lý...';
+
+        const response = await fetch(`/signup`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -26,9 +30,7 @@ document.getElementById("signup").addEventListener("submit", async function(e) {
         if (contentType && contentType.includes("application/json")) {
             const result = await response.json();
             alert(`Thông báo: ${result.notification}`);
-            if (result.success) {
-                window.location.href = "/login";
-            }
+            window.location.href = "/login";
         } else {
             console.error("Kiểu phản hồi không mong đợi:", contentType);
             alert("Lỗi: Máy chủ không trả về JSON");
@@ -36,10 +38,11 @@ document.getElementById("signup").addEventListener("submit", async function(e) {
     } catch (err) {
         console.error("Lỗi không mong đợi:", err);
         alert("Đã xảy ra lỗi không mong đợi!");
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Đăng ký';
     }
+    //  finally {
+    //     submitBtn.disabled = false;
+    //     submitBtn.innerHTML = 'Đăng ký';
+    // }
 });
 
 // Xử lý ngày sinh
