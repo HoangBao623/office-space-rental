@@ -1,17 +1,11 @@
 // Xử lý gửi form đăng ký
-// Xử lý gửi form đăng ký
+
 document.getElementById("signup").addEventListener("submit", async function(e) {
     e.preventDefault();
     const formData = new FormData(this);
     const data = Object.fromEntries(formData);
 
-    // Xóa trường password2 (không cần gửi lên backend)
-    // delete data.password2;
-
     try {
-        // const submitBtn = document.querySelector('button[type="submit"]');
-        // submitBtn.disabled = true;
-        // submitBtn.innerHTML = 'Đang xử lý...';
 
         const response = await fetch(`/signup`, {
             method: "POST",
@@ -39,10 +33,6 @@ document.getElementById("signup").addEventListener("submit", async function(e) {
         console.error("Lỗi không mong đợi:", err);
         alert("Đã xảy ra lỗi không mong đợi!");
     }
-    //  finally {
-    //     submitBtn.disabled = false;
-    //     submitBtn.innerHTML = 'Đăng ký';
-    // }
 });
 
 // Xử lý ngày sinh
