@@ -1,6 +1,7 @@
 package com.javaweb.osr.config;
 
 import com.javaweb.osr.service.Login_Signup.CustomOAuth2UserService;
+import com.javaweb.osr.service.Login_Signup.CustomSuccessHandler;
 import com.javaweb.osr.service.Login_Signup.CustomUserDetailsSerImplement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,12 +15,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+//@EnableWebSecurity
 public class SecurityConfig {
 
     private final CustomUserDetailsSerImplement customUserDetailsService;
 
-    public SecurityConfig(CustomUserDetailsSerImplement customUserDetailsService) {
+    private final CustomSuccessHandler customSuccessHandler;
+
+    public SecurityConfig(CustomUserDetailsSerImplement customUserDetailsService, CustomSuccessHandler customSuccessHandler) {
         this.customUserDetailsService = customUserDetailsService;
+        this.customSuccessHandler = customSuccessHandler;
     }
 
     @Bean
@@ -52,7 +57,7 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/dashboard", true)
+                        .successHandler(customSuccessHandler)
                         .failureUrl("/login?error=true")
                 )
                 .oauth2Login(oauth2 -> oauth2

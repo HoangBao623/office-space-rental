@@ -14,7 +14,7 @@ select * from renttype;
 select * from OS_renttype;
 select * from service;
 select * from service_renttype;
-select * from user_service;
+select * from lessor_service;
 select * from status;
 select * from OS_status;
 select * from reservation;

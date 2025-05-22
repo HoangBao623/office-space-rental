@@ -1,0 +1,58 @@
+INSERT INTO RentType (rentTypeName, description)
+VALUES
+	('Yearly', 'Thuê theo năm'),
+    ('Seasonal', 'Thuê theo quý'),
+    ('Monthly', 'Thuê theo tháng'),
+    ('Weekly', 'Thuê theo tuần'),
+    ('Daily', 'Thuê theo ngày'),
+    ('Hourly', 'Thuê theo giờ');
+	
+INSERT INTO Lessor_Service (lessorID, serviceID) 
+VALUES 
+	-- Lessor 4 có 3 dịch vụ
+	(4, 1),
+	(4, 5),
+	(4, 9),
+
+	-- Lessor 5 có 2 dịch vụ
+	(5, 2),
+	(5, 6),
+
+	-- Lessor 6 có 4 dịch vụ
+	(6, 3),
+	(6, 7),
+	(6, 10),
+	(6, 13),
+
+	-- Lessor 7 không có dịch vụ nào
+
+	-- Lessor 8 có 5 dịch vụ
+	(8, 1),
+	(8, 4),
+	(8, 8),
+	(8, 11),
+	(8, 12),
+
+	-- Lessor 9 có 1 dịch vụ
+	(9, 5),
+
+	-- Lessor 10 có 3 dịch vụ
+	(10, 2),
+	(10, 9),
+	(10, 13);
+	
+INSERT INTO Service (serviceName, description) 
+VALUES
+	('Ghế Ergonomic', 'Cung cấp ghế công thái học chất lượng cao giúp giảm mỏi lưng khi làm việc'),
+	('Bànn điều chỉnh', 'Bàn làm việc có thể điều chỉnh độ cao phù hợp với người dùng'),
+	('Bàn đứng', 'Bàn làm việc đứng giúp thay đổi tư thế và tăng hiệu suất làm việc'),
+	('Đèn bàn', 'Đèn bàn công thái học giúp giảm mỏi mắt khi làm việc'),
+	('Máy chiếu', 'Máy chiếu hiện đại phục vụ các cuộc họp và thuyết trình'),
+	('TV/Màn hình', 'Màn hình lớn phục vụ trình chiếu và họp trực tuyến'),
+	('Bảng trắng', 'Bảng trắng tương tác phục vụ thảo luận nhóm và lên ý tưởng'),
+	('Máy in/máy scan', 'Thiết bị in và scan chất lượng cao cho văn phòng'),
+	('Máy photocopy', 'Dịch vụ sao chụp tài liệu nhanh chóng và tiện lợi'),
+	('Tủ lưu trữ', 'Tủ lưu trữ tài liệu và đồ dùng văn phòng'),
+	('Tủ khóa', 'Tủ khóa an toàn để bảo quản tài sản cá nhân'),
+	('Máy phát điện dự phòng', 'Hệ thống điện dự phòng đảm bảo hoạt động liên tục khi mất điện'),
+	('Dịch vụ vệ sinh', 'Dịch vụ vệ sinh văn phòng hàng ngày');
