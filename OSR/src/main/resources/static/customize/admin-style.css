@@ -1,0 +1,59 @@
+.admin-header {
+    background: linear-gradient(90deg, #007bff 0%, #00c6ff 100%);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.admin-header .logo h1 {
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+.admin-header .admin-highlight {
+    color: #ffd700;
+}
+.admin-nav li a {
+    color: #fff !important;
+    font-weight: 500;
+    margin: 0 10px;
+    transition: color 0.2s;
+}
+.admin-nav li a.active, .admin-nav li a:hover {
+    color: #ffd700 !important;
+    text-decoration: underline;
+}
+.admin-main {
+    min-height: 70vh;
+    background: #f8f9fa;
+    padding-bottom: 40px;
+}
+.admin-title {
+    color: #007bff;
+    font-weight: 600;
+}
+.admin-card {
+    border: none;
+    border-radius: 16px;
+    background: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.admin-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(0,123,255,0.08);
+}
+.admin-icon {
+    color: #007bff;
+}
+.admin-footer {
+    background: #222;
+    color: #fff;
+    padding: 20px 0 10px 0;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    margin-top: 40px;
+}
+.admin-footer a {
+    color: #ffd700;
+    text-decoration: none;
+}
+.admin-footer a:hover {
+    text-decoration: underline;
+}

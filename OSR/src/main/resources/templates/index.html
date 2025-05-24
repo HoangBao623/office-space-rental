@@ -2,42 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <title>Real Estate Rental</title>
-
+  <title>RER - PROPERTIES</title>
   <!-- Bootstrap core CSS -->
   <link href="/customize/bootstrap.min.css" rel="stylesheet">
+  <!--Style-->
+  <style>
 
 
-
-  <!-- Additional CSS Files -->
+  </style>
+  <link rel="stylesheet" href="/customize/index-style.css">
   <link rel="stylesheet" href="/customize/fontawesome.css">
   <link rel="stylesheet" href="/customize/templatemo-villa-agency.css">
   <link rel="stylesheet" href="/customize/owl.css">
   <link rel="stylesheet" href="/customize/animate.css">
-  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
-
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 </head>
 
 <body>
-
-<!-- ***** Preloader Start ***** -->
-<div id="js-preloader" class="js-preloader">
-  <div class="preloader-inner">
-    <span class="dot"></span>
-    <div class="dots">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-</div>
-<!-- ***** Preloader End ***** -->
-
 <!-- ***** Header Area Start ***** -->
 <header class="header-area header-sticky">
   <div class="container">
@@ -51,28 +35,25 @@
           <!-- ***** Logo End ***** -->
           <!-- ***** Menu Start ***** -->
           <ul class="nav">
-            <li><a th:href="@{/}" class="active">Home</a></li>
-            <li><a th:href="@{/searchOS_Lessee}">Properties</a></li>
-            <!--                      -->
+            <li><a th:href="@{/}">Home</a></li>
             <li>
-              <!-- Kiểm tra nếu chưa đăng nhập -->
+              <!-- Nếu chưa đăng nhập -->
               <div th:if="${user == null}">
                 <a th:href="@{/login}">
                   <i class="fa fa-user"></i> Log in
                 </a>
               </div>
-              <!-- Kiểm tra nếu đã đăng nhập -->
+              <!-- Nếu đã đăng nhập -->
               <div th:if="${user != null}" class="dropdown">
                 <a class="dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="fa fa-user"></i> <span th:text="${user}">Username</span>
+                  <i class="fa fa-user"></i> <span th:text="${user.getUsername()}">Username</span>
                 </a>
-                <div class="dropdown-menu" >
-                  <a  th:href="@{/profile}">Profile</a>
-                  <a  th:href="@{/logout}">Log out</a>
+                <div class="dropdown-menu">
+                  <a th:href="@{/profile}">Profile</a>
+                  <a th:href="@{/logout}">Log out</a>
                 </div>
               </div>
             </li>
-            <!--                      -->
           </ul>
           <a class='menu-trigger'>
             <span>Menu</span>
@@ -85,161 +66,280 @@
 </header>
 <!-- ***** Header Area End ***** -->
 
-<!--  Banner -->
-<div class="main-banner">
-  <div class="owl-carousel owl-banner">
-    <div class="item item-1">
-      <div class="header-text">
-        <span class="category">Hồ Chí Minh <em>City</em></span>
-        <h2>Hurry!<br>Get the Best Apartment for you</h2>
-      </div>
-    </div>
-    <div class="item item-2">
-      <div class="header-text">
-        <span class="category">Đà Nẵng <em>City</em></span>
-        <h2>Be Quick!<br>Get the best villa in town</h2>
-      </div>
-    </div>
-    <div class="item item-3">
-      <div class="header-text">
-        <span class="category">Hà Nội <em>Capital</em></span>
-        <h2>Act Now!<br>Get the highest level penthouse</h2>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--  Điểm lợi cảu từng loại BĐS -->
-<div class="section best-deal">
+<div class="page-heading header-text">
   <div class="container">
     <div class="row">
-      <div class="col-lg-4">
-        <div class="section-heading">
-          <h6>| Best Type</h6>
-          <h2>Find Your Best Type Right Now!</h2>
-        </div>
-      </div>
       <div class="col-lg-12">
-        <div class="tabs-content">
-          <div class="row">
-            <div class="nav-wrapper ">
-              <!--                Danh sách Accommodation Type-->
-              <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item" role="presentation" th:each="item : ${accomType}" >
-                  <button
-                          class="nav-link"
-                          th:class="${item.getType() == 'Apartment'} ? 'nav-link active' : 'nav-link'"
-                          id="${item.getType()}-tab"
-                          th:id="${item.getType()} + '-tab'"
-                          data-bs-toggle="tab"
-                          th:data-bs-target="'#' + ${item.getType()}"
-                          type="button"
-                          role="tab"
-                          th:aria-controls="${item.getType()}"
-                          th:text="${item.getType()}">
-                  </button>
-                </li>
-              </ul>
-            </div>
-            <!--              -->
-            <div class="tab-content" id="myTabContent" th:each="item : ${accomType}">
-              <div class="tab-pane fade" th:class="${item.getType() == 'Apartment'} ? 'tab-pane fade show active' : 'tab-pane fade'" th:id="${item.getType()}" role="tabpanel" th:aria-labelledby="${item.getType()} + '-tab'">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <div class="info-table">
-                      <ul>
-                        <li th:each="code : ${item.getAdCode()}"><p th:text="${code}"></p></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-8">
-                    <h4>Extra Info About <p th:text="${item.getType()}" style="font-size: 20px"></p></h4>
-                    <ul>
-                      <li th:each="des : ${item.getAdDes()}"><p th:text="${des}" style="text-align: justify"></p><hr></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <span class="breadcrumb"><a th:href="@{/}">Home</a>  /  Properties</span>
+        <h3>Properties</h3>
       </div>
     </div>
   </div>
 </div>
 
-<!--  DS BĐS nổi bật -->
+<!--  Search Form-->
 <div class="properties section">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-4 offset-lg-4">
-        <div class="section-heading text-center">
-          <h6>| Properties</h6>
-          <h2>We Provide The Best Property You Like</h2>
-        </div>
+    <div class="search-form" id="search-Form">
+      <div class="container">
+        <h2>
+          Tìm kiếm văn phòng cho thuê
+          <svg id="toggleIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+          </svg>
+        </h2>
+        <form id="searchForm" method="get" th:action="@{/}">
+          <!-- Name -->
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-7">
+              <fieldset>
+                <label>Tên tòa nhà</label>
+                <input type="text" name="buildingName" id="buildingName" placeholder="Nhập tên tòa nhà">
+              </fieldset>
+            </div>
+            <div class="col-lg-3">
+              <fieldset>
+                <label>Room Number</label>
+                <input type="number" name="numberOfRooms" id="room" placeholder="Enter room number">
+              </fieldset>
+            </div>
+          </div>
+          <!-- Address -->
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <fieldset>
+                <label>Đường</label>
+                <input type="text" name="street" id="street" placeholder="Nhập tên đường">
+              </fieldset>
+            </div>
+            <div class="col-lg-2">
+              <fieldset>
+                <label>Phường/Xã</label>
+                <input type="text" name="wardcommune" id="wardcommune" placeholder="Nhập phường/xã">
+              </fieldset>
+            </div>
+            <div class="col-lg-3">
+              <fieldset>
+                <label>Quận/Huyện</label>
+                <input type="text" name="district" id="district" placeholder="Nhập quận/huyện">
+              </fieldset>
+            </div>
+            <div class="col-lg-2">
+              <fieldset>
+                <label>Tỉnh/Thành phố</label>
+                <input type="text" name="cityprovince" id="cityprovince" placeholder="Nhập tỉnh/thành phố">
+              </fieldset>
+            </div>
+          </div>
+          <!-- Address2 -->
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+              <fieldset>
+                <label>Tiêu đề</label>
+                <input type="text" name="title" id="title" placeholder="Nhập tiêu đề">
+              </fieldset>
+            </div>
+            <!-- Loại hình văn phòng -->
+            <div class="col-lg-5">
+              <fieldset>
+                <label>Tag Name</label>
+                <select name="tagName" id="tagName" class="form-control">
+                  <option value="">Select Tag Name</option>
+                  <option value="Featured">Featured</option>
+                  <option value="New">New</option>
+                  <option value="Popular">Popular</option>
+                </select>
+              </fieldset>
+            </div>
+          </div>
+          <!-- Area  -->
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <fieldset>
+                <label>Diện tích tối thiểu (m²)</label>
+                <input type="number" name="minSize" id="minSize" placeholder="Min area">
+              </fieldset>
+            </div>
+            <div class="col-lg-3">
+              <fieldset>
+                <label>Diện tích tối đa (m²)</label>
+                <input type="number" name="maxSize" id="maxSize" placeholder="Max area">
+              </fieldset>
+            </div>
+          </div>
+          <!-- Price  -->
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <fieldset>
+                <label>Giá tối thiểu (VNĐ)</label>
+                <input type="number" name="minPrice" id="minPrice" placeholder="Min price">
+              </fieldset>
+            </div>
+            <div class="col-lg-3">
+              <fieldset>
+                <label>Giá tối đa (VNĐ)</label>
+                <input type="number" name="maxPrice" id="maxPrice" placeholder="Max price">
+              </fieldset>
+            </div>
+          </div>
+          <!--   -->
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+              <fieldset>
+                <label>Sức chứa tối thiểu</label>
+                <input type="number" name="minCapacity" id="minCapacity" placeholder="Min Capacity">
+              </fieldset>
+            </div>
+            <div class="col-lg-3">
+              <fieldset>
+                <label>Sức chứa tối đa</label>
+                <input type="number" name="maxCapacity" id="maxCapacity" placeholder="Max Capacity">
+              </fieldset>
+            </div>
+          </div>
+          <!-- Rent Type -->
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+              <fieldset>
+                <label>Loại hình văn phòng</label>
+                <div class="checkbox-group">
+                  <div><input type="checkbox" name="type" value="Yearly" id="type">Văn phòng truyền thống</div>
+                  <div><input type="checkbox" name="type" value="Yearly" id="type1">Không gian làm việc chung</div>
+                  <div><input type="checkbox" name="type" value="Yearly" id="type2">Văn phòng chia sẻ</div>
+                  <div><input type="checkbox" name="type" value="Yearly" id="type3">Văn phòng sinh học</div>
+                  <div><input type="checkbox" name="type" value="Yearly" id="type4">Văn phòng thông minh</div>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+
+          <!-- Hình thức thuê -->
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+              <fieldset>
+                <div class="form-group">
+                  <label>Hình thức thuê</label>
+                  <div class="checkbox-group">
+                    <div class="col-lg-4">
+                      <div><input type="checkbox" name="rentTypeName" value="Yearly" id="Yearly"> Hàng năm</div>
+                      <div><input type="checkbox" name="rentTypeName" value="Seasonal" id="Seasonal"> Theo mùa</div>
+                      <div><input type="checkbox" name="rentTypeName" value="Monthly" id="Monthly"> Hàng tháng</div>
+                      <div><input type="checkbox" name="rentTypeName" value="Weekly" id="Weekly"> Hàng tuần</div>
+                      <div><input type="checkbox" name="rentTypeName" value="Daily" id="Daily"> Hằng ngày</div>
+                      <div><input type="checkbox" name="rentTypeName" value="Hourly" id="Hourly"> Hàng giờ</div>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <!-- Tiện ích -->
+            <div class="row">
+              <div class="col-lg-1"></div>
+              <div class="col-lg-5">
+                <fieldset>
+                  <div class="form-group">
+                    <label>Tiện ích</label>
+                    <div class="checkbox-group">
+                      <div class="col-lg-4">
+                        <div><input type="checkbox" name="amenityName" value="WF" id="WF">Wi-Fi</div>
+                        <div><input type="checkbox" name="amenityName" value="G" id="G">Ghế</div>
+                        <div><input type="checkbox" name="amenityName" value="BDC" id="BDC">Bàn Điều Chỉnh</div>
+                        <div><input type="checkbox" name="amenityName" value="BD" id="BD">Bàn Đứng</div>
+                        <div><input type="checkbox" name="amenityName" value="DB" id="DB">Đèn Bàn</div>
+                        <div><input type="checkbox" name="amenityName" value="MC" id="MC">Máy Chiếu</div>
+                        <div><input type="checkbox" name="amenityName" value="TV" id="TV">TV/Màn Hình</div>
+                        <div><input type="checkbox" name="amenityName" value="BT" id="BT">Bảng Trắng</div>
+                      </div>
+                      <div class="col-lg-8">
+                        <div><input type="checkbox" name="amenityName" value="MI" id="MI">Máy In/Máy Scan</div>
+                        <div><input type="checkbox" name="amenityName" value="MP" id="MP">Máy Photocopy</div>
+                        <div><input type="checkbox" name="amenityName" value="MPCP" id="MPCP">Máy Pha Cà Phê</div>
+                        <div><input type="checkbox" name="amenityName" value="MLN" id="MLN">Máy Lọc Nước</div>
+                        <div><input type="checkbox" name="amenityName" value="DH" id="DH">Điều Hòa</div>
+                        <div><input type="checkbox" name="amenityName" value="HTS" id="HTS">Hệ Thống Sưởi</div>
+                        <div><input type="checkbox" name="amenityName" value="TLT" id="TLT">Tủ Lưu Trữ</div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+          </div>
+            <!-- Dịch vụ -->
+            <div class="row">
+              <div class="col-lg-1"></div>
+              <div class="col-lg-5">
+                <fieldset>
+                  <div class="form-group">
+                    <label>Dịch vụ</label>
+                    <div class="checkbox-group">
+                      <div class="col-lg-4">
+                        <div><input type="checkbox" name="amenityName" value="DVVS" id="DVVS">Dịch vụ vệ sinh</div>
+                        <div><input type="checkbox" name="amenityName" value="MPDDP" id="MPDDP">Máy phát điện dự phòng</div>
+                        <div><input type="checkbox" name="amenityName" value="DP" id="DP"> Đèn bàn</div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+          <!-- Search Button -->
+          <div class="row">
+            <div class="col-lg-12" style="text-align: center;">
+              <fieldset>
+                <button type="reset" id="closeForm" class="orange-button">Reset</button>
+                <button type="submit" class="orange-button">Search</button>
+              </fieldset>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-    <div class="row">
-      <!--        DANH SÁCH BĐS NỔI BẬT-->
-      <div class="col-lg-4 col-md-6" th:each="ac : ${accommodation}">
+  </div>
+</div>
+
+<!--  Hiển thị-->
+<div class="section properties">
+  <div class="container">
+    <div class="row properties-box">
+      <div th:each="ac : ${osSearch_Lessee}" class="col-lg-4 col-md-6 align-self-center mb-30 properties-items col-md-6">
         <div class="item">
-          <!--            <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}"><img th:src="'/lessee/assets/images/' + ${ac.getImage()}" alt=""></a>-->
-          <!--            <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}"><img th:src="'https://yoon-realestate.s3.ap-southeast-2.amazonaws.com/' + ${ac.getImage()}" alt=""></a>-->
-          <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}">
-            <!--              <img th:src="@{/s3/image/{key}(key=${ac.getImage()})}" alt="">-->
-          </a>
-          <span class="category"><p th:text="${ac.getAccomType()}"></p></span>
-          <h6></h6>
-          <h4><a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}"><h3 th:text="${ac.getAccommodationName()}"></h3></a></h4>
+<!--          <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}">-->
+<!--            &lt;!&ndash; <img th:src="@{'/s3/image/' + ${ac.getImage()}}" alt="Image Description"> &ndash;&gt;-->
+<!--          </a>-->
+          <span class="category">
+            <p th:text="${ac.getType()}"></p>
+          </span>
+          <h4>
+<!--            <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}">-->
+              <h3 th:text="${ac.getTitle()}"></h3>
+<!--            </a>-->
+          </h4>
           <ul>
-            <li>Rooms: <span th:text="${ac.getNumberOfRooms()}"></span></li>
+            <li>Capacity: <span th:text="${ac.getCapacity()}"></span></li>
             <li>Area: <span th:text="${ac.getSize()}"></span></li>
             <li>Address: <span th:text="${ac.getAddress()}"></span></li>
           </ul>
           <div class="main-button">
-            <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}">View a detail</a>
+            View a detail
+<!--            <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}">View a detail</a>-->
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-
-<!--  Contact -->
-<div class="contact section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-4 offset-lg-4">
-        <div class="section-heading text-center">
-          <h6>| Contact Us</h6>
-          <h2>Get In Touch With Our Agents</h2>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--  Contact - Map -->
-<div class="contact-content">
-  <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <div id="map">
-          <iframe th:src="@{https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7839.904952739309!2d106.67464379575955!3d10.73814625599458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f62a90e5dbd%3A0x674d5126513db295!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2jhu4cgU8OgaSBHw7Ju!5e0!3m2!1svi!2s!4v1732886957259!5m2!1svi!2s}" width="1110" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="item phone">
-          <img src="/images/phone-icon.png" alt="" style="max-width: 52px;">
-          <h6>010-020-0340<br><span>Phone Number</span></h6>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="item email">
-          <img src="/images/email-icon.png" alt="" style="max-width: 52px;">
-          <h6>info@RER.co<br><span>Business Email</span></h6>
+        <div class="pagination">
+          <button id="prev-btn">&lt;&lt;</button>
+          <div id="pagination-numbers"></div>
+          <button id="next-btn">&gt;&gt;</button>
         </div>
       </div>
     </div>
@@ -250,17 +350,68 @@
   <div class="container">
     <div class="col-lg-12">
       <p>Copyright © 2048 RER Agency Co., Ltd. All rights reserved.
-
         Design: <a rel="nofollow" href="#" target="_blank">Nguyen Hoang Bao - Ha Thi My Chau </a></p>
     </div>
   </div>
 </footer>
+
+<!-- Scripts -->
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const paginationNumbers = document.getElementById('pagination-numbers');
+    let currentPage = "[[${currentPage}]]";
+    const totalPages = "[[${totalPages}]]";
+
+    function updatePage(page) {
+      currentPage = page;
+      loadPageData(currentPage);
+      updatePaginationButtons();
+    }
+
+    function loadPageData(page) {
+      const params = new URLSearchParams(window.location.search);
+      params.set('page', page);
+      const newUrl = `${window.location.pathname}?${params.toString()}`;
+      window.history.pushState({ path: newUrl }, '', newUrl);
+    }
+
+    function updatePaginationButtons() {
+      paginationNumbers.innerHTML = `Trang ${currentPage} / ${totalPages}`;
+      prevBtn.disabled = currentPage == 1;
+      nextBtn.disabled = currentPage == totalPages;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        updatePage(currentPage - 1);
+        location.reload();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        updatePage((parseInt(currentPage)) + 1);
+        location.reload();
+      }
+    });
+
+    updatePage(currentPage);
+  });
+
+  document.getElementById("toggleIcon").addEventListener("click", function () {
+    const form = document.getElementById("searchForm");
+    const icon = document.getElementById("toggleIcon");
+    form.classList.toggle("active");
+    icon.classList.toggle("rotate");
+  });
+</script>
 <script src="/library/jquery/jquery.min.js"></script>
 <script src="/library/bootstrap.min.js"></script>
 <script src="/library/isotope.min.js"></script>
 <script src="/library/owl-carousel.js"></script>
 <script src="/library/counter.js"></script>
 <script src="/library/custom.js"></script>
-
 </body>
 </html>

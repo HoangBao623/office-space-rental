@@ -1,0 +1,60 @@
+.sales-header {
+    background: linear-gradient(90deg, #28a745 0%, #00c6ff 100%);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.sales-logo h1 {
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin: 0;
+}
+.sales-highlight {
+    color: #ffd700;
+}
+.sales-nav .nav-link {
+    color: #fff !important;
+    font-weight: 500;
+    margin: 0 10px;
+    transition: color 0.2s;
+}
+.sales-nav .nav-link.active, .sales-nav .nav-link:hover {
+    color: #ffd700 !important;
+    text-decoration: underline;
+}
+.sales-main {
+    min-height: 70vh;
+    background: #f8f9fa;
+    padding-bottom: 40px;
+}
+.sales-title {
+    color: #28a745;
+    font-weight: 600;
+}
+.sales-card {
+    border: none;
+    border-radius: 16px;
+    background: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.sales-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(40,167,69,0.10);
+}
+.sales-icon {
+    color: #28a745;
+}
+.sales-footer {
+    background: #222;
+    color: #fff;
+    padding: 20px 0 10px 0;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    margin-top: 40px;
+}
+.sales-footer a {
+    color: #ffd700;
+    text-decoration: none;
+}
+.sales-footer a:hover {
+    text-decoration: underline;
+}

@@ -23,10 +23,10 @@ public class LogInController { //UserController
     @Autowired
     private CustomOAuth2UserService customOAuth2UserService;
 
-    @GetMapping("/")
-    public String home() {
-        return "index";
-    }
+//    @GetMapping("/")
+//    public String home() {
+//        return "index";
+//    }
 
     @GetMapping("/login")
     public String login() {

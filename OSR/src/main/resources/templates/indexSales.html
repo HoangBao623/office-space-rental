@@ -1,266 +1,84 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <title>Real Estate Rental</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="/customize/bootstrap.min.css" rel="stylesheet">
-
-
-
-    <!-- Additional CSS Files -->
+    <meta charset="UTF-8">
+    <title>Sales Dashboard | Real Estate Rental</title>
+    <link rel="stylesheet" href="/customize/bootstrap.min.css">
     <link rel="stylesheet" href="/customize/fontawesome.css">
-    <link rel="stylesheet" href="/customize/templatemo-villa-agency.css">
-    <link rel="stylesheet" href="/customize/owl.css">
-    <link rel="stylesheet" href="/customize/animate.css">
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
-
+    <link rel="stylesheet" href="/customize/sales-style.css">
 </head>
 
 <body>
-<h1>ĐÂY LÀ TRANG SALES</h1>
-<!-- ***** Preloader Start ***** -->
-<!--<div id="js-preloader" class="js-preloader">-->
-<!--    <div class="preloader-inner">-->
-<!--        <span class="dot"></span>-->
-<!--        <div class="dots">-->
-<!--            <span></span>-->
-<!--            <span></span>-->
-<!--            <span></span>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash; ***** Preloader End ***** &ndash;&gt;-->
+    <header class="sales-header">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <a th:href="@{/sales}" class="navbar-brand sales-logo">
+                    <h1>RER <span class="sales-highlight">Sales</span></h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#salesNav" aria-controls="salesNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="salesNav">
+                    <ul class="navbar-nav ms-auto sales-nav">
+                        <li class="nav-item"><a th:href="@{/sales}" class="nav-link active">Dashboard</a></li>
+                        <li class="nav-item"><a th:href="@{/sales/customers}" class="nav-link">Khách hàng</a></li>
+                        <li class="nav-item"><a th:href="@{/sales/contracts}" class="nav-link">Hợp đồng</a></li>
+                        <li class="nav-item"><a th:href="@{/sales/reports}" class="nav-link">Báo cáo</a></li>
+                        <li class="nav-item"><a th:href="@{/logout}" class="nav-link">Đăng xuất</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-<!--&lt;!&ndash; ***** Header Area Start ***** &ndash;&gt;-->
-<!--<header class="header-area header-sticky">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-12">-->
-<!--                <nav class="main-nav">-->
-<!--                    &lt;!&ndash; ***** Logo Start ***** &ndash;&gt;-->
-<!--                    <a th:href="@{/}" class="logo">-->
-<!--                        <h1>RER</h1>-->
-<!--                    </a>-->
-<!--                    &lt;!&ndash; ***** Logo End ***** &ndash;&gt;-->
-<!--                    &lt;!&ndash; ***** Menu Start ***** &ndash;&gt;-->
-<!--                    <ul class="nav">-->
-<!--                        <li><a th:href="@{/}" class="active">Home</a></li>-->
-<!--                        <li><a th:href="@{/propertiesSearch}">Properties</a></li>-->
-<!--                        &lt;!&ndash;                      &ndash;&gt;-->
-<!--                        <li>-->
-<!--                            &lt;!&ndash; Kiểm tra nếu chưa đăng nhập &ndash;&gt;-->
-<!--                            <div th:if="${user == null}">-->
-<!--                                <a th:href="@{/login}">-->
-<!--                                    <i class="fa fa-user"></i> Log in-->
-<!--                                </a>-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; Kiểm tra nếu đã đăng nhập &ndash;&gt;-->
-<!--                            <div th:if="${user != null}" class="dropdown">-->
-<!--                                <a class="dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--                                    <i class="fa fa-user"></i> <span th:text="${user}">Username</span>-->
-<!--                                </a>-->
-<!--                                <div class="dropdown-menu" >-->
-<!--                                    <a  th:href="@{/profile}">Profile</a>-->
-<!--                                    <a  th:href="@{/logout}">Log out</a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </li>-->
-<!--                        &lt;!&ndash;                      &ndash;&gt;-->
-<!--                    </ul>-->
-<!--                    <a class='menu-trigger'>-->
-<!--                        <span>Menu</span>-->
-<!--                    </a>-->
-<!--                    &lt;!&ndash; ***** Menu End ***** &ndash;&gt;-->
-<!--                </nav>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</header>-->
-<!--&lt;!&ndash; ***** Header Area End ***** &ndash;&gt;-->
+    <main class="sales-main">
+        <div class="container mt-5">
+            <h2 class="mb-4 text-center sales-title">Chào mừng đến trang nhân viên kinh doanh!</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card sales-card text-center shadow-sm">
+                        <div class="card-body">
+                            <i class="fas fa-users fa-2x mb-3 sales-icon"></i>
+                            <h5 class="card-title">Quản lý khách hàng</h5>
+                            <p class="card-text">Xem, thêm, sửa thông tin khách hàng.</p>
+                            <a th:href="@{/sales/customers}" class="btn btn-outline-primary">Đi tới</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card sales-card text-center shadow-sm">
+                        <div class="card-body">
+                            <i class="fas fa-file-contract fa-2x mb-3 sales-icon"></i>
+                            <h5 class="card-title">Quản lý hợp đồng</h5>
+                            <p class="card-text">Tạo mới, theo dõi và cập nhật hợp đồng.</p>
+                            <a th:href="@{/sales/contracts}" class="btn btn-outline-success">Đi tới</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card sales-card text-center shadow-sm">
+                        <div class="card-body">
+                            <i class="fas fa-chart-line fa-2x mb-3 sales-icon"></i>
+                            <h5 class="card-title">Báo cáo doanh số</h5>
+                            <p class="card-text">Xem báo cáo, thống kê doanh số bán hàng.</p>
+                            <a th:href="@{/sales/reports}" class="btn btn-outline-warning">Đi tới</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-<!--&lt;!&ndash;  Banner &ndash;&gt;-->
-<!--<div class="main-banner">-->
-<!--    <div class="owl-carousel owl-banner">-->
-<!--        <div class="item item-1">-->
-<!--            <div class="header-text">-->
-<!--                <span class="category">Hồ Chí Minh <em>City</em></span>-->
-<!--                <h2>Hurry!<br>Get the Best Apartment for you</h2>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="item item-2">-->
-<!--            <div class="header-text">-->
-<!--                <span class="category">Đà Nẵng <em>City</em></span>-->
-<!--                <h2>Be Quick!<br>Get the best villa in town</h2>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="item item-3">-->
-<!--            <div class="header-text">-->
-<!--                <span class="category">Hà Nội <em>Capital</em></span>-->
-<!--                <h2>Act Now!<br>Get the highest level penthouse</h2>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash;  Điểm lợi cảu từng loại BĐS &ndash;&gt;-->
-<!--<div class="section best-deal">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-lg-4">-->
-<!--                <div class="section-heading">-->
-<!--                    <h6>| Best Type</h6>-->
-<!--                    <h2>Find Your Best Type Right Now!</h2>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-lg-12">-->
-<!--                <div class="tabs-content">-->
-<!--                    <div class="row">-->
-<!--                        <div class="nav-wrapper ">-->
-<!--                            &lt;!&ndash;                Danh sách Accommodation Type&ndash;&gt;-->
-<!--                            <ul class="nav nav-tabs" role="tablist">-->
-<!--                                <li class="nav-item" role="presentation" th:each="item : ${accomType}" >-->
-<!--                                    <button-->
-<!--                                            class="nav-link"-->
-<!--                                            th:class="${item.getType() == 'Apartment'} ? 'nav-link active' : 'nav-link'"-->
-<!--                                            id="${item.getType()}-tab"-->
-<!--                                            th:id="${item.getType()} + '-tab'"-->
-<!--                                            data-bs-toggle="tab"-->
-<!--                                            th:data-bs-target="'#' + ${item.getType()}"-->
-<!--                                            type="button"-->
-<!--                                            role="tab"-->
-<!--                                            th:aria-controls="${item.getType()}"-->
-<!--                                            th:text="${item.getType()}">-->
-<!--                                    </button>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash;              &ndash;&gt;-->
-<!--                        <div class="tab-content" id="myTabContent" th:each="item : ${accomType}">-->
-<!--                            <div class="tab-pane fade" th:class="${item.getType() == 'Apartment'} ? 'tab-pane fade show active' : 'tab-pane fade'" th:id="${item.getType()}" role="tabpanel" th:aria-labelledby="${item.getType()} + '-tab'">-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col-lg-4">-->
-<!--                                        <div class="info-table">-->
-<!--                                            <ul>-->
-<!--                                                <li th:each="code : ${item.getAdCode()}"><p th:text="${code}"></p></li>-->
-<!--                                            </ul>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="col-lg-8">-->
-<!--                                        <h4>Extra Info About <p th:text="${item.getType()}" style="font-size: 20px"></p></h4>-->
-<!--                                        <ul>-->
-<!--                                            <li th:each="des : ${item.getAdDes()}"><p th:text="${des}" style="text-align: justify"></p><hr></li>-->
-<!--                                        </ul>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash;  DS BĐS nổi bật &ndash;&gt;-->
-<!--<div class="properties section">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-lg-4 offset-lg-4">-->
-<!--                <div class="section-heading text-center">-->
-<!--                    <h6>| Properties</h6>-->
-<!--                    <h2>We Provide The Best Property You Like</h2>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--            &lt;!&ndash;        DANH SÁCH BĐS NỔI BẬT&ndash;&gt;-->
-<!--            <div class="col-lg-4 col-md-6" th:each="ac : ${accommodation}">-->
-<!--                <div class="item">-->
-<!--                    &lt;!&ndash;            <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}"><img th:src="'/lessee/assets/images/' + ${ac.getImage()}" alt=""></a>&ndash;&gt;-->
-<!--                    &lt;!&ndash;            <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}"><img th:src="'https://yoon-realestate.s3.ap-southeast-2.amazonaws.com/' + ${ac.getImage()}" alt=""></a>&ndash;&gt;-->
-<!--                    <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}">-->
-<!--                        &lt;!&ndash;              <img th:src="@{/s3/image/{key}(key=${ac.getImage()})}" alt="">&ndash;&gt;-->
-<!--                    </a>-->
-<!--                    <span class="category"><p th:text="${ac.getAccomType()}"></p></span>-->
-<!--                    <h6></h6>-->
-<!--                    <h4><a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}"><h3 th:text="${ac.getAccommodationName()}"></h3></a></h4>-->
-<!--                    <ul>-->
-<!--                        <li>Rooms: <span th:text="${ac.getNumberOfRooms()}"></span></li>-->
-<!--                        <li>Area: <span th:text="${ac.getSize()}"></span></li>-->
-<!--                        <li>Address: <span th:text="${ac.getAddress()}"></span></li>-->
-<!--                    </ul>-->
-<!--                    <div class="main-button">-->
-<!--                        <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}">View a detail</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash;  Contact &ndash;&gt;-->
-<!--<div class="contact section">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-lg-4 offset-lg-4">-->
-<!--                <div class="section-heading text-center">-->
-<!--                    <h6>| Contact Us</h6>-->
-<!--                    <h2>Get In Touch With Our Agents</h2>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash;  Contact - Map &ndash;&gt;-->
-<!--<div class="contact-content">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-lg-12">-->
-<!--                <div id="map">-->
-<!--                    <iframe th:src="@{https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7839.904952739309!2d106.67464379575955!3d10.73814625599458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f62a90e5dbd%3A0x674d5126513db295!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2jhu4cgU8OgaSBHw7Ju!5e0!3m2!1svi!2s!4v1732886957259!5m2!1svi!2s}" width="1110" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--            <div class="col-lg-6">-->
-<!--                <div class="item phone">-->
-<!--                    <img src="/images/phone-icon.png" alt="" style="max-width: 52px;">-->
-<!--                    <h6>010-020-0340<br><span>Phone Number</span></h6>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-lg-6">-->
-<!--                <div class="item email">-->
-<!--                    <img src="/images/email-icon.png" alt="" style="max-width: 52px;">-->
-<!--                    <h6>info@RER.co<br><span>Business Email</span></h6>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--<footer>-->
-<!--    <div class="container">-->
-<!--        <div class="col-lg-12">-->
-<!--            <p>Copyright © 2048 RER Agency Co., Ltd. All rights reserved.-->
-
-<!--                Design: <a rel="nofollow" href="#" target="_blank">Nguyen Hoang Bao - Ha Thi My Chau </a></p>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</footer>-->
-<!--<script src="/library/jquery/jquery.min.js"></script>-->
-<!--<script src="/library/bootstrap.min.js"></script>-->
-<!--<script src="/library/isotope.min.js"></script>-->
-<!--<script src="/library/owl-carousel.js"></script>-->
-<!--<script src="/library/counter.js"></script>-->
-<!--<script src="/library/custom.js"></script>-->
-
+    <footer class="mt-5 sales-footer">
+        <div class="container text-center">
+            <p>Copyright © 2048 RER Agency Co., Ltd.
+                Design: <a rel="nofollow" href="#" target="_blank">Nguyen Hoang Bao - Nguyen Ngoc Nghia</a>
+            </p>
+        </div>
+    </footer>
+    <script src="/library/jquery/jquery.min.js"></script>
+    <script src="/library/bootstrap.min.js"></script>
 </body>
+
 </html>

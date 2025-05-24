@@ -1,0 +1,99 @@
+
+.search-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.col-lg-6 {
+  width: 50%;
+  padding: 5px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.orange-button {
+  background-color: #ff7f50;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.orange-button:hover {
+  background-color: #ff6347;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* Tăng khoảng cách giữa các checkbox */
+}
+
+.checkbox-group div {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  /*margin-bottom: 10px; !* Thêm khoảng cách dưới mỗi checkbox *!*/
+}
+.search-form {
+  max-height: 600px; /* Điều chỉnh chiều cao tối đa */
+  overflow-y: auto; /* Thêm thanh cuộn dọc nếu nội dung vượt quá chiều cao */
+  overflow-x: hidden; /* Vô hiệu hóa cuộn ngang */
+  /*padding-left: -10px;*/
+  border-radius: 5px; /* Tùy chọn: Bo góc */
+}
+
+/* Ẩn thanh cuộn trên trình duyệt Webkit (Chrome, Safari) */
+.search-form::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Ẩn thanh cuộn trên Firefox */
+.search-form {
+  scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
+}
+#searchForm {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease-in-out;
+}
+
+#searchForm.active {
+  max-height: 2000px; /* Giá trị đủ lớn để hiển thị toàn bộ form */
+}
+
+#toggleIcon {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#toggleIcon.rotate {
+  transform: rotate(180deg); /* Xoay ngược mũi tên khi form mở */
+}
+
+/* Hiển thị nội dung khi hover vào dropdown */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  background-color: #1e1e1e;
+  width: 200px;
+}

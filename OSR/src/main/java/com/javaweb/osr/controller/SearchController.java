@@ -19,9 +19,9 @@ public class SearchController {
     @Autowired
     private OfficeSpaceService officeSpaceService;
 
-    @GetMapping(value = "/searchOS_Lessee")
-    @ResponseBody
-    public List<OfficeSpaceDTO> searchAccom(Model model,
+    @GetMapping(value = "/")
+//    @ResponseBody
+    public String searchAccom(Model model,
                               @RequestParam Map<String, Object> params,
                               @RequestParam (name = "type", required = false) List<String> type,
                               @RequestParam (name = "tagName", required = false) List<String> tagName,
@@ -32,7 +32,9 @@ public class SearchController {
 
         List<OfficeSpaceDTO> osSearch_Lessee = officeSpaceService.searchOS_Lessee(params, type, tagName, amenityName, rentTypeName, serviceName);
 
-        return osSearch_Lessee;
+        model.addAttribute("osSearch_Lessee", osSearch_Lessee);
+
+        return "index";
     }
 
 //	@GetMapping(value = "/searchOS_Lessee")

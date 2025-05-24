@@ -80,30 +80,34 @@ public class OfficeSpaceServiceImp implements OfficeSpaceService {
     @Override
     public List<OfficeSpaceDTO> searchOS_Lessee(Map<String, Object> params, List<String> typeName, List<String> tagName, List<String> amenityName, List<String> rentTypeName, List<String> serviceName) {
 
-        List<com.javaweb.osr.entity.Service> services = getService(serviceName);
-        List<LessorService> lessorServices = getLessor_Service(services);
-        List<User> lessors = getLessor(lessorServices);
+        if(ListUtil.checkList(serviceName)) {
+            List<com.javaweb.osr.entity.Service> services = getService(serviceName);
+            List<LessorService> lessorServices = getLessor_Service(services);
+            List<User> lessors = getLessor(lessorServices);
 
 //      List OS theo điều kiện Service nếu có
-        List<OfficeSpace> officeSpaces = new ArrayList<>();
-        for (User lessor : lessors) {
-            List<OfficeSpace> officeSpacesTem = officeSpaceRepository.findAllByLessorID(lessor);
-            officeSpaces.addAll(officeSpacesTem);
-        }
+            List<OfficeSpace> officeSpaces = new ArrayList<>();
+            for (User lessor : lessors) {
+                List<OfficeSpace> officeSpacesTem = officeSpaceRepository.findAllByLessorID(lessor);
+                officeSpaces.addAll(officeSpacesTem);
+            }
 
-//      List OS theo các điều kiện còn lại
-        List<OfficeSpace> listOfficeSpace = officeSpaceRepoCustom.searchOS_Lessee(params, typeName, tagName, amenityName, rentTypeName);
+            //      List OS theo các điều kiện còn lại
+            List<OfficeSpace> listOfficeSpace = officeSpaceRepoCustom.searchOS_Lessee(params, typeName, tagName, amenityName, rentTypeName);
 
 //      Lấy giao của hai danh sách (dựa theo ID)
-        List<OfficeSpace> intersectionList = new ArrayList<>();
-        for (OfficeSpace os1 : listOfficeSpace) {
-            for (OfficeSpace os2 : officeSpaces) {
-                if (os1.getOfficeSpaceID().equals(os2.getOfficeSpaceID())) {
-                    intersectionList.add(os1);
-                    break; // Đã tìm thấy, không cần kiểm tra tiếp
+            List<OfficeSpace> intersectionList = new ArrayList<>();
+            for (OfficeSpace os1 : listOfficeSpace) {
+                for (OfficeSpace os2 : officeSpaces) {
+                    if (os1.getOfficeSpaceID().equals(os2.getOfficeSpaceID())) {
+                        intersectionList.add(os1);
+                        break; // Đã tìm thấy, không cần kiểm tra tiếp
+                    }
                 }
             }
         }
+
+        List<OfficeSpace> intersectionList = officeSpaceRepoCustom.searchOS_Lessee(params, typeName, tagName, amenityName, rentTypeName);
 
         List<OfficeSpaceDTO> listofficeSpaceDTO = new ArrayList<OfficeSpaceDTO>();
         for(OfficeSpace item : intersectionList) {
