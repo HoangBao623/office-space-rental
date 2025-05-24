@@ -47,7 +47,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/searchOS_Lessee**").permitAll()
+                        .requestMatchers("/searchOS_Lessee**", "/calendar/sync-all**").permitAll()
                         .requestMatchers("/customize/**", "/images/**", "/library/**").permitAll()
                         .requestMatchers("/","/login**", "/signup").permitAll()
                         .requestMatchers("/cus").hasRole("CUSTOMER")
@@ -65,7 +65,8 @@ public class SecurityConfig {
                         .userInfoEndpoint(userInfo -> userInfo
                                 .userService(customOAuth2UserService)
                         )
-                        .defaultSuccessUrl("/dashboard", true)
+//                        .defaultSuccessUrl("/dashboard", true)
+                        .successHandler(customSuccessHandler)
                         .failureUrl("/login?error=true")
                 )
                 .logout(logout -> logout

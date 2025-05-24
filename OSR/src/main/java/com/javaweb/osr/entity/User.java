@@ -66,7 +66,7 @@ public class User {
     private List<Favorite> favorites;
 
     @OneToMany(mappedBy = "lessorID")
-    private List<Lessor_Service> lessorSerivices;
+    private List<LessorService> lessorSerivices;
 
     @ManyToOne
     @JoinColumn(name = "roleID", nullable = false)
@@ -208,11 +208,11 @@ public class User {
         this.favorites = favorites;
     }
 
-    public List<Lessor_Service> getLessorSerivices() {
+    public List<LessorService> getLessorSerivices() {
         return lessorSerivices;
     }
 
-    public void setLessorSerivices(List<Lessor_Service> lessorSerivices) {
+    public void setLessorSerivices(List<LessorService> lessorSerivices) {
         this.lessorSerivices = lessorSerivices;
     }
 

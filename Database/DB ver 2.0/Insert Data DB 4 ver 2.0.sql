@@ -4,9 +4,9 @@ INSERT INTO Status (statusName) VALUES
 	('Available'),
 	('Unavailable'),
 	('Occupied'),
-	('Pending_Approval');
+	('PendingApproval');
 
-INSERT INTO OS_Status (officeSpaceID, statusID, startDate, endDate, reason) 
+INSERT INTO OSStatus (officeSpaceID, statusID, startDate, endDate, reason) 
 VALUES
 	-- Office Space 1: Elite Executive Suite
 	(1, 3, '2025-01-01 08:00:00', '2025-06-30 17:00:00', 'Đã được thuê bởi công ty FPT Software cho nhóm dự án ngân hàng'),

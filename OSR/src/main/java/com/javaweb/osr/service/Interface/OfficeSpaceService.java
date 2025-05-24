@@ -7,5 +7,5 @@ import java.util.Map;
 
 public interface OfficeSpaceService {
 
-    List<OfficeSpaceDTO> searchOS_Lessee(Map<String, Object> params, List<String> type, List<String> tagName, List<String> amenityName, List<String> rentTypeName);
+    List<OfficeSpaceDTO> searchOS_Lessee(Map<String, Object> params, List<String> typeName, List<String> tagName, List<String> amenityName, List<String> rentTypeName, List<String> serviceName);
 }

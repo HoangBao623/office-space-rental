@@ -1,6 +1,5 @@
 package com.javaweb.osr.repository.systemInterface;
 
-import com.javaweb.osr.entity.OS_RentType;
 import com.javaweb.osr.entity.OfficeSpace;
 import com.javaweb.osr.entity.TypeOffice;
 import org.springframework.data.jpa.repository.JpaRepository;

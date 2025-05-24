@@ -1,27 +1,27 @@
 -- Drop existing database if it exist
 DROP DATABASE IF EXISTS OfficeSpaceRental;
 CREATE DATABASE OfficeSpaceRental;
-USE OfficeSpaceRental;
+USE OfficeSpaceRental;       
 
 -- Drop existing tables if they exist
 DROP TABLE IF EXISTS Favorite;
 DROP TABLE IF EXISTS LessorPayment;
 DROP TABLE IF EXISTS TypeOffice;
 DROP TABLE IF EXISTS Payment;
-DROP TABLE IF EXISTS Order_Service;
-DROP TABLE IF EXISTS Order_RentType;
-DROP TABLE IF EXISTS User_Service;
-DROP TABLE IF EXISTS Service_RentType;
+DROP TABLE IF EXISTS OrderService;
+DROP TABLE IF EXISTS OrderRentType;
+DROP TABLE IF EXISTS UserService;
+DROP TABLE IF EXISTS ServiceRentType;
 DROP TABLE IF EXISTS `Order`;
 DROP TABLE IF EXISTS Reservation;
-DROP TABLE IF EXISTS OS_Status;
+DROP TABLE IF EXISTS OSStatus;
 DROP TABLE IF EXISTS Status;
-DROP TABLE IF EXISTS OS_RentType;
+DROP TABLE IF EXISTS OSRentType;
 DROP TABLE IF EXISTS RentType;
 DROP TABLE IF EXISTS Service;
-DROP TABLE IF EXISTS OS_Amenity;
+DROP TABLE IF EXISTS OSAmenity;
 DROP TABLE IF EXISTS Amenity;
-DROP TABLE IF EXISTS OS_Tag;
+DROP TABLE IF EXISTS OSTag;
 DROP TABLE IF EXISTS Tag;
 DROP TABLE IF EXISTS Image;
 DROP TABLE IF EXISTS OfficeSpace;
@@ -63,9 +63,9 @@ CREATE TABLE Service (
   isActive BOOLEAN DEFAULT TRUE
 )ENGINE=InnoDB;
 
--- New table: Lessor_Service
-CREATE TABLE Lessor_Service (
-  lessor_ServiceID INT PRIMARY KEY AUTO_INCREMENT,
+-- New table: LessorService
+CREATE TABLE LessorService (
+  lessorServiceID INT PRIMARY KEY AUTO_INCREMENT,
   lessorID INT NOT NULL,
   serviceID INT NOT NULL,
   FOREIGN KEY (lessorID) REFERENCES User(userID) ON DELETE RESTRICT,
@@ -78,9 +78,9 @@ CREATE TABLE Building (
   buildingID INT PRIMARY KEY AUTO_INCREMENT,
   buildingName NVARCHAR(100) NOT NULL UNIQUE,
   street NVARCHAR(100),
-  ward_commune NVARCHAR(50),
+  wardcommune NVARCHAR(50),
   district NVARCHAR(50),
-  city_province NVARCHAR(50) NOT NULL
+  cityprovince NVARCHAR(50) NOT NULL
 )ENGINE=InnoDB;
 
 -- Table: TypeOffice
@@ -118,9 +118,9 @@ CREATE TABLE Tag (
   tagName NVARCHAR(50) NOT NULL UNIQUE
 )ENGINE=InnoDB;
 
--- Table: OS_Tag
-CREATE TABLE OS_Tag (
-  oS_TagID INT PRIMARY KEY AUTO_INCREMENT,
+-- Table: OSTag
+CREATE TABLE OSTag (
+  oSTagID INT PRIMARY KEY AUTO_INCREMENT,
   officeSpaceID INT NOT NULL,
   tagID INT NOT NULL,
   FOREIGN KEY (officeSpaceID) REFERENCES OfficeSpace(officeSpaceID) ON DELETE RESTRICT,
@@ -134,9 +134,9 @@ CREATE TABLE Amenity (
   amenityName NVARCHAR(50) NOT NULL UNIQUE
 )ENGINE=InnoDB;
 
--- Table: OS_Amenity
-CREATE TABLE OS_Amenity (
-  oS_AmenityID INT PRIMARY KEY AUTO_INCREMENT,
+-- Table: OSAmenity
+CREATE TABLE OSAmenity (
+  oSAmenityID INT PRIMARY KEY AUTO_INCREMENT,
   officeSpaceID INT NOT NULL,
   amenityID INT NOT NULL,
   quantity INT NOT NULL DEFAULT 0,
@@ -153,9 +153,9 @@ CREATE TABLE RentType (
   description TEXT
 )ENGINE=InnoDB;
 
--- Table: OS_RentType
-CREATE TABLE OS_RentType (
-  oS_RentTypeID INT PRIMARY KEY AUTO_INCREMENT,
+-- Table: OSRentType
+CREATE TABLE OSRentType (
+  oSRentTypeID INT PRIMARY KEY AUTO_INCREMENT,
   officeSpaceID INT NOT NULL,
   rentTypeID INT NOT NULL,
   price DECIMAL(15,2) NOT NULL,
@@ -167,29 +167,29 @@ CREATE TABLE OS_RentType (
   UNIQUE (officeSpaceID, rentTypeID)
 )ENGINE=InnoDB;
 
--- New table: Service_RentType 
-CREATE TABLE Service_RentType (
-  service_RentTypeID INT PRIMARY KEY AUTO_INCREMENT,
-  lessor_ServiceID INT NOT NULL,
+-- New table: ServiceRentType 
+CREATE TABLE ServiceRentType (
+  serviceRentTypeID INT PRIMARY KEY AUTO_INCREMENT,
+  lessorServiceID INT NOT NULL,
   rentTypeID INT NOT NULL,
   price DECIMAL(15,2) NOT NULL,
   deposit DECIMAL(15,2) NOT NULL,
   CHECK (price >= 0),
   CHECK (deposit >= 0),
-  FOREIGN KEY (lessor_ServiceID) REFERENCES Lessor_Service(lessor_ServiceID) ON DELETE RESTRICT,
+  FOREIGN KEY (lessorServiceID) REFERENCES LessorService(lessorServiceID) ON DELETE RESTRICT,
   FOREIGN KEY (rentTypeID) REFERENCES RentType(rentTypeID) ON DELETE RESTRICT,
-  UNIQUE (lessor_ServiceID, rentTypeID)
+  UNIQUE (lessorServiceID, rentTypeID)
 )ENGINE=InnoDB;
 
 -- Table: Status
 CREATE TABLE Status (
   statusID INT PRIMARY KEY AUTO_INCREMENT,
-  statusName ENUM('Available', 'Unavailable', 'Occupied', 'Pending_Approval') NOT NULL
+  statusName ENUM('Available', 'Unavailable', 'Occupied', 'PendingApproval') NOT NULL
 )ENGINE=InnoDB;
 
--- Table: OS_Status
-CREATE TABLE OS_Status (
-  oS_StatusID INT PRIMARY KEY AUTO_INCREMENT,
+-- Table: OSStatus
+CREATE TABLE OSStatus (
+  oSStatusID INT PRIMARY KEY AUTO_INCREMENT,
   officeSpaceID INT NOT NULL,
   statusID INT NOT NULL,
   startDate DATETIME NOT NULL,
@@ -220,7 +220,7 @@ CREATE TABLE `Order` (
   endDate DATETIME NOT NULL,
   totalAmount DECIMAL(15,2) NOT NULL DEFAULT 0,
   paidAmount DECIMAL(15,2) NOT NULL DEFAULT 0,
-  status ENUM('Pending', 'In_progress', 'Completed', 'Canceled') NOT NULL DEFAULT 'Pending',
+  status ENUM('Pending', 'Inprogress', 'Completed', 'Canceled') NOT NULL DEFAULT 'Pending',
   lesseeID INT NOT NULL,
   note TEXT,
   FOREIGN KEY (lesseeID) REFERENCES User(userID) ON DELETE RESTRICT
@@ -231,7 +231,7 @@ CREATE TABLE Payment (
   paymentID INT PRIMARY KEY AUTO_INCREMENT,
   transactionID TEXT,	-- Lấy transactionID
   paymentDate DATE NOT NULL,
-  paymentMethod ENUM('Cash', 'Bank_transfer') NOT NULL,
+  paymentMethod ENUM('Cash', 'Banktransfer') NOT NULL,
   note TEXT,
   paymentAmount DECIMAL(15,2) NOT NULL,
   status ENUM('Success', 'Failed', 'Refunded') NOT NULL,
@@ -240,31 +240,31 @@ CREATE TABLE Payment (
   CHECK (paymentAmount >= 0)
 )ENGINE=InnoDB;
 
--- New table: Order_RentType
-CREATE TABLE Order_RentType (
-  order_RentTypeID INT PRIMARY KEY AUTO_INCREMENT,
+-- New table: OrderRentType
+CREATE TABLE OrderRentType (
+  orderRentTypeID INT PRIMARY KEY AUTO_INCREMENT,
   orderID INT NOT NULL,
-  oS_RentTypeID INT NOT NULL,
+  oSRentTypeID INT NOT NULL,
   price DECIMAL(15,2) NOT NULL,
   deposit DECIMAL(15,2) NOT NULL,
   CHECK (price >= 0),
   CHECK (deposit >= 0),
   FOREIGN KEY (orderID) REFERENCES `Order`(orderID) ON DELETE RESTRICT,
-  FOREIGN KEY (oS_RentTypeID) REFERENCES OS_RentType(oS_RentTypeID) ON DELETE RESTRICT
+  FOREIGN KEY (oSRentTypeID) REFERENCES OSRentType(oSRentTypeID) ON DELETE RESTRICT
 )ENGINE=InnoDB;
 
--- New table: Order_Service
-CREATE TABLE Order_Service (
-  order_ServiceID INT PRIMARY KEY AUTO_INCREMENT,
+-- New table: OrderService
+CREATE TABLE OrderService (
+  orderServiceID INT PRIMARY KEY AUTO_INCREMENT,
   orderID INT NOT NULL,
-  service_RentTypeID INT NOT NULL,
+  serviceRentTypeID INT NOT NULL,
   quantity INT NOT NULL DEFAULT 0,
   price DECIMAL(15,2) NOT NULL,
   deposit DECIMAL(15,2) NOT NULL,
   CHECK (quantity > 0),
   CHECK (price >= 0),
   FOREIGN KEY (orderID) REFERENCES `Order`(orderID) ON DELETE RESTRICT,
-  FOREIGN KEY (service_RentTypeID) REFERENCES Service_RentType(service_RentTypeID) ON DELETE RESTRICT
+  FOREIGN KEY (serviceRentTypeID) REFERENCES ServiceRentType(serviceRentTypeID) ON DELETE RESTRICT
 )ENGINE=InnoDB;
 
 -- Table: LessorPayment
@@ -272,7 +272,7 @@ CREATE TABLE LessorPayment (
   lessorPaymentID INT PRIMARY KEY AUTO_INCREMENT,
   transactionID TEXT,	-- Lấy transactionID
   paymentDate DATE NOT NULL,
-  paymentMethod ENUM('Cash', 'Bank_transfer') NOT NULL,
+  paymentMethod ENUM('Cash', 'Banktransfer') NOT NULL,
   note TEXT,
   paymentAmount DECIMAL(15,2) NOT NULL,
   status ENUM('Success', 'Failed', 'Refunded') NOT NULL,

@@ -17,14 +17,14 @@ public class Building {
     @Column(name = "street", length = 100)
     private String street;
 
-    @Column(name = "ward_commune", length = 50)
-    private String ward_commune;
+    @Column(name = "wardcommune", length = 50)
+    private String wardcommune;
 
     @Column(name = "district", length = 50)
     private String district;
 
-    @Column(name = "city_province", nullable = false, length = 50)
-    private String city_province;
+    @Column(name = "cityprovince", nullable = false, length = 50)
+    private String cityprovince;
 
     @OneToMany(mappedBy = "buildingID")
     private List<OfficeSpace> officeSpaces;
@@ -35,12 +35,12 @@ public class Building {
     public void setBuildingName(String buildingName) { this.buildingName = buildingName; }
     public String getStreet() { return street; }
     public void setStreet(String street) { this.street = street; }
-    public String getWard_commune() { return ward_commune; }
-    public void setWard_commune(String ward_commune) { this.ward_commune = ward_commune; }
+    public String getWardcommune() { return wardcommune; }
+    public void setWardcommune(String wardcommune) { this.wardcommune = wardcommune; }
     public String getDistrict() { return district; }
     public void setDistrict(String district) { this.district = district; }
-    public String getCity_province() { return city_province; }
-    public void setCity_province(String city_province) { this.city_province = city_province; }
+    public String getCityprovince() { return cityprovince; }
+    public void setCityprovince(String cityprovince) { this.cityprovince = cityprovince; }
     public List<OfficeSpace> getOfficeSpaces() { return officeSpaces; }
     public void setOfficeSpaces(List<OfficeSpace> officeSpaces) { this.officeSpaces = officeSpaces; }
 }

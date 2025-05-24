@@ -19,7 +19,7 @@ VALUES
     ('dovankien', '123', 'dovankien@example.com', 'Đỗ Văn', 'Kiên', 'Male', NULL, '2021 Đường Nguyễn Văn Cừ, Quận 9, TP.HCM', '0912345686', 3),
     ('vuhyphuong', '123', 'vuhyphuong@example.com', 'Vũ Hỷ', 'Phương', 'Female', NULL, '2223 Đường Nguyễn Hữu Tháp, Quận 10, TP.HCM', '0912345687', 3);
 
-INSERT INTO Building (buildingName, street, ward_commune, district, city_province)
+INSERT INTO Building (buildingName, street, wardcommune, district, cityprovince)
 VALUES
     ('The Elysian', '46 Nguyễn Huệ', 'Bến Nghé', 'Quận 1', 'Hồ Chí Minh'),
     ('Azure Skies', '123 Thảo Điền', 'An Thú', 'Quận 2', 'Hồ Chí Minh'),
@@ -179,7 +179,7 @@ VALUES
     ('Ánh Sáng Tự Nhiên'),
     ('Sân Thượng');
 
-INSERT INTO OS_Amenity (officeSpaceID, amenityID, quantity)
+INSERT INTO OSAmenity (officeSpaceID, amenityID, quantity)
 VALUES
 	-- Elite Executive Suite (ID: 1) - Văn phòng cao cấp loại 1
 	(1, 1, 1), -- Wi-Fi

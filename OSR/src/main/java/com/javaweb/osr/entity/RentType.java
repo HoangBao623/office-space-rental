@@ -18,10 +18,10 @@ public class RentType {
     private String description;
 
     @OneToMany(mappedBy = "rentTypeID")
-    private List<OS_RentType> detailRentTypes;
+    private List<OSRentType> detailRentTypes;
 
     @OneToMany(mappedBy = "rentTypeID")
-    private List<Service_RentType> serviceRentTypes;
+    private List<ServiceRentType> serviceRentTypes;
 
     public Integer getRentTypeID() { return rentTypeID; }
     public void setRentTypeID(Integer rentTypeID) { this.rentTypeID = rentTypeID; }
@@ -29,14 +29,14 @@ public class RentType {
     public void setRentTypeName(String rentTypeName) { this.rentTypeName = rentTypeName; }
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
-    public List<OS_RentType> getDetailRentTypes() { return detailRentTypes; }
-    public void setDetailRentTypes(List<OS_RentType> detailRentTypes) { this.detailRentTypes = detailRentTypes; }
+    public List<OSRentType> getDetailRentTypes() { return detailRentTypes; }
+    public void setDetailRentTypes(List<OSRentType> detailRentTypes) { this.detailRentTypes = detailRentTypes; }
 
-    public List<Service_RentType> getServiceRentTypes() {
+    public List<ServiceRentType> getServiceRentTypes() {
         return serviceRentTypes;
     }
 
-    public void setServiceRentTypes(List<Service_RentType> serviceRentTypes) {
+    public void setServiceRentTypes(List<ServiceRentType> serviceRentTypes) {
         this.serviceRentTypes = serviceRentTypes;
     }
 }

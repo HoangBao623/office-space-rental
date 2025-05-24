@@ -9,7 +9,7 @@ public interface OfficeSpaceRepoCustom {
 
 //	List<OfficeSpace> findAllOSAvailable();
 
-	List<OfficeSpace> searchOS_Lessee(Map<String, Object> params, List<String> type, List<String> tagName, List<String> amenityName, List<String> rentTypeName);
+	List<OfficeSpace> searchOS_Lessee(Map<String, Object> params, List<String> typeName, List<String> tagName, List<String> amenityName, List<String> rentTypeName);
 
-//	List<OfficeSpace> searchOSAvailable(Map<String, Object> params, List<String> type, List<String> tagName, List<String> amenityName, List<String> rentTypeName);
+//	List<OfficeSpace> searchOSAvailable(Map<String, Object> params, List<String> typeName, List<String> tagName, List<String> amenityName, List<String> rentTypeName);
 }

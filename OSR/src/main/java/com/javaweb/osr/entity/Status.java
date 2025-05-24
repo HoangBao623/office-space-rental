@@ -18,12 +18,12 @@ public class Status {
     private StatusName statusName;
 
     @OneToMany(mappedBy = "statusID")
-    private List<OS_Status> detailStatuses;
+    private List<OSStatus> detailStatuses;
 
     public Integer getStatusID() { return statusID; }
     public void setStatusID(Integer statusID) { this.statusID = statusID; }
     public StatusName getStatusName() { return statusName; }
     public void setStatusName(StatusName statusName) { this.statusName = statusName; }
-    public List<OS_Status> getDetailStatuses() { return detailStatuses; }
-    public void setDetailStatuses(List<OS_Status> detailStatuses) { this.detailStatuses = detailStatuses; }
+    public List<OSStatus> getDetailStatuses() { return detailStatuses; }
+    public void setDetailStatuses(List<OSStatus> detailStatuses) { this.detailStatuses = detailStatuses; }
 }

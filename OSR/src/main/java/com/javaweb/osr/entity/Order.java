@@ -45,10 +45,10 @@ public class Order {
     private List<Payment> payments;
 
     @OneToMany(mappedBy = "orderID")
-    private List<Order_Service> orderServices;
+    private List<OrderService> orderServices;
 
     @OneToMany(mappedBy = "orderID")
-    private List<Order_RentType> orderRentTypes;
+    private List<OrderRentType> orderRentTypes;
 
     public Integer getOrderID() {
         return orderID;
@@ -130,19 +130,19 @@ public class Order {
         this.payments = payments;
     }
 
-    public List<Order_Service> getOrderServices() {
+    public List<OrderService> getOrderServices() {
         return orderServices;
     }
 
-    public void setOrderServices(List<Order_Service> orderServices) {
+    public void setOrderServices(List<OrderService> orderServices) {
         this.orderServices = orderServices;
     }
 
-    public List<Order_RentType> getOrderRentTypes() {
+    public List<OrderRentType> getOrderRentTypes() {
         return orderRentTypes;
     }
 
-    public void setOrderRentTypes(List<Order_RentType> orderRentTypes) {
+    public void setOrderRentTypes(List<OrderRentType> orderRentTypes) {
         this.orderRentTypes = orderRentTypes;
     }
 }

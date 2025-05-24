@@ -3,12 +3,12 @@ package com.javaweb.osr.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "OS_Amenity")
-public class OS_Amenity {
+@Table(name = "OSAmenity")
+public class OSAmenity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "oS_AmenityID")
-    private Integer oS_AmenityID;
+    @Column(name = "oSAmenityID")
+    private Integer oSAmenityID;
 
     @ManyToOne
     @JoinColumn(name = "officeSpaceID", nullable = false)
@@ -21,8 +21,8 @@ public class OS_Amenity {
     @Column(name = "quantity", nullable = false)
     private Integer quantity = 0;
 
-    public Integer getDetailAmenityID() { return oS_AmenityID; }
-    public void setDetailAmenityID(Integer oS_AmenityID) { this.oS_AmenityID = oS_AmenityID; }
+    public Integer getDetailAmenityID() { return oSAmenityID; }
+    public void setDetailAmenityID(Integer oSAmenityID) { this.oSAmenityID = oSAmenityID; }
     public OfficeSpace getOfficeSpace() { return officeSpaceID; }
     public void setOfficeSpace(OfficeSpace officeSpace) { this.officeSpaceID = officeSpace; }
     public Amenity getAmenity() { return amenityID; }

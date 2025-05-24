@@ -19,59 +19,60 @@ public class OfficeSpaceRepoCustomImplement implements OfficeSpaceRepoCustom {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public static void joinTableOS(Map<String, Object> params,
-								   List<String> type, List<String> tagName, List<String> amenityName, List<String> rentTypeName,
+	private static void joinTableOS(Map<String, Object> params,
+								   List<String> typeName, List<String> tagName, List<String> amenityName, List<String> rentTypeName,
 								   StringBuilder sql) {
 
-		if (ListUtil.checkList(type))
-			sql.append(" join typeoffice on officespace.typeOfficeID = type.typeOfficeID");
+		if (ListUtil.checkList(typeName))
+			sql.append(" join typeoffice on officespace.typeOfficeID = typeoffice.typeOfficeID");
 
 		if (ListUtil.checkList(tagName))
-			sql.append(" join os_tag on officespace.officeSpaceID = os_tag.officeSpaceID"
-					+ " join tag on os_tag.tagID = tag.tagID");
+			sql.append(" join ostag on officespace.officeSpaceID = ostag.officeSpaceID"
+					+ " join tag on ostag.tagID = tag.tagID");
 
 		if (ListUtil.checkList(amenityName))
-			sql.append(" join os_amenity on officespace.officeSpaceID = os_amenity.officeSpaceID"
-					+ " join amenity on os_amenity.amenityID = amenity.amenityID");
+			sql.append(" join osamenity on officespace.officeSpaceID = osamenity.officeSpaceID"
+					+ " join amenity on osamenity.amenityID = amenity.amenityID");
 
 		boolean flag = false;
 		String minPrice = (String) params.get("minPrice");
 		String maxPrice = (String) params.get("maxPrice");
 		if (StringUtil.checkString(minPrice) || StringUtil.checkString(maxPrice)) {
-			sql.append(" join os_renttype on officespace.officeSpaceID = os_renttype.officeSpaceID");
+			sql.append(" join osrenttype on officespace.officeSpaceID = osrenttype.officeSpaceID");
 			flag = true;
 		}
 
 		if (ListUtil.checkList(rentTypeName)) {
 			if (flag)
-				sql.append(" join renttype on os_renttype.rentTypeID = renttype.rentTypeID");
+				sql.append(" join renttype on osrenttype.rentTypeID = renttype.rentTypeID");
 			else
-				sql.append(" join os_renttype on officespace.officeSpaceID = os_renttype.officeSpaceID"
-						+ " join renttype on os_renttype.rentTypeID = renttype.rentTypeID");
+				sql.append(" join osrenttype on officespace.officeSpaceID = osrenttype.officeSpaceID"
+						+ " join renttype on osrenttype.rentTypeID = renttype.rentTypeID");
 		}
 
 		String buildingName = (String) params.get("buildingName");
 		String street = (String) params.get("street");
-		String ward_commune = (String) params.get("ward_commune");
+		String wardcommune = (String) params.get("wardcommune");
 		String district = (String) params.get("district");
-		String city_province = (String) params.get("city_province");
+		String cityprovince = (String) params.get("cityprovince");
 		if (StringUtil.checkString(buildingName) || StringUtil.checkString(street)
-				|| StringUtil.checkString(ward_commune) || StringUtil.checkString(district)
-				|| StringUtil.checkString(city_province))
+				|| StringUtil.checkString(wardcommune) || StringUtil.checkString(district)
+				|| StringUtil.checkString(cityprovince))
 			sql.append(" join building on officespace.buildingID = building.buildingID");
 
 
 	}
 
-	public static void queryNormal(Map<String, Object> params, StringBuilder where) {
+	private static void queryNormal(Map<String, Object> params, StringBuilder where) {
 
 		for (Map.Entry<String, Object> item : params.entrySet()) {
 			if (!item.getKey().equals("amenityName") && !item.getKey().equals("rentTypeName")
-					&& !item.getKey().equals("type") && !item.getKey().equals("tagName")
+					&& !item.getKey().equals("typeName") && !item.getKey().equals("tagName")
 					&& !item.getKey().equals("buildingName")
-					&& !item.getKey().equals("street") && !item.getKey().equals("ward_commune")
-					&& !item.getKey().equals("district") && !item.getKey().equals("city_province")
-					&& !item.getKey().startsWith("min") && !item.getKey().startsWith("max")) {
+					&& !item.getKey().equals("street") && !item.getKey().equals("wardcommune")
+					&& !item.getKey().equals("district") && !item.getKey().equals("cityprovince")
+					&& !item.getKey().startsWith("min") && !item.getKey().startsWith("max")
+					&& !item.getKey().equals("serviceName")) {
 
 				String value = item.getValue().toString();
 				if (StringUtil.checkString(value)) {
@@ -84,7 +85,7 @@ public class OfficeSpaceRepoCustomImplement implements OfficeSpaceRepoCustom {
 		}
 	}
 
-	public static void querySpecial(Map<String, Object> params, List<String> type, List<String> tagName, List<String> amenityName, List<String> rentTypeName, StringBuilder where) {
+	private static void querySpecial(Map<String, Object> params, List<String> typeName, List<String> tagName, List<String> amenityName, List<String> rentTypeName, StringBuilder where) {
 
 		String buildingName = (String) params.get("buildingName");
 		if (StringUtil.checkString(buildingName))
@@ -94,17 +95,17 @@ public class OfficeSpaceRepoCustomImplement implements OfficeSpaceRepoCustom {
 		if (StringUtil.checkString(street))
 			where.append(" AND street like" + "'%" + street + "%'");
 
-		String ward_commune = (String) params.get("ward_commune");
-		if (StringUtil.checkString(ward_commune))
-			where.append(" AND ward like" + "'%" + ward_commune + "%'");
+		String wardcommune = (String) params.get("wardcommune");
+		if (StringUtil.checkString(wardcommune))
+			where.append(" AND ward like" + "'%" + wardcommune + "%'");
 
 		String district = (String) params.get("district");
 		if (StringUtil.checkString(district))
 			where.append(" AND district like" + "'%" + district + "%'");
 
-		String city_province = (String) params.get("city_province");
-		if (StringUtil.checkString(city_province))
-			where.append(" AND city like" + "'%" + city_province + "%'");
+		String cityprovince = (String) params.get("cityprovince");
+		if (StringUtil.checkString(cityprovince))
+			where.append(" AND cityprovince like" + "'%" + cityprovince + "%'");
 
 		String minCapacity = (String) params.get("minCapacity");
 		if (StringUtil.checkString(minCapacity))
@@ -130,9 +131,9 @@ public class OfficeSpaceRepoCustomImplement implements OfficeSpaceRepoCustom {
 		if (StringUtil.checkString(maxSize))
 			where.append(" AND size <= " + maxSize);
 
-		if (ListUtil.checkList(type)) {
+		if (ListUtil.checkList(typeName)) {
 			where.append(" AND (");
-			String sql = type.stream().map(it -> "type like" + "'%" + it + "%'")
+			String sql = typeName.stream().map(it -> "typeName like" + "'%" + it + "%'")
 					.collect(Collectors.joining(" or "));
 			where.append(sql);
 			where.append(" ) ");
@@ -167,30 +168,29 @@ public class OfficeSpaceRepoCustomImplement implements OfficeSpaceRepoCustom {
 		sql.append(
 				" join ( " +
 						"   select os1.officeSpaceID, s.statusName " +
-						"   from OS_Status os1 " +
+						"   from OSStatus os1 " +
 						"   join Status s on os1.statusID = s.statusID " +
 						"   where os1.startDate = ( " +
 						"       select max(os2.startDate) " +
-						"       from OS_Status os2 " +
+						"       from OSStatus os2 " +
 						"       where os2.officeSpaceID = os1.officeSpaceID " +
 						"   ) " +
-						") latest_status on officespace.officeSpaceID = latest_status.officeSpaceID "
+						") lateststatus on officespace.officeSpaceID = lateststatus.officeSpaceID "
 		);
 	}
 
-
 	@Override
 	public List<OfficeSpace> searchOS_Lessee(Map<String, Object> params,
-											 List<String> type, List<String> tagName, List<String> amenityName, List<String> rentTypeName) {
+											 List<String> typeName, List<String> tagName, List<String> amenityName, List<String> rentTypeName) {
 
 		StringBuilder sql = new StringBuilder("select officespace.officeSpaceID, title, " +
-				"size, capacity, buildingID, lessorID, typeOfficeID from officespace ");
-		joinTableOS(params, type, tagName, amenityName, rentTypeName, sql);
+				"size, capacity, officespace.buildingID, officespace.lessorID, officespace.typeOfficeID from officespace ");
+		joinTableOS(params, typeName, tagName, amenityName, rentTypeName, sql);
 		getLatestStatus(sql);
 		StringBuilder where = new StringBuilder(" where 1 = 1 ");
 		queryNormal(params, where);
-		querySpecial(params, type, tagName, amenityName, rentTypeName, sql);
-		where.append(" and latest_status.statusName = 'Available' ");
+		querySpecial(params, typeName, tagName, amenityName, rentTypeName, sql);
+		where.append(" and lateststatus.statusName = 'Available' ");
 		sql.append(where);
 		sql.append(" group by officespace.officeSpaceID");
 		System.out.println(sql);
@@ -202,7 +202,7 @@ public class OfficeSpaceRepoCustomImplement implements OfficeSpaceRepoCustom {
 
 //	@Override
 //	public List<OfficeSpace> findAllOSAvailable() {
-//		StringBuilder sql = new StringBuilder("select officespace.officeSpaceID, accommodationName, street, ward, district, city, size, numberOfRooms, status, lessorID, salesID, direction, image, map, officespace.officeSpaceID from officespace ");
+//		StringBuilder sql = new StringBuilder("select officespace.officeSpaceID, accommodationName, street, ward, district, cityprovince, size, numberOfRooms, status, lessorID, salesID, direction, image, map, officespace.officeSpaceID from officespace ");
 //		StringBuilder where = new StringBuilder(" where status = 'Available' ");
 //		sql.append(where);
 //		Query query = entityManager.createNativeQuery(sql.toString(), OfficeSpace.class);
@@ -212,12 +212,12 @@ public class OfficeSpaceRepoCustomImplement implements OfficeSpaceRepoCustom {
 
 //	@Override
 //	public List<OfficeSpace> searchOSAvailable(Map<String, Object> params,
-//											   List<String> type, List<String> tagName, List<String> amenityName, List<String> rentTypeName) {
-//		StringBuilder sql = new StringBuilder("select officespace.officeSpaceID, accommodationName, street, ward, district, city, size, numberOfRooms, status, lessorID, salesID, direction, image, map, officespace.officeSpaceID from officespace ");
-//		joinTableOS(params, type, tagName, amenityName, rentTypeName, sql);
+//											   List<String> typeName, List<String> tagName, List<String> amenityName, List<String> rentTypeName) {
+//		StringBuilder sql = new StringBuilder("select officespace.officeSpaceID, accommodationName, street, ward, district, cityprovince, size, numberOfRooms, status, lessorID, salesID, direction, image, map, officespace.officeSpaceID from officespace ");
+//		joinTableOS(params, typeName, tagName, amenityName, rentTypeName, sql);
 //		StringBuilder where = new StringBuilder(" where status = 'Available' ");
 //		queryNormal(params, where);
-//		querySpecial(params, type, tagName, amenityName, rentTypeName, sql);
+//		querySpecial(params, typeName, tagName, amenityName, rentTypeName, sql);
 //		sql.append(where);
 //		sql.append(" group by officespace.officeSpaceID");
 //		System.out.println(sql);

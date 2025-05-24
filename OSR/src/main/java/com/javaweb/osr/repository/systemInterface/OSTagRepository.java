@@ -1,7 +1,7 @@
 package com.javaweb.osr.repository.systemInterface;
 
-import com.javaweb.osr.entity.OS_RentType;
-import com.javaweb.osr.entity.OS_Tag;
+import com.javaweb.osr.entity.OSRentType;
+import com.javaweb.osr.entity.OSTag;
 import com.javaweb.osr.entity.OfficeSpace;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OS_TagRepository extends JpaRepository<OS_Tag, Integer> {
+public interface OSTagRepository extends JpaRepository<OSTag, Integer> {
 
-    List<OS_Tag> findAllByOfficeSpaceID(OfficeSpace officeSpace);
+    List<OSTag> findAllByOfficeSpaceID(OfficeSpace officeSpace);
 }

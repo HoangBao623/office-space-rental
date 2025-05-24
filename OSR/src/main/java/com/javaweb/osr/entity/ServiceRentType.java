@@ -5,16 +5,16 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Service_RentType")
-public class Service_RentType {
+@Table(name = "ServiceRentType")
+public class ServiceRentType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "service_RentTypeID")
-    private Integer service_RentTypeID;
+    @Column(name = "serviceRentTypeID")
+    private Integer serviceRentTypeID;
 
     @ManyToOne
-    @JoinColumn(name = "lessor_ServiceID", nullable = false)
-    private Lessor_Service lessor_ServiceID;
+    @JoinColumn(name = "lessorServiceID", nullable = false)
+    private LessorService lessorServiceID;
 
     @ManyToOne
     @JoinColumn(name = "rentTypeID", nullable = false)
@@ -26,23 +26,23 @@ public class Service_RentType {
     @Column(name = "deposit", nullable = false)
     private float deposit;
 
-    @OneToMany(mappedBy = "service_RentTypeID")
-    private List<Order_Service> orderServices;
+    @OneToMany(mappedBy = "serviceRentTypeID")
+    private List<OrderService> orderServices;
 
-    public Integer getService_RentTypeID() {
-        return service_RentTypeID;
+    public Integer getServiceRentTypeID() {
+        return serviceRentTypeID;
     }
 
-    public void setService_RentTypeID(Integer service_RentTypeID) {
-        this.service_RentTypeID = service_RentTypeID;
+    public void setServiceRentTypeID(Integer serviceRentTypeID) {
+        this.serviceRentTypeID = serviceRentTypeID;
     }
 
-    public Lessor_Service getLessor_ServiceID() {
-        return lessor_ServiceID;
+    public LessorService getLessorServiceID() {
+        return lessorServiceID;
     }
 
-    public void setLessor_ServiceID(Lessor_Service lessor_ServiceID) {
-        this.lessor_ServiceID = lessor_ServiceID;
+    public void setLessorServiceID(LessorService lessorServiceID) {
+        this.lessorServiceID = lessorServiceID;
     }
 
     public RentType getRentTypeID() {
@@ -69,11 +69,11 @@ public class Service_RentType {
         this.deposit = deposit;
     }
 
-    public List<Order_Service> getOrderServices() {
+    public List<OrderService> getOrderServices() {
         return orderServices;
     }
 
-    public void setOrderServices(List<Order_Service> orderServices) {
+    public void setOrderServices(List<OrderService> orderServices) {
         this.orderServices = orderServices;
     }
 }

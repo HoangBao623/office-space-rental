@@ -1,5 +1,13 @@
 use OfficeSpaceRental;
 
+-- Insert dữ liệu vào bảng Reservation
+INSERT INTO Reservation (viewDate, note, status, salesID, lesseeID, officeSpaceID) VALUES
+('2024-11-15 09:30:00', 'Cảm ơn đã hỗ trợ xem văn phòng, rất hài lòng', 'Completed', NULL, 10, 6),
+('2024-11-20 15:45:00', 'Xin lỗi phải hủy vì có công tác đột xuất', 'Canceled', NULL, 4, 7),
+('2025-01-05 11:00:00', 'Muốn xem sau Tết để bắt đầu năm mới', 'Pending', NULL, 7, 8),
+('2025-01-10 13:15:00', 'Kế hoạch mở văn phòng mới năm 2025', 'Pending', NULL, 5, 9),
+('2024-10-30 16:30:00', 'Cần văn phòng trước tháng 11, mong được hỗ trợ', 'Completed', NULL, 9, 10);
+
 -- Insert dữ liệu vào bảng Service
 INSERT INTO Service (serviceName, description) 
 VALUES
@@ -18,7 +26,7 @@ VALUES
 	('Dịch vụ vệ sinh', 'Dịch vụ vệ sinh văn phòng hàng ngày');
     
 
-INSERT INTO Lessor_Service (lessorID, serviceID) 
+INSERT INTO LessorService (lessorID, serviceID) 
 VALUES 
 	-- Lessor 4 có 3 dịch vụ
 	(4, 1),
@@ -52,86 +60,148 @@ VALUES
 	(10, 9),
 	(10, 13);
     
-INSERT INTO Service_RentType (lessor_ServiceID, rentTypeID, price, deposit) 
+INSERT INTO ServiceRentType (lessorServiceID, rentTypeID, price, deposit) 
 VALUES
-	-- Lessor 4, Service 1 (Ghế Ergonomic)
-	(1, 1, 5000000, 1000000),  -- Yearly
-	(1, 3, 500000, 100000),    -- Monthly
-	(1, 5, 50000, 10000),      -- Daily
-
-	-- Lessor 4, Service 5 (Máy chiếu)
-	(2, 1, 10000000, 2000000), -- Yearly
-	(2, 3, 1000000, 200000),   -- Monthly
-	(2, 4, 300000, 60000),     -- Weekly
-
-	-- Lessor 4, Service 9 (Máy photocopy)
-	(3, 2, 2500000, 500000),   -- Seasonal
-	(3, 3, 900000, 180000),    -- Monthly
-
-	-- Lessor 5, Service 2 (Bàn điều chỉnh)
-	(4, 1, 4500000, 900000),   -- Yearly
-	(4, 3, 450000, 90000),     -- Monthly
-	(4, 5, 45000, 9000),       -- Daily
-
-	-- Lessor 5, Service 6 (TV/Màn hình)
-	(5, 2, 3000000, 600000),   -- Seasonal
-	(5, 3, 1200000, 240000),   -- Monthly
-
-	-- Lessor 6, Service 3 (Bàn đứng)
-	(6, 1, 5500000, 1100000),  -- Yearly
-	(6, 3, 550000, 110000),    -- Monthly
-
-	-- Lessor 6, Service 7 (Bảng trắng)
-	(7, 1, 3000000, 600000),   -- Yearly
-	(7, 3, 300000, 60000),     -- Monthly
-	(7, 5, 30000, 6000),       -- Daily
-
-	-- Lessor 6, Service 10 (Tủ lưu trữ)
-	(8, 1, 2000000, 400000),   -- Yearly
-	(8, 3, 200000, 40000),     -- Monthly
-
-	-- Lessor 6, Service 13 (Dịch vụ vệ sinh)
-	(9, 3, 1500000, 300000),   -- Monthly
-	(9, 4, 400000, 80000),     -- Weekly
-	(9, 5, 60000, 12000),      -- Daily
-
-	-- Lessor 8, Service 1 (Ghế Ergonomic)
-	(10, 1, 5200000, 1040000), -- Yearly
-	(10, 3, 520000, 104000),   -- Monthly
-
-	-- Lessor 8, Service 4 (Đèn bàn)
-	(11, 1, 1800000, 360000),  -- Yearly
-	(11, 3, 180000, 36000),    -- Monthly
-	(11, 5, 18000, 3600),      -- Daily
-
-	-- Lessor 8, Service 8 (Máy in/máy scan)
-	(12, 1, 7000000, 1400000), -- Yearly
-	(12, 2, 1800000, 360000),  -- Seasonal
-	(12, 3, 700000, 140000),   -- Monthly
-
-	-- Lessor 8, Service 11 (Tủ khóa)
-	(13, 1, 2500000, 500000),  -- Yearly
-	(13, 3, 250000, 50000),    -- Monthly
-
-	-- Lessor 8, Service 12 (Máy phát điện dự phòng)
-	(14, 1, 15000000, 3000000), -- Yearly
-	(14, 3, 1500000, 300000),   -- Monthly
-
-	-- Lessor 9, Service 5 (Máy chiếu)
-	(15, 1, 9500000, 1900000),  -- Yearly
-	(15, 3, 950000, 190000),    -- Monthly
-	(15, 4, 280000, 56000),     -- Weekly
-	(15, 5, 40000, 8000),       -- Daily
-
-	-- Lessor 10, Service 2 (Bàn điều chỉnh)
-	(16, 1, 4800000, 960000),   -- Yearly
-	(16, 3, 480000, 96000),     -- Monthly
-
-	-- Lessor 10, Service 9 (Máy photocopy)
-	(17, 1, 8500000, 1700000),  -- Yearly
-	(17, 3, 850000, 170000),    -- Monthly
-
-	-- Lessor 10, Service 13 (Dịch vụ vệ sinh)
-	(18, 3, 1600000, 320000),   -- Monthly
-	(18, 4, 420000, 84000),     -- Weekly
-	(18, 5, 65000, 13000);      -- Daily
+	-- Lessor 4, Service 1 (Ghế Ergonomic) - lessorServiceID = 1
+	(1, 1, 5000000, 3500000),  -- Yearly - Ghế ergonomic thị trường ~3.5tr
+	(1, 2, 1300000, 3500000),  -- Seasonal
+	(1, 3, 500000, 3500000),   -- Monthly
+	(1, 4, 130000, 3500000),   -- Weekly
+	(1, 5, 50000, 3500000),    -- Daily
+	(1, 6, 8000, 3500000),     -- Hourly
+	
+	-- Lessor 4, Service 5 (Máy chiếu) - lessorServiceID = 2
+	(2, 1, 10000000, 8000000), -- Yearly - Máy chiếu văn phòng ~8tr
+	(2, 2, 2600000, 8000000),  -- Seasonal
+	(2, 3, 1000000, 8000000),  -- Monthly
+	(2, 4, 300000, 8000000),   -- Weekly
+	(2, 5, 80000, 8000000),    -- Daily
+	(2, 6, 12000, 8000000),    -- Hourly
+	
+	-- Lessor 4, Service 9 (Máy photocopy) - lessorServiceID = 3
+	(3, 1, 8000000, 15000000), -- Yearly - Máy photocopy văn phòng ~15tr
+	(3, 2, 2500000, 15000000), -- Seasonal
+	(3, 3, 900000, 15000000),  -- Monthly
+	(3, 4, 250000, 15000000),  -- Weekly
+	(3, 5, 70000, 15000000),   -- Daily
+	(3, 6, 10000, 15000000),   -- Hourly
+	
+	-- Lessor 5, Service 2 (Bàn điều chỉnh) - lessorServiceID = 4
+	(4, 1, 4500000, 4000000),  -- Yearly - Bàn điều chỉnh độ cao ~4tr
+	(4, 2, 1200000, 4000000),  -- Seasonal
+	(4, 3, 450000, 4000000),   -- Monthly
+	(4, 4, 120000, 4000000),   -- Weekly
+	(4, 5, 45000, 4000000),    -- Daily
+	(4, 6, 7000, 4000000),     -- Hourly
+	
+	-- Lessor 5, Service 6 (TV/Màn hình) - lessorServiceID = 5
+	(5, 1, 7000000, 12000000), -- Yearly - TV/Màn hình lớn văn phòng ~12tr
+	(5, 2, 3000000, 12000000), -- Seasonal
+	(5, 3, 1200000, 12000000), -- Monthly
+	(5, 4, 350000, 12000000),  -- Weekly
+	(5, 5, 90000, 12000000),   -- Daily
+	(5, 6, 15000, 12000000),   -- Hourly
+	
+	-- Lessor 6, Service 3 (Bàn đứng) - lessorServiceID = 6
+	(6, 1, 5500000, 5000000),  -- Yearly - Bàn đứng standing desk ~5tr
+	(6, 2, 1400000, 5000000),  -- Seasonal
+	(6, 3, 550000, 5000000),   -- Monthly
+	(6, 4, 150000, 5000000),   -- Weekly
+	(6, 5, 55000, 5000000),    -- Daily
+	(6, 6, 9000, 5000000),     -- Hourly
+	
+	-- Lessor 6, Service 7 (Bảng trắng) - lessorServiceID = 7
+	(7, 1, 3000000, 2000000),  -- Yearly - Bảng trắng lớn ~2tr
+	(7, 2, 800000, 2000000),   -- Seasonal
+	(7, 3, 300000, 2000000),   -- Monthly
+	(7, 4, 80000, 2000000),    -- Weekly
+	(7, 5, 30000, 2000000),    -- Daily
+	(7, 6, 5000, 2000000),     -- Hourly
+	
+	-- Lessor 6, Service 10 (Tủ lưu trữ) - lessorServiceID = 8
+	(8, 1, 2000000, 3000000),  -- Yearly - Tủ lưu trữ văn phòng ~3tr
+	(8, 2, 520000, 3000000),   -- Seasonal
+	(8, 3, 200000, 3000000),   -- Monthly
+	(8, 4, 55000, 3000000),    -- Weekly
+	(8, 5, 20000, 3000000),    -- Daily
+	(8, 6, 3500, 3000000),     -- Hourly
+	
+	-- Lessor 6, Service 13 (Dịch vụ vệ sinh) - lessorServiceID = 9
+	(9, 1, 18000000, 5000000), -- Yearly - Thiết bị vệ sinh chuyên nghiệp ~5tr
+	(9, 2, 4700000, 5000000),  -- Seasonal
+	(9, 3, 1500000, 5000000),  -- Monthly
+	(9, 4, 400000, 5000000),   -- Weekly
+	(9, 5, 60000, 5000000),    -- Daily
+	(9, 6, 10000, 5000000),    -- Hourly
+	
+	-- Lessor 8, Service 1 (Ghế Ergonomic) - lessorServiceID = 10
+	(10, 1, 5200000, 3500000), -- Yearly - Ghế ergonomic thị trường ~3.5tr
+	(10, 2, 1350000, 3500000), -- Seasonal
+	(10, 3, 520000, 3500000),  -- Monthly
+	(10, 4, 140000, 3500000),  -- Weekly
+	(10, 5, 52000, 3500000),   -- Daily
+	(10, 6, 8500, 3500000),    -- Hourly
+	
+	-- Lessor 8, Service 4 (Đèn bàn) - lessorServiceID = 11
+	(11, 1, 1800000, 800000),  -- Yearly - Đèn bàn LED cao cấp ~800k
+	(11, 2, 470000, 800000),   -- Seasonal
+	(11, 3, 180000, 800000),   -- Monthly
+	(11, 4, 50000, 800000),    -- Weekly
+	(11, 5, 18000, 800000),    -- Daily
+	(11, 6, 3000, 800000),     -- Hourly
+	
+	-- Lessor 8, Service 8 (Máy in/máy scan) - lessorServiceID = 12
+	(12, 1, 7000000, 10000000), -- Yearly - Máy in scan đa năng ~10tr
+	(12, 2, 1800000, 10000000), -- Seasonal
+	(12, 3, 700000, 10000000),  -- Monthly
+	(12, 4, 190000, 10000000),  -- Weekly
+	(12, 5, 70000, 10000000),   -- Daily
+	(12, 6, 12000, 10000000),   -- Hourly
+	
+	-- Lessor 8, Service 11 (Tủ khóa) - lessorServiceID = 13
+	(13, 1, 2500000, 6000000), -- Yearly - Tủ khóa điện tử ~6tr
+	(13, 2, 650000, 6000000),  -- Seasonal
+	(13, 3, 250000, 6000000),  -- Monthly
+	(13, 4, 70000, 6000000),   -- Weekly
+	(13, 5, 25000, 6000000),   -- Daily
+	(13, 6, 4000, 6000000),    -- Hourly
+	
+	-- Lessor 8, Service 12 (Máy phát điện dự phòng) - lessorServiceID = 14
+	(14, 1, 15000000, 25000000), -- Yearly - Máy phát điện công nghiệp ~25tr
+	(14, 2, 3900000, 25000000),  -- Seasonal
+	(14, 3, 1500000, 25000000),  -- Monthly
+	(14, 4, 400000, 25000000),   -- Weekly
+	(14, 5, 150000, 25000000),   -- Daily
+	(14, 6, 25000, 25000000),    -- Hourly
+	
+	-- Lessor 9, Service 5 (Máy chiếu) - lessorServiceID = 15
+	(15, 1, 9500000, 8000000),  -- Yearly - Máy chiếu văn phòng ~8tr
+	(15, 2, 2470000, 8000000),  -- Seasonal
+	(15, 3, 950000, 8000000),   -- Monthly
+	(15, 4, 280000, 8000000),   -- Weekly
+	(15, 5, 40000, 8000000),    -- Daily
+	(15, 6, 6500, 8000000),     -- Hourly
+	
+	-- Lessor 10, Service 2 (Bàn điều chỉnh) - lessorServiceID = 16
+	(16, 1, 4800000, 4000000),  -- Yearly - Bàn điều chỉnh độ cao ~4tr
+	(16, 2, 1250000, 4000000),  -- Seasonal
+	(16, 3, 480000, 4000000),   -- Monthly
+	(16, 4, 130000, 4000000),   -- Weekly
+	(16, 5, 48000, 4000000),    -- Daily
+	(16, 6, 8000, 4000000),     -- Hourly
+	
+	-- Lessor 10, Service 9 (Máy photocopy) - lessorServiceID = 17
+	(17, 1, 8500000, 15000000), -- Yearly - Máy photocopy văn phòng ~15tr
+	(17, 2, 2210000, 15000000), -- Seasonal
+	(17, 3, 850000, 15000000),  -- Monthly
+	(17, 4, 230000, 15000000),  -- Weekly
+	(17, 5, 85000, 15000000),   -- Daily
+	(17, 6, 14000, 15000000),   -- Hourly
+	
+	-- Lessor 10, Service 13 (Dịch vụ vệ sinh) - lessorServiceID = 18
+	(18, 1, 19200000, 5000000), -- Yearly - Thiết bị vệ sinh chuyên nghiệp ~5tr
+	(18, 2, 5000000, 5000000),  -- Seasonal
+	(18, 3, 1600000, 5000000),  -- Monthly
+	(18, 4, 420000, 5000000),   -- Weekly
+	(18, 5, 65000, 5000000),    -- Daily
+	(18, 6, 11000, 5000000);    -- Hourly

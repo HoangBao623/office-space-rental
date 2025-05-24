@@ -26,10 +26,11 @@ public class SearchController {
                               @RequestParam (name = "type", required = false) List<String> type,
                               @RequestParam (name = "tagName", required = false) List<String> tagName,
                               @RequestParam (name = "amenityName", required = false) List<String> amenityName,
-                              @RequestParam (name = "rentTypeName", required = false) List<String> rentTypeName
+                              @RequestParam (name = "rentTypeName", required = false) List<String> rentTypeName,
+                              @RequestParam (name = "serviceName", required = false) List<String> serviceName
                               ) {
 
-        List<OfficeSpaceDTO> osSearch_Lessee = officeSpaceService.searchOS_Lessee(params, type, tagName, amenityName, rentTypeName);
+        List<OfficeSpaceDTO> osSearch_Lessee = officeSpaceService.searchOS_Lessee(params, type, tagName, amenityName, rentTypeName, serviceName);
 
         return osSearch_Lessee;
     }

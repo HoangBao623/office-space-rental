@@ -13,8 +13,11 @@ public class OfficeSpaceDTO {
 	private String[] amenityName;
 	private String[] quantity;
 	private String[] rentTypeName;
-	private String[] price;
-	private String[] deposit;
+	private String[] price1;
+	private String[] deposit1;
+	private String[] serviceName;
+	private String[] price2;
+	private String[] deposit2;
 
 	public String getTitle() {
 		return title;
@@ -104,19 +107,43 @@ public class OfficeSpaceDTO {
 		this.rentTypeName = rentTypeName;
 	}
 
-	public String[] getPrice() {
-		return price;
+	public String[] getPrice1() {
+		return price1;
 	}
 
-	public void setPrice(String[] price) {
-		this.price = price;
+	public void setPrice1(String[] price1) {
+		this.price1 = price1;
 	}
 
-	public String[] getDeposit() {
-		return deposit;
+	public String[] getDeposit1() {
+		return deposit1;
 	}
 
-	public void setDeposit(String[] deposit) {
-		this.deposit = deposit;
+	public void setDeposit1(String[] deposit1) {
+		this.deposit1 = deposit1;
+	}
+
+	public String[] getServiceName() {
+		return serviceName;
+	}
+
+	public void setServiceName(String[] serviceName) {
+		this.serviceName = serviceName;
+	}
+
+	public String[] getPrice2() {
+		return price2;
+	}
+
+	public void setPrice2(String[] price2) {
+		this.price2 = price2;
+	}
+
+	public String[] getDeposit2() {
+		return deposit2;
+	}
+
+	public void setDeposit2(String[] deposit2) {
+		this.deposit2 = deposit2;
 	}
 }

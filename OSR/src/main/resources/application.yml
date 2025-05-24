@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 8091
 
 spring:
   application:
@@ -44,18 +44,7 @@ spring:
           google:
             client-id: 77665217132-u0487112micsel5gbitam4mukpfggtpo.apps.googleusercontent.com
             client-secret: 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
-#            scope:
-#              - openid
-#              - profile
-#              - email
-#              - https://www.googleapis.com/auth/user.birthday.read
-#              - https://www.googleapis.com/auth/user.phonenumbers.read
-#              - https://www.googleapis.com/auth/user.addresses.read
-#              - https://www.googleapis.com/auth/user.gender.read
-            #redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-        #provider:
-        #  google:
-        #    authorization-uri: https://accounts.google.com/o/oauth2/v2/auth
-        #    token-uri: https://oauth2.googleapis.com/token
-        #    user-info-uri: https://openidconnect.googleapis.com/v1/userinfo
-        #    user-name-attribute: sub
+            scope:
+              - openid
+              - profile
+              - email

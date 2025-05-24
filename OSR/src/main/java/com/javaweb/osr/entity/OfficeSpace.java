@@ -37,16 +37,16 @@ public class OfficeSpace {
     private List<Image> images;
 
     @OneToMany(mappedBy = "officeSpaceID")
-    private List<OS_Tag> detailTags;
+    private List<OSTag> detailTags;
 
     @OneToMany(mappedBy = "officeSpaceID")
-    private List<OS_Amenity> detailAmenities;
+    private List<OSAmenity> detailAmenities;
 
     @OneToMany(mappedBy = "officeSpaceID")
-    private List<OS_RentType> detailRentTypes;
+    private List<OSRentType> detailRentTypes;
 
     @OneToMany(mappedBy = "officeSpaceID")
-    private List<OS_Status> detailStatuses;
+    private List<OSStatus> detailStatuses;
 
     @OneToMany(mappedBy = "officeSpaceID")
     private List<Reservation> reservations;
@@ -70,14 +70,14 @@ public class OfficeSpace {
     public void setTypeOffice(TypeOffice typeOffice) { this.typeOfficeID = typeOffice; }
     public List<Image> getImages() { return images; }
     public void setImages(List<Image> images) { this.images = images; }
-    public List<OS_Tag> getDetailTags() { return detailTags; }
-    public void setDetailTags(List<OS_Tag> detailTags) { this.detailTags = detailTags; }
-    public List<OS_Amenity> getDetailAmenities() { return detailAmenities; }
-    public void setDetailAmenities(List<OS_Amenity> detailAmenities) { this.detailAmenities = detailAmenities; }
-    public List<OS_RentType> getDetailRentTypes() { return detailRentTypes; }
-    public void setDetailRentTypes(List<OS_RentType> detailRentTypes) { this.detailRentTypes = detailRentTypes; }
-    public List<OS_Status> getDetailStatuses() { return detailStatuses; }
-    public void setDetailStatuses(List<OS_Status> detailStatuses) { this.detailStatuses = detailStatuses; }
+    public List<OSTag> getDetailTags() { return detailTags; }
+    public void setDetailTags(List<OSTag> detailTags) { this.detailTags = detailTags; }
+    public List<OSAmenity> getDetailAmenities() { return detailAmenities; }
+    public void setDetailAmenities(List<OSAmenity> detailAmenities) { this.detailAmenities = detailAmenities; }
+    public List<OSRentType> getDetailRentTypes() { return detailRentTypes; }
+    public void setDetailRentTypes(List<OSRentType> detailRentTypes) { this.detailRentTypes = detailRentTypes; }
+    public List<OSStatus> getDetailStatuses() { return detailStatuses; }
+    public void setDetailStatuses(List<OSStatus> detailStatuses) { this.detailStatuses = detailStatuses; }
     public List<Reservation> getReservations() { return reservations; }
     public void setReservations(List<Reservation> reservations) { this.reservations = reservations; }
     public List<Favorite> getFavorites() { return favorites; }

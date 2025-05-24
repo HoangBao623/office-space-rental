@@ -22,7 +22,7 @@ public class Service {
     private Boolean isActive = true;
 
     @OneToMany(mappedBy = "serviceID")
-    private List<Lessor_Service> lessorServices;
+    private List<LessorService> lessorServices;
 
     public Integer getServiceID() {
         return serviceID;
@@ -56,11 +56,11 @@ public class Service {
         isActive = active;
     }
 
-    public List<Lessor_Service> getLessorServices() {
+    public List<LessorService> getLessorServices() {
         return lessorServices;
     }
 
-    public void setLessorServices(List<Lessor_Service> lessorServices) {
+    public void setLessorServices(List<LessorService> lessorServices) {
         this.lessorServices = lessorServices;
     }
 }

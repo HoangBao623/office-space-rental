@@ -3,12 +3,12 @@ package com.javaweb.osr.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Lessor_Service")
-public class Lessor_Service {
+@Table(name = "LessorService")
+public class LessorService {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "lessor_ServiceID")
-    private Integer lessor_ServiceID;
+    @Column(name = "lessorServiceID")
+    private Integer lessorServiceID;
 
     @ManyToOne
     @JoinColumn(name = "lessorID", nullable = false)
@@ -18,12 +18,12 @@ public class Lessor_Service {
     @JoinColumn(name = "serviceID", nullable = false)
     private Service serviceID;
 
-    public Integer getLessor_ServiceID() {
-        return lessor_ServiceID;
+    public Integer getLessorServiceID() {
+        return lessorServiceID;
     }
 
-    public void setLessor_ServiceID(Integer lessor_ServiceID) {
-        this.lessor_ServiceID = lessor_ServiceID;
+    public void setLessorServiceID(Integer lessorServiceID) {
+        this.lessorServiceID = lessorServiceID;
     }
 
     public User getLessorID() {

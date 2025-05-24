@@ -1,4 +1,4 @@
 package com.javaweb.osr.service.Interface;
 
-public interface OS_RentTypeService {
+public interface OSStatusService {
 }

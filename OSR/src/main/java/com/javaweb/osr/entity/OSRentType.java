@@ -5,12 +5,12 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "OS_RentType")
-public class OS_RentType {
+@Table(name = "OSRentType")
+public class OSRentType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "oS_RentTypeID")
-    private Integer oS_RentTypeID;
+    @Column(name = "oSRentTypeID")
+    private Integer oSRentTypeID;
 
     @ManyToOne
     @JoinColumn(name = "officeSpaceID", nullable = false)
@@ -26,11 +26,11 @@ public class OS_RentType {
     @Column(name = "deposit", nullable = false)
     private float deposit;
 
-    @OneToMany(mappedBy = "oS_RentTypeID")
-    private List<Order_RentType> orderRentTypes;
+    @OneToMany(mappedBy = "oSRentTypeID")
+    private List<OrderRentType> orderRentTypes;
 
-    public Integer getDetailRentTypeID() { return oS_RentTypeID; }
-    public void setDetailRentTypeID(Integer oS_RentTypeID) { this.oS_RentTypeID = oS_RentTypeID; }
+    public Integer getDetailRentTypeID() { return oSRentTypeID; }
+    public void setDetailRentTypeID(Integer oSRentTypeID) { this.oSRentTypeID = oSRentTypeID; }
     public OfficeSpace getOfficeSpace() { return officeSpaceID; }
     public void setOfficeSpace(OfficeSpace officeSpace) { this.officeSpaceID = officeSpace; }
     public RentType getRentType() { return rentTypeID; }
@@ -39,6 +39,6 @@ public class OS_RentType {
     public void setPrice(float price) { this.price = price; }
     public float getDeposit() { return deposit; }
     public void setDeposit(float deposit) { this.deposit = deposit; }
-    public List<Order_RentType> getOrderRentTypes() { return orderRentTypes; }
-    public void setOrderRentTypes(List<Order_RentType> orderRentTypes) { this.orderRentTypes = orderRentTypes; }
+    public List<OrderRentType> getOrderRentTypes() { return orderRentTypes; }
+    public void setOrderRentTypes(List<OrderRentType> orderRentTypes) { this.orderRentTypes = orderRentTypes; }
 }

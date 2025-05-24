@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "OS_Status")
-public class OS_Status {
+@Table(name = "OSStatus")
+public class OSStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "oS_StatusID")
-    private Integer oS_StatusID;
+    @Column(name = "oSStatusID")
+    private Integer oSStatusID;
 
     @ManyToOne
     @JoinColumn(name = "officeSpaceID", nullable = false)
@@ -28,8 +28,8 @@ public class OS_Status {
     @Column(name = "reason", nullable = false)
     private String reason;
 
-    public Integer getDetailStatusID() { return oS_StatusID; }
-    public void setDetailStatusID(Integer oS_StatusID) { this.oS_StatusID = oS_StatusID; }
+    public Integer getDetailStatusID() { return oSStatusID; }
+    public void setDetailStatusID(Integer oSStatusID) { this.oSStatusID = oSStatusID; }
     public OfficeSpace getOfficeSpace() { return officeSpaceID; }
     public void setOfficeSpace(OfficeSpace officeSpace) { this.officeSpaceID = officeSpace; }
     public Status getStatus() { return statusID; }

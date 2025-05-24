@@ -1,11 +1,19 @@
 package com.javaweb.osr.entity;
 
 import jakarta.persistence.*;
-import java.util.Date;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Reservation")
 public class Reservation {
+
+    public Reservation(String title, String description, LocalDateTime startTime, LocalDateTime endTime) {
+    }
+
+    public Reservation() {
+
+    }
 
     public enum ReservationStatus { Pending, Completed, Canceled }
 
@@ -15,7 +23,7 @@ public class Reservation {
     private Integer reservationID;
 
     @Column(name = "viewDate", nullable = false)
-    private Date viewDate;
+    private LocalDateTime viewDate;
 
     @Column(name = "note")
     private String note;
@@ -35,10 +43,18 @@ public class Reservation {
     @JoinColumn(name = "officeSpaceID", nullable = false)
     private OfficeSpace officeSpaceID;
 
+    @Column(name = "is_synced_to_calendar")
+    private Boolean isSyncedToCalendar = false;
+
+    @Column(name = "google_event_id")
+    private String googleEventId;
+
+
+
     public Integer getReservationID() { return reservationID; }
     public void setReservationID(Integer reservationID) { this.reservationID = reservationID; }
-    public Date getViewDate() { return viewDate; }
-    public void setViewDate(Date viewDate) { this.viewDate = viewDate; }
+    public LocalDateTime getViewDate() { return viewDate; }
+    public void setViewDate(LocalDateTime viewDate) { this.viewDate = viewDate; }
     public String getNote() { return note; }
     public void setNote(String note) { this.note = note; }
     public ReservationStatus getStatus() { return status; }
@@ -49,4 +65,8 @@ public class Reservation {
     public void setLessee(User lessee) { this.lesseeID = lessee; }
     public OfficeSpace getOfficeSpace() { return officeSpaceID; }
     public void setOfficeSpace(OfficeSpace officeSpace) { this.officeSpaceID = officeSpace; }
+    public Boolean getIsSyncedToCalendar() { return isSyncedToCalendar; }
+    public void setIsSyncedToCalendar(Boolean isSyncedToCalendar) { this.isSyncedToCalendar = isSyncedToCalendar; }
+    public String getGoogleEventId() { return googleEventId; }
+    public void setGoogleEventId(String googleEventId) { this.googleEventId = googleEventId; }
 }
