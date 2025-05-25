@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>RER - Property Details</title>
+
+  <!-- CSS Files -->
+  <link href="/customize/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/customize/property-details.css">
+  <link rel="stylesheet" href="/customize/fontawesome.css">
+  <link rel="stylesheet" href="/customize/templatemo-villa-agency.css">
+  <link rel="stylesheet" href="/customize/owl.css">
+  <link rel="stylesheet" href="/customize/animate.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<!-- Header -->
+<header class="header-area header-sticky">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <a th:href="@{/}" class="logo">
+            <h1>RER</h1>
+          </a>
+          <ul class="nav">
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/propertiesSearch}">Properties</a></li>
+            <li><a href="#" class="active">Property Details</a></li>
+            <li>
+              <div th:if="${user == null}">
+                <a th:href="@{/login}">
+                  <i class="fa fa-user"></i> Log in
+                </a>
+              </div>
+              <div th:if="${user != null}" class="dropdown">
+                <a class="dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown">
+                  <i class="fa fa-user"></i> <span th:text="${user.getUsername()}">Username</span>
+                </a>
+                <div class="dropdown-menu">
+                  <a th:href="@{/logout}">Log out</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <a class='menu-trigger'>
+            <span>Menu</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="single-property section">
+  <div class="container">
+    <div class="row">
+      <!-- Property Images and Details -->
+      <div class="col-lg-8">
+        <div class="main-image">
+          <img th:if="${accommodation.getImageName() != null and accommodation.getImageName().length > 0}"
+               th:src="@{/images/{imageName}(imageName=${accommodation.getImageName()[0]})}"
+               alt="Property Image">
+        </div>
+        <div class="main-content">
+          <span class="category" th:text="${accommodation.getAccomType()}"></span>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="mb-0" th:text="${accommodation.getAccommodationName()}"></h4>
+            <a id="scheduleButton" class="btn btn-warning text-white">
+              <i class="fa fa-calendar"></i> Đặt lịch
+            </a>
+          </div>
+
+          <!-- Property Description -->
+          <div th:if="${des == ''}">
+            <p><strong>Address:</strong> <span th:text="${accommodation.getAddress()}"></span></p>
+            <p><strong>Direction:</strong> <span th:text="${accommodation.getDirection()}"></span></p>
+            <p><strong>Rooms:</strong> <span th:text="${accommodation.getNumberOfRooms()}"></span></p>
+            <p><strong>Amenity:</strong> <span th:text="${accommodation.getAmenity()}"></span></p>
+          </div>
+          <div th:if="${des != null and !des.isEmpty()}" th:utext="${des}"></div>
+        </div>
+      </div>
+
+      <!-- Property Info Table -->
+      <div class="col-lg-4">
+        <div class="info-table">
+          <ul>
+            <li>
+              <img src="/images/info-icon-01.png" alt="">
+              <h4 th:text="${accommodation.getSize()}"></h4>
+              <span>Total Flat Space</span>
+            </li>
+            <!-- Add other info items -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Map and Pricing Table -->
+<div class="container2">
+  <div class="map">
+    <iframe th:src="${accommodation.getMap()}"
+            width="600" height="450" style="border:0;"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+  <div class="table-container">
+    <table>
+      <thead>
+      <tr>
+        <th>Rent Type</th>
+        <th>Price</th>
+        <th>Deposit</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="renttype, iterStart: ${accommodation.getRentType()}">
+        <td th:text="${renttype}"></td>
+        <td th:text="${accommodation.getPrice()[iterStart.index]}"></td>
+        <td th:text="${accommodation.getDeposit()[iterStart.index]}"></td>
+        <td>
+          <button class="button" type="button">
+            <a th:href="@{/invoice(accommodationID=${accommodation.getAccommodationID()}, renttype=${renttype})}">
+              <i class="fa fa-calendar"></i> Đặt cọc
+            </a>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Schedule Form -->
+<div id="overlay" class="overlay"></div>
+<div class="contact-content" id="schedule-Form">
+  <div class="container">
+    <form id="appointmentForm" th:action="@{/save-date/{accommodationID}(accommodationID=${accommodation.getAccommodationID()})}" method="post">
+      <div class="row">
+        <div class="col-xs-12">
+          <fieldset>
+            <label for="viewDate">View date</label>
+            <input type="datetime-local" name="viewDate" id="viewDate" required>
+          </fieldset>
+          <fieldset>
+            <label for="note">Note</label>
+            <textarea name="note" id="note" placeholder="Your message..."></textarea>
+          </fieldset>
+          <fieldset>
+            <button type="button" id="closeForm" class="orange-button">Close</button>
+            <button type="submit" id="form-submit" class="orange-button">Reserve</button>
+          </fieldset>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>Copyright © 2048 RER Agency Co., Ltd. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="/lessee/vendor/jquery/jquery.min.js"></script>
+<script src="/lessee/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/lessee/assets/js/isotope.min.js"></script>
+<script src="/lessee/assets/js/owl-carousel.js"></script>
+<script src="/lessee/assets/js/counter.js"></script>
+<script src="/lessee/assets/js/custom.js"></script>
+
+<!-- Custom Scripts -->
+<script th:inline="javascript">
+  // Schedule form controls
+  document.getElementById('scheduleButton').addEventListener('click', function() {
+    document.getElementById('schedule-Form').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+  });
+
+  document.getElementById('closeForm').addEventListener('click', function() {
+    document.getElementById('schedule-Form').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+  });
+
+  // Date validation
+  const viewDateInput = document.getElementById("viewDate");
+
+  function formatLocalDateTime(date) {
+    return date.toISOString().slice(0, 16);
+  }
+
+  function setMinViewDate() {
+    const now = new Date();
+    viewDateInput.min = formatLocalDateTime(now);
+    if (!viewDateInput.value || new Date(viewDateInput.value) < now) {
+      viewDateInput.value = formatLocalDateTime(now);
+    }
+  }
+
+  setMinViewDate();
+
+  // Form submission
+  document.getElementById("appointmentForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const accommodationID = [[${accommodation.getAccommodationID()}]];
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData);
+
+    try {
+      const response = await fetch(`/save-date/${accommodationID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        alert("Đặt lịch thành công!");
+        document.getElementById("schedule-Form").style.display = "none";
+        document.getElementById('overlay').style.display = 'none';
+      } else {
+        const error = await response.json();
+        alert(`Error: ${error.message}`);
+      }
+    } catch (err) {
+      alert("An unexpected error occurred!");
+      console.error(err);
+    }
+  });
+</script>
+</body>
+</html>

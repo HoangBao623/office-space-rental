@@ -5,20 +5,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <title>RER - PROPERTIES</title>
+  <title>OSR</title>
   <!-- Bootstrap core CSS -->
   <link href="/customize/bootstrap.min.css" rel="stylesheet">
-  <!--Style-->
-  <style>
-
-
-  </style>
   <link rel="stylesheet" href="/customize/index-style.css">
   <link rel="stylesheet" href="/customize/fontawesome.css">
   <link rel="stylesheet" href="/customize/templatemo-villa-agency.css">
   <link rel="stylesheet" href="/customize/owl.css">
   <link rel="stylesheet" href="/customize/animate.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 
 <body>
@@ -30,7 +26,7 @@
         <nav class="main-nav">
           <!-- ***** Logo Start ***** -->
           <a th:href="@{/}" class="logo">
-            <h1>RER</h1>
+            <h1>OSR</h1>
           </a>
           <!-- ***** Logo End ***** -->
           <!-- ***** Menu Start ***** -->
@@ -43,14 +39,14 @@
                   <i class="fa fa-user"></i> Log in
                 </a>
               </div>
-              <!-- Nếu đã đăng nhập -->
+              <!-- Kiểm tra nếu đã đăng nhập -->
               <div th:if="${user != null}" class="dropdown">
-                <a class="dropdown-toggle" href="#" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="fa fa-user"></i> <span th:text="${user.getUsername()}">Username</span>
+                <a class="dropdown-toggle" href="#" id="username" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa fa-user"></i> <span th:text="${username}">Username</span>
                 </a>
-                <div class="dropdown-menu">
-                  <a th:href="@{/profile}">Profile</a>
-                  <a th:href="@{/logout}">Log out</a>
+                <div class="dropdown-menu" >
+                  <a  th:href="@{/profile}">Profile</a>
+                  <a  th:href="@{/logout}">Log out</a>
                 </div>
               </div>
             </li>
@@ -70,8 +66,8 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <span class="breadcrumb"><a th:href="@{/}">Home</a>  /  Properties</span>
-        <h3>Properties</h3>
+        <span class="breadcrumb"><a th:href="@{/}">Home</a></span>
+        <h3>Home</h3>
       </div>
     </div>
   </div>
@@ -91,30 +87,45 @@
         <form id="searchForm" method="get" th:action="@{/}">
           <!-- Name -->
           <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-7">
+            <div class="col-lg-12">
               <fieldset>
                 <label>Tên tòa nhà</label>
                 <input type="text" name="buildingName" id="buildingName" placeholder="Nhập tên tòa nhà">
               </fieldset>
             </div>
-            <div class="col-lg-3">
+          </div>
+          <!--  -->
+          <div class="row">
+          <div class="row">
+            <div class="col-lg-6">
               <fieldset>
-                <label>Room Number</label>
-                <input type="number" name="numberOfRooms" id="room" placeholder="Enter room number">
+                <label>Tiêu đề</label>
+                <input type="text" name="title" id="title" placeholder="Nhập tiêu đề">
+              </fieldset>
+            </div>
+            <!-- Loại hình văn phòng -->
+            <div class="col-lg-6">
+              <fieldset>
+                <label>Loại văn phòng</label>
+                <select name="tagName" id="tagName" class="form-control">
+                  <option value="">Chọn văn phòng</option>
+                  <option value="Featured">Nổi bật</option>
+                  <option value="New">Mới</option>
+                  <option value="Popular">Phổ biến</option>
+                </select>
               </fieldset>
             </div>
           </div>
-          <!-- Address -->
+          </div>
+          <!--  -->
           <div class="row">
-            <div class="col-lg-1"></div>
             <div class="col-lg-3">
               <fieldset>
                 <label>Đường</label>
                 <input type="text" name="street" id="street" placeholder="Nhập tên đường">
               </fieldset>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-3">
               <fieldset>
                 <label>Phường/Xã</label>
                 <input type="text" name="wardcommune" id="wardcommune" placeholder="Nhập phường/xã">
@@ -126,170 +137,128 @@
                 <input type="text" name="district" id="district" placeholder="Nhập quận/huyện">
               </fieldset>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-3">
               <fieldset>
                 <label>Tỉnh/Thành phố</label>
                 <input type="text" name="cityprovince" id="cityprovince" placeholder="Nhập tỉnh/thành phố">
               </fieldset>
             </div>
           </div>
-          <!-- Address2 -->
-          <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-5">
-              <fieldset>
-                <label>Tiêu đề</label>
-                <input type="text" name="title" id="title" placeholder="Nhập tiêu đề">
-              </fieldset>
-            </div>
-            <!-- Loại hình văn phòng -->
-            <div class="col-lg-5">
-              <fieldset>
-                <label>Tag Name</label>
-                <select name="tagName" id="tagName" class="form-control">
-                  <option value="">Select Tag Name</option>
-                  <option value="Featured">Featured</option>
-                  <option value="New">New</option>
-                  <option value="Popular">Popular</option>
-                </select>
-              </fieldset>
-            </div>
-          </div>
+
           <!-- Area  -->
           <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-3">
+            <div class="col-lg-2">
               <fieldset>
-                <label>Diện tích tối thiểu (m²)</label>
-                <input type="number" name="minSize" id="minSize" placeholder="Min area">
+                <label>Diện tích tối thiểu</label>
+                <input type="number" name="minSize" id="minSize" placeholder="Min area (m²)">
               </fieldset>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-2">
               <fieldset>
-                <label>Diện tích tối đa (m²)</label>
-                <input type="number" name="maxSize" id="maxSize" placeholder="Max area">
+                <label>Diện tích tối đa</label>
+                <input type="number" name="maxSize" id="maxSize" placeholder="Max area (m²)">
               </fieldset>
             </div>
-          </div>
-          <!-- Price  -->
-          <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-3">
+            <div class="col-lg-2">
               <fieldset>
-                <label>Giá tối thiểu (VNĐ)</label>
-                <input type="number" name="minPrice" id="minPrice" placeholder="Min price">
+                <label>Giá tối thiểu</label>
+                <input type="number" name="minPrice" id="minPrice" placeholder="Min price (VNĐ)">
               </fieldset>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-2">
               <fieldset>
-                <label>Giá tối đa (VNĐ)</label>
-                <input type="number" name="maxPrice" id="maxPrice" placeholder="Max price">
+                <label>Giá tối đa</label>
+                <input type="number" name="maxPrice" id="maxPrice" placeholder="Max price (VNĐ)">
               </fieldset>
             </div>
-          </div>
-          <!--   -->
-          <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-3">
+
+            <div class="col-lg-2">
               <fieldset>
                 <label>Sức chứa tối thiểu</label>
                 <input type="number" name="minCapacity" id="minCapacity" placeholder="Min Capacity">
               </fieldset>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-2">
               <fieldset>
                 <label>Sức chứa tối đa</label>
                 <input type="number" name="maxCapacity" id="maxCapacity" placeholder="Max Capacity">
               </fieldset>
             </div>
           </div>
-          <!-- Rent Type -->
-          <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">
+          <!-- Loại hình văn phòng -->
+          <div class="row1">
+            <div class="col-lg-4">
               <fieldset>
                 <label>Loại hình văn phòng</label>
                 <div class="checkbox-group">
-                  <div><input type="checkbox" name="type" value="Yearly" id="type">Văn phòng truyền thống</div>
-                  <div><input type="checkbox" name="type" value="Yearly" id="type1">Không gian làm việc chung</div>
-                  <div><input type="checkbox" name="type" value="Yearly" id="type2">Văn phòng chia sẻ</div>
-                  <div><input type="checkbox" name="type" value="Yearly" id="type3">Văn phòng sinh học</div>
-                  <div><input type="checkbox" name="type" value="Yearly" id="type4">Văn phòng thông minh</div>
+                  <div><input type="checkbox" name="typeName" value="Văn phòng truyền thống">Văn phòng truyền thống</div>
+                  <div><input type="checkbox" name="typeName" value="Không gian làm việc chung">Không gian làm việc chung</div>
+                  <div><input type="checkbox" name="typeName" value="Văn phòng chia sẻ">Văn phòng chia sẻ</div>
+                  <div><input type="checkbox" name="typeName" value="Văn phòng sinh học">Văn phòng sinh học</div>
+                  <div><input type="checkbox" name="typeName" value="Văn phòng thông minh">Văn phòng thông minh</div>
                 </div>
               </fieldset>
             </div>
-          </div>
-
-          <!-- Hình thức thuê -->
-          <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-5">
+            <div class="col-lg-4">
               <fieldset>
                 <div class="form-group">
                   <label>Hình thức thuê</label>
                   <div class="checkbox-group">
-                    <div class="col-lg-4">
-                      <div><input type="checkbox" name="rentTypeName" value="Yearly" id="Yearly"> Hàng năm</div>
-                      <div><input type="checkbox" name="rentTypeName" value="Seasonal" id="Seasonal"> Theo mùa</div>
-                      <div><input type="checkbox" name="rentTypeName" value="Monthly" id="Monthly"> Hàng tháng</div>
-                      <div><input type="checkbox" name="rentTypeName" value="Weekly" id="Weekly"> Hàng tuần</div>
-                      <div><input type="checkbox" name="rentTypeName" value="Daily" id="Daily"> Hằng ngày</div>
-                      <div><input type="checkbox" name="rentTypeName" value="Hourly" id="Hourly"> Hàng giờ</div>
-                    </div>
+                    <div><input type="checkbox" name="rentTypeName" value="Yearly">Theo năm</div>
+                    <div><input type="checkbox" name="rentTypeName" value="Seasonal">Theo quý</div>
+                    <div><input type="checkbox" name="rentTypeName" value="Monthly">Theo tháng</div>
+                    <div><input type="checkbox" name="rentTypeName" value="Weekly">Theo tuần</div>
+                    <div><input type="checkbox" name="rentTypeName" value="Daily">Theo ngày</div>
+                    <div><input type="checkbox" name="rentTypeName" value="Hourly">Theo giờ</div>
                   </div>
                 </div>
               </fieldset>
             </div>
-            <!-- Tiện ích -->
-            <div class="row">
-              <div class="col-lg-1"></div>
-              <div class="col-lg-5">
-                <fieldset>
-                  <div class="form-group">
-                    <label>Tiện ích</label>
-                    <div class="checkbox-group">
-                      <div class="col-lg-4">
-                        <div><input type="checkbox" name="amenityName" value="WF" id="WF">Wi-Fi</div>
-                        <div><input type="checkbox" name="amenityName" value="G" id="G">Ghế</div>
-                        <div><input type="checkbox" name="amenityName" value="BDC" id="BDC">Bàn Điều Chỉnh</div>
-                        <div><input type="checkbox" name="amenityName" value="BD" id="BD">Bàn Đứng</div>
-                        <div><input type="checkbox" name="amenityName" value="DB" id="DB">Đèn Bàn</div>
-                        <div><input type="checkbox" name="amenityName" value="MC" id="MC">Máy Chiếu</div>
-                        <div><input type="checkbox" name="amenityName" value="TV" id="TV">TV/Màn Hình</div>
-                        <div><input type="checkbox" name="amenityName" value="BT" id="BT">Bảng Trắng</div>
-                      </div>
-                      <div class="col-lg-8">
-                        <div><input type="checkbox" name="amenityName" value="MI" id="MI">Máy In/Máy Scan</div>
-                        <div><input type="checkbox" name="amenityName" value="MP" id="MP">Máy Photocopy</div>
-                        <div><input type="checkbox" name="amenityName" value="MPCP" id="MPCP">Máy Pha Cà Phê</div>
-                        <div><input type="checkbox" name="amenityName" value="MLN" id="MLN">Máy Lọc Nước</div>
-                        <div><input type="checkbox" name="amenityName" value="DH" id="DH">Điều Hòa</div>
-                        <div><input type="checkbox" name="amenityName" value="HTS" id="HTS">Hệ Thống Sưởi</div>
-                        <div><input type="checkbox" name="amenityName" value="TLT" id="TLT">Tủ Lưu Trữ</div>
-                      </div>
+            <div class="col-lg-4">
+              <fieldset>
+                <div class="form-group">
+                  <label>Dịch vụ</label>
+                  <div class="checkbox-group">
+                    <div><input type="checkbox" name="amenityName" value="Wi-Fi">Wi-Fi</div>
+                    <div><input type="checkbox" name="amenityName" value="Ghế Ergonomic">Ghế Ergonomic</div>
+                    <div><input type="checkbox" name="amenityName" value="Bàn Điều Chỉnh">Bàn Điều Chỉnh</div>
+                    <div><input type="checkbox" name="amenityName" value="Bàn Đứng">Bàn Đứng</div>
+                    <div><input type="checkbox" name="amenityName" value="Đèn Bàn">Đèn Bàn</div>
+                    <div><input type="checkbox" name="amenityName" value="Máy Chiếu">Máy Chiếu</div>
+                    <div><input type="checkbox" name="amenityName" value="TV/Màn Hình">TV/Màn Hình</div>
+                    <div><input type="checkbox" name="amenityName" value="Bảng Trắng">Bảng Trắng</div>
+                    <div><input type="checkbox" name="amenityName" value="Máy In/Máy Scan">Máy In/Máy Scan</div>
+                    <div><input type="checkbox" name="amenityName" value="Máy Photocopy">Máy Photocopy</div>
+                    <div><input type="checkbox" name="amenityName" value="Máy Pha Cà Phê">Máy Pha Cà Phê</div>
+                    <div><input type="checkbox" name="amenityName" value="Máy Lọc Nước">Máy Lọc Nước</div>
+                    <div><input type="checkbox" name="amenityName" value="Điều Hòa">Điều Hòa</div>
+                    <div><input type="checkbox" name="amenityName" value="Hệ Thống Sưởi">Hệ Thống Sưởi</div>
+                    <div><input type="checkbox" name="amenityName" value="Tủ Lưu Trữ">Tủ Lưu Trữ</div>
+                    <div><input type="checkbox" name="amenityName" value="Tủ Khóa">Tủ Khóa</div>
+                    <div><input type="checkbox" name="amenityName" value="Cây Xanh Trong Nhà">Cây Xanh Trong Nhà</div>
+                    <div><input type="checkbox" name="amenityName" value="Camera Giám Sát">Camera Giám Sát</div>
+                    <div><input type="checkbox" name="amenityName" value="Máy Phát Điện Dự Phòng">Máy Phát Điện Dự Phòng</div>
+                    <div><input type="checkbox" name="amenityName" value="Cách Âm">Cách Âm</div>
+                    <div><input type="checkbox" name="amenityName" value="Rèm/Màn Cửa">Rèm/Màn Cửa</div>
+                    <div><input type="checkbox" name="amenityName" value="Ánh Sáng Tự Nhiên">Ánh Sáng Tự Nhiên</div>
+                    <div><input type="checkbox" name="amenityName" value="Sân Thượng">Sân Thượng</div>
                     </div>
                   </div>
-                </fieldset>
-              </div>
-          </div>
-            <!-- Dịch vụ -->
-            <div class="row">
-              <div class="col-lg-1"></div>
-              <div class="col-lg-5">
-                <fieldset>
-                  <div class="form-group">
-                    <label>Dịch vụ</label>
-                    <div class="checkbox-group">
-                      <div class="col-lg-4">
-                        <div><input type="checkbox" name="amenityName" value="DVVS" id="DVVS">Dịch vụ vệ sinh</div>
-                        <div><input type="checkbox" name="amenityName" value="MPDDP" id="MPDDP">Máy phát điện dự phòng</div>
-                        <div><input type="checkbox" name="amenityName" value="DP" id="DP"> Đèn bàn</div>
-                      </div>
-                    </div>
-                  </div>
-                </fieldset>
-              </div>
+              </fieldset>
             </div>
+<!--            <div class="col-lg-3">-->
+<!--              <fieldset>-->
+<!--                <div class="form-group">-->
+<!--                  <label>Dịch vụ</label>-->
+<!--                  <div class="checkbox-group">-->
+<!--                      <div><input type="checkbox" name="OSAmenity" value="Wi-Fi">Wi-Fi</div>-->
+<!--                      <div><input type="checkbox" name="OSAmenity" value="Máy phát điện dự phòng">Máy phát điện dự phòng</div>-->
+<!--                      <div><input type="checkbox" name="OSAmenity" value="Đèn bàn">Đèn bàn</div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--              </fieldset>-->
+<!--            </div>-->
+          </div>
           <!-- Search Button -->
           <div class="row">
             <div class="col-lg-12" style="text-align: center;">
@@ -311,16 +280,16 @@
     <div class="row properties-box">
       <div th:each="ac : ${osSearch_Lessee}" class="col-lg-4 col-md-6 align-self-center mb-30 properties-items col-md-6">
         <div class="item">
-<!--          <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}">-->
-<!--            &lt;!&ndash; <img th:src="@{'/s3/image/' + ${ac.getImage()}}" alt="Image Description"> &ndash;&gt;-->
-<!--          </a>-->
+          <a th:href="@{/property-details/{id}(id=${ac.getBuildingName()})}">
+          <img th:src="'/images/' + ${ac.getImageName()[0]} + '.jpg'" alt="Image Description"/>
+          </a>
           <span class="category">
             <p th:text="${ac.getType()}"></p>
           </span>
           <h4>
-<!--            <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}">-->
+            <a th:href="@{/property-details/{id}(id=${ac.getBuildingName()})}">
               <h3 th:text="${ac.getTitle()}"></h3>
-<!--            </a>-->
+            </a>
           </h4>
           <ul>
             <li>Capacity: <span th:text="${ac.getCapacity()}"></span></li>
@@ -328,8 +297,7 @@
             <li>Address: <span th:text="${ac.getAddress()}"></span></li>
           </ul>
           <div class="main-button">
-            View a detail
-<!--            <a th:href="@{/properties/{id}(id=${ac.getAccommodationID()})}">View a detail</a>-->
+            <a th:href="@{/property-details/{id}(id=${ac.getBuildingName()})}">View a detail</a>
           </div>
         </div>
       </div>
@@ -350,7 +318,7 @@
   <div class="container">
     <div class="col-lg-12">
       <p>Copyright © 2048 RER Agency Co., Ltd. All rights reserved.
-        Design: <a rel="nofollow" href="#" target="_blank">Nguyen Hoang Bao - Ha Thi My Chau </a></p>
+        Design: <a rel="nofollow" href="#" target="_blank">Nguyen Hoang Bao - Nguyen Ngoc Nghia </a></p>
     </div>
   </div>
 </footer>
@@ -408,6 +376,7 @@
   });
 </script>
 <script src="/library/jquery/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 <script src="/library/bootstrap.min.js"></script>
 <script src="/library/isotope.min.js"></script>
 <script src="/library/owl-carousel.js"></script>
